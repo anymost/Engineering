@@ -2,8 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb81c049-e7c6-4d87-b83e-1026ee6d30d2" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/.npmignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/LICENSE" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/dist/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/dist/vue-resource.common.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/dist/vue-resource.es2015.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/dist/vue-resource.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/dist/vue-resource.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/package.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/client/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/client/jsonp.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/client/xdr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/client/xhr.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/headers.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/interceptor/before.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/interceptor/body.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/interceptor/cors.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/interceptor/header.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/interceptor/jsonp.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/interceptor/method.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/interceptor/timeout.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/request.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/http/response.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/lib/promise.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/lib/url-template.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/promise.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/resource.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/url/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/url/query.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/url/root.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/url/template.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/src/util.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/test/data/invalid.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/test/data/text.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/test/data/valid.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/test/http.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/test/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/test/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/test/promise.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/test/resource.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/test/specs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/test/url.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/node_modules/vue-resource/test/webpack.config.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backEnd/db/group.js" afterPath="$PROJECT_DIR$/backEnd/db/group.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontEnd/package.json" afterPath="$PROJECT_DIR$/frontEnd/package.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -278,7 +323,7 @@
       <workItem from="1481773012935" duration="2000" />
       <workItem from="1481773017295" duration="25000" />
       <workItem from="1481773048157" duration="732000" />
-      <workItem from="1481773790861" duration="12005000" />
+      <workItem from="1481773790861" duration="12539000" />
     </task>
     <task id="LOCAL-00001" summary="创建前后端开发目录">
       <created>1481770944425</created>
@@ -322,11 +367,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481792201285</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="增加创建group的数据库操作">
+      <created>1481794368771</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1481794368771</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14962000" />
+    <option name="totallyTimeSpent" value="15496000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -391,7 +443,8 @@
     <MESSAGE value="提交前端工程框架" />
     <MESSAGE value="添加vue-router,vuex" />
     <MESSAGE value="添加部分数据库操作" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加部分数据库操作" />
+    <MESSAGE value="增加创建group的数据库操作" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加创建group的数据库操作" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
