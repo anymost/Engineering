@@ -10,9 +10,9 @@
     "comma-spacing": [2, { "before": false, "after": true }],   //逗号之前不能用空格，逗号之后必须有空格
     "no-mixed-spaces-and-tabs": 2,  //空格和tab不能混用
     "no-whitespace-before-property": 2,   //属性操作符 '.' '[]'前后不能有空格
-    "space-infix-ops": 2   //操作符两端需要加空格
-   // "space-before-function-paren": [2, "always"] //函数定义时，function关键字后面的小括号前是否需要加空格
-   // "no-unused-vars": [2, { "vars": "all", "args": "none" }]// 禁止出现未使用过的变量
+    "space-infix-ops": 2,   //操作符两端需要加空格
+    "space-before-function-paren": [2, "always"], //函数定义时，function关键字后面的小括号前是否需要加空格
+    "no-unused-vars": [2, { "vars": "all", "args": "none" }]// 禁止出现未使用过的变量
 
   }
 }
