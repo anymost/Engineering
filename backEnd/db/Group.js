@@ -3,16 +3,16 @@ var Tool = require('../tools/index');
 
 /**
  * @description 新增分组
- * @param userInfo
+ * @param groupInfo
  * @param callback
  */
 var addGroup = function (groupInfo, callback){
     Group.create({
         groupId : Tool.getRandom(),
         groupName : groupInfo.userName,
-        password : groupInfo.password,
-        phone : groupInfo.phone,
-        email　: 1243
+        ownerId : groupInfo.ownerId,
+        members : groupInfo.members,
+        documents : groupInfo.documents
     }).then(function () {
         callback({
             result : 0,
@@ -27,4 +27,30 @@ var addGroup = function (groupInfo, callback){
 };
 
 
-exports.addUser = addUser;
+exports.addUser = addGroup;
+
+/**
+ * @description 删除分组
+ * @param groupInfo
+ * @param callback
+ */
+var deleteGroup = function (groupInfo, callback){
+  Group.destroy({
+      where : {
+          groupId : groupInfo.groupId
+      }
+  }).then(function () {
+     callback({
+         result : 0,
+         message : 'success'
+     });
+  }, function (error) {
+      callback({
+          result : -1,
+          message : error.name
+      });
+  });
+
+};
+
+exports.deleteGroup = deleteGroup;
