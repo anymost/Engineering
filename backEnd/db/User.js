@@ -7,6 +7,9 @@ var Tool = require('../tools/index');
  * @param callback
  */
 var addUser = function (userInfo, callback){
+    if(!userInfo && !callback){
+        return;
+    }
     User.create({
         userId : Tool.getRandom(),
         userName : userInfo.userName,
@@ -21,7 +24,7 @@ var addUser = function (userInfo, callback){
     }, function (error) {
         callback({
             result : -1,
-            message : error.name
+            message : error.name || 'connect error'
         });
     });
 };
@@ -36,6 +39,9 @@ exports.addUser = addUser;
  * @param callback
  */
 var updateName = function (userInfo, callback){
+    if(!userInfo && !callback){
+        return;
+    }
     User.update({userName : userInfo.userName},
             {
                 where :
@@ -52,7 +58,7 @@ var updateName = function (userInfo, callback){
             function (error) {
                 callback({
                     result : -1,
-                    message : error.name
+                    message : error.name || 'connect error'
                 });
             });
 };
@@ -64,6 +70,9 @@ exports.updateName = updateName;
  * @param callback
  */
 var updatePassword = function (userInfo, callback){
+    if(!userInfo && !callback){
+        return;
+    }
     User.update({password : userInfo.password},
         {
             where :
@@ -80,7 +89,7 @@ var updatePassword = function (userInfo, callback){
             function (error) {
                 callback({
                     result : -1,
-                    message : error.name
+                    message : error.name || 'connect error'
                 });
             });
 };
@@ -92,6 +101,9 @@ exports.updatePassword = updatePassword;
  * @param callback
  */
 var updatePhone = function (userInfo, callback){
+    if(!userInfo && !callback){
+        return;
+    }
     User.update({phone : userInfo.phone},
         {
             where :
@@ -108,7 +120,7 @@ var updatePhone = function (userInfo, callback){
             function (error) {
                 callback({
                     result : -1,
-                    message : error.name
+                    message : error.name || 'connect error'
                 });
             });
 };
@@ -121,6 +133,9 @@ exports.updatePhone = updatePhone;
  * @param callback
  */
 var updateEmail = function (userInfo, callback){
+    if(!userInfo && !callback){
+        return;
+    }
     User.update({email : userInfo.email},
         {
             where :
@@ -137,7 +152,7 @@ var updateEmail = function (userInfo, callback){
             function (error) {
                 callback({
                     result : -1,
-                    message : error.name
+                    message : error.name || 'connect error'
                 });
             });
 };
