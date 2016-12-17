@@ -1,5 +1,5 @@
 var User = require('./Model').User;
-var Tool = require('../tools/index');
+var Tool = require('../../tools/index');
 
 /**
  * @description 新增用户
@@ -22,16 +22,67 @@ var addUser = function (userInfo, callback){
             message : 'success'
         });
     }, function (error) {
-        callback({
-            result : -1,
-            message : error.name || 'connect error'
-        });
+        if(error.name === 'SequelizeUniqueConstraintError') {
+            callback({
+                result: -1,
+                message: 'username is existed'
+            });
+        }else{
+            callback({
+                result : -2,
+                message : error.name || 'add user failed'
+            });
+        }
     });
 };
 
 
 exports.addUser = addUser;
 
+/**
+ * @description 验证用户身份
+ * @param userInfo
+ * @param callback
+ */
+var verifyUser = function (userInfo, callback){
+    if(!userInfo && !callback){
+        return;
+    }
+    User.findAll({
+        attributes : ['password'],
+        where : {
+            userName : userInfo.userName
+        }
+    }).then(function (result) {
+        if(result.length === 0){
+            callback({
+                result : -2,
+                message : 'username not found'
+            });
+        }else{
+            var password = result[0] && result[0].dataValues && result[0].dataValues['password'];
+            if(password === userInfo.password){
+                callback({
+                    result :0,
+                    message : 'success'
+                });
+            }else {
+                callback({
+                    result : -3,
+                    message : 'password not match'
+                });
+            }
+        }
+    },  function (error) {
+        callback({
+            result : -1,
+            message : error.name || 'verify failed'
+        });
+    });
+};
+
+
+exports.verifyUser = verifyUser;
 
 /**
  * @description 更新用户名

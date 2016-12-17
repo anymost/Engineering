@@ -2,7 +2,7 @@
  * Created by bradyzhang on 2016/12/17.
  */
 var Document = require('./Model').Document;
-var Tool = require('../tools/index');
+var Tool = require('../../tools/index');
 var Group = require('./Group');
 
 /**
@@ -72,7 +72,7 @@ var deleteDocument = function (groupInfo, documentInfo, callback){
            }, function () {
                 callback({
                     result : -4,
-                    mesage : 'delete document failed'
+                    message : 'delete document failed'
                 });
            });
        } else{

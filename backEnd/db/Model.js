@@ -27,7 +27,8 @@ var User = Pool.define('users', {
     },
     userName : {
         type : Sequelize.STRING,
-        allowNull : false
+        allowNull : false,
+        unique : true
     },
     password : {
         type : Sequelize.STRING,
@@ -113,12 +114,10 @@ var Document = Pool.define('documents', {
     }
 });
 
-/**
- * @description 创建数据库表
- *  var user = User.sync({force : false});
- *  var group = Group.sync({force : false});
- *  var document = Document.sync({force : false});
- **/
+/*   var user = User.sync({force : false});
+   var group = Group.sync({force : false});
+   var document = Document.sync({force : false});*/
+
 
 
 
