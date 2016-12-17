@@ -82,7 +82,7 @@ var updateGroupName = function (groupInfo, callback){
       });
   }, function (error) {
       callback({
-          result : 0,
+          result : -1,
           message : error.name || 'update failed'
       });
   });
@@ -91,7 +91,7 @@ var updateGroupName = function (groupInfo, callback){
 exports.updateGroupName = updateGroupName;
 
 /**
- * @param 添加分组成员
+ * @description 添加分组成员
  * @param groupInfo
  * @param memberInfo
  * @param callback
@@ -121,14 +121,14 @@ var addMember = function (groupInfo, memberInfo, callback){
                     message : 'success'
                 }, function (error) {
                    callback({
-                       result : -2,
+                       result : -3,
                        message : error.name || 'update failed'
                    });
                 });
             });
         }else {
             callback({
-                result : -1,
+                result : -2,
                 message : 'group not found'
             });
         }
@@ -141,5 +141,168 @@ var addMember = function (groupInfo, memberInfo, callback){
 };
 
 exports.addMember = addMember;
+
+
+
+/**
+ * @description 删除分组成员
+ * @param groupInfo
+ * @param memberInfo
+ * @param callback
+ */
+var deleteMember = function (groupInfo, memberInfo, callback){
+    if(!groupInfo && !memberInfo && !callback){
+        return;
+    }
+    Group.findAll({
+        attributes : ['members'],
+        where : {
+            groupId : groupInfo.groupId
+        }
+    }).then(function (result) {
+        var members = result && result[0] && result[0].dataValues && result[0].dataValues.members;
+        if(members){
+            members = members.split('&');
+            var index = members.indexOf(new String(memberInfo.userId));
+            members.splice(index, 1);
+            members = members.join('&');
+            Group.update({members : members},
+                {
+                    where : {
+                        groupId : groupInfo.groupId
+                    }
+                }
+            ).then(function () {
+                callback({
+                    result : 0,
+                    message : 'success'
+                }, function (error) {
+                    callback({
+                        result : -3,
+                        message : error.name || 'update failed'
+                    });
+                });
+            });
+        }else {
+            callback({
+                result : -2,
+                message : 'group not found'
+            });
+        }
+    }, function (error) {
+        callback({
+            result : -1,
+            message : error.name || 'connect error'
+        });
+    });
+};
+
+exports.deleteMember = deleteMember;
+
+/**
+ * @description 添加分组中的文档信息
+ * @param groupInfo
+ * @param documentInfo
+ * @param callback
+ */
+var addDocument = function (groupInfo, documentInfo, callback){
+    if(!groupInfo && !documentInfo && !callback){
+        return;
+    }
+    Group.findAll({attributes : ['documents']},
+        {
+            where : {
+                groupId : groupInfo.groupId
+            }
+        }).then(function (result) {
+        var documents = result && result[0] && result[0].dataValues && result[0].dataValues.documents;
+        if(documents){
+            documents = documents + '&' + documentInfo.documentId;
+            Group.update({documents:documents},
+                {
+                    where : {
+                        groupId : groupInfo.groupId
+                    }
+                }).then(function () {
+                    callback({
+                        result : 0,
+                        message : 'success'
+                    });
+            }, function () {
+                callback({
+                    result : -3,
+                    message : 'update failed'
+                });
+            });
+        }else{
+            callback({
+                result : -2,
+                message : 'group not found'
+            });
+        }
+    }, function (error) {
+        callback({
+            result : -1,
+            message : error.name || 'add failed'
+        });
+    });
+};
+
+exports.addDocument = addDocument;
+
+
+/**
+ * @description 删除分组中的文档信息
+ * @param groupInfo
+ * @param documentInfo
+ * @param callback
+ */
+var deleteDocument = function (groupInfo, documentInfo, callback){
+    if(!groupInfo && !documentInfo && !callback){
+        return;
+    }
+    Group.findAll({attributes : ['documents']},
+        {
+            where : {
+                groupId : groupInfo.groupId
+            }
+        }).then(function (result) {
+        var documents = result && result[0] && result[0].dataValues && result[0].dataValues.documents;
+        if(documents){
+            documents = document.split('&');
+            var index = documents.indexOf(new String(documentInfo.documentId));
+            documents.splice(index, 1);
+            documents = documents.join('&');
+            Group.update({documents:documents},
+                {
+                    where : {
+                        groupId : groupInfo.groupId
+                    }
+                }).then(function () {
+                callback({
+                    result : 0,
+                    message : 'success'
+                });
+            }, function () {
+                callback({
+                    result : -3,
+                    message : 'update failed'
+                });
+            });
+        }else{
+            callback({
+                result : -2,
+                message : 'group not found'
+            });
+        }
+    }, function (error) {
+        callback({
+            result : -1,
+            message : error.name || 'delete failed'
+        });
+    });
+};
+
+exports.deleteDocument = deleteDocument;
 
 
