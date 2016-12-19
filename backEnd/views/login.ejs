@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WeWork</title>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+</head>
+<body>
+<h1>WeWork</h1>
+<div class="normal_window" id="logTpl">
+    <form action="/login" method="post">
+        <input type="text" class="input" name="userName" autocomplete="off" placeholder="用户名"><br>
+        <input type="password" class="input" name="password" autocomplete="new-password" placeholder="密码"><a href="#forget" class="forget" id="forget">忘记密码?</a><br>
+        <button type="submit" class="input" >登陆</button></span>
+
+    </form>
+    <hr>
+    <div class="newCount">
+        还没有账号?<a href="#registrar" id="newCount">&nbsp;&nbsp;注册新账号</a>
+    </div>
+</div>
+
+<div class="normal_window" id="newCountTpl" style="display: none">
+    <form action="/login" method="post">
+        <input type="text" class="input" name="userName" autocomplete="off" placeholder="用户名"><br>
+        <input type="password" class="input" name="password" autocomplete="new-password" placeholder="密码"><a href="/forget" class="forget" id="forget">忘记密码?</a><br>
+        <button type="submit" class="input" >登陆</button></span>
+
+    </form>
+    <hr>
+    <div class="newCount">
+        还没有账号?<a href="/registrar" id="newCount">&nbsp;&nbsp;注册新账号</a>
+    </div>
+</div>
+
+<div class="normal_window" id="forgetTpl" style="display: none">
+    <form action="/login" method="post">
+        <input type="text" class="input" name="userName" autocomplete="off" placeholder="用户名"><br>
+        <input type="password" class="input" name="password" autocomplete="new-password" placeholder="密码"><a href="/forget" class="forget" id="forget">忘记密码?</a><br>
+        <button type="submit" class="input" >登陆</button></span>
+
+    </form>
+    <hr>
+    <div class="newCount">
+        还没有账号?<a href="/registrar" id="newCount">&nbsp;&nbsp;注册新账号</a>
+    </div>
+</div>
+<script src="/javascript/login.js"></script>
+</body>
+</html>
