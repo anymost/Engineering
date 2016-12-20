@@ -99,6 +99,20 @@ hr{
     animation: hideWindow 2s;
 }
 
-.showWindow{
+.showWindow {
     animation: showWindow 2s;
+}
+
+#registrarNotice{
+    position:absolute;
+    display: none;
+    left:100px;
+    bottom:100px;
+    width:200px;
+    height:40px;
+    color:#3DA8F5;
+    font-size:20px;
+    text-align: center;
+    line-height: 40px;
+
 }

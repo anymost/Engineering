@@ -1,4 +1,8 @@
 var found = document.querySelector('#found') || {};
+var registrar = document.querySelector('#registrar') || {};
+
+var registrarNotice = document.querySelector('#registrarNotice') || {};
+
 
 var registrarTpl = document.querySelector('#registrarTpl') || {};
 var forgetTpl = document.querySelector('#forgetTpl') || {};
@@ -46,8 +50,36 @@ window.addEventListener('hashchange', function (e) {
     }
 });
 
-found.addEventListener('click', function () {
-    var phone = document.getElementsByName('phone');
+registrar.addEventListener('click', function (e) {
+    var phone = document.getElementsByName('phone')?(document.getElementsByName('phone')[0]?
+        document.getElementsByName('phone')[0].value:0):0;
+    phone = parseInt(phone);
+    if(!verifyPhone(phone)){
+
+        registrarNotice.innerHTML = '手机号格式有误!';
+        registrarNotice.style.display = 'block';
+        var phoneTime = setTimeout(function () {
+            registrarNotice.style.display = 'none';
+            registrarNotice.innerHTML = '';
+            clearTimeout(phoneTime);
+        }, 2000);
+        e.preventDefault();
+        return;
+    }
+    var firstPd = document.querySelector('#firstPd')?document.querySelector('#firstPd').value:0;
+    var confirmPd = document.querySelector('#confirmPd')?document.querySelector('#confirmPd').value:0;
+
+
+    if(firstPd !== confirmPd){
+        registrarNotice.innerHTML = '密码不一致!';
+        registrarNotice.style.display = 'block';
+        var pdTime = setTimeout(function () {
+            registrarNotice.style.display = 'none';
+            registrarNotice.innerHTML = '';
+            clearTimeout(pdTime);
+        }, 2000);
+        e.preventDefault();
+    }
 });
 
 
