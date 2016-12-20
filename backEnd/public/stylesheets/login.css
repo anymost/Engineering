@@ -46,10 +46,13 @@ h1{
     right:50px;
     top:150px;
     text-decoration: none;
-    color:rgb(200,197,194);
+    color: #3DA8F5;
     float:right;
     z-index:5;
 }
+
+
+
 hr{
     margin:30px 50px;
     width:300px;
@@ -114,5 +117,4 @@ hr{
     font-size:20px;
     text-align: center;
     line-height: 40px;
-
 }
