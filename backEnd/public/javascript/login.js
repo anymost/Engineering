@@ -1,18 +1,53 @@
-var newCount = document.querySelector('#newCount');
-var forget = document.querySelector('#forget');
+var found = document.querySelector('#found') || {};
+
+var registrarTpl = document.querySelector('#registrarTpl') || {};
+var forgetTpl = document.querySelector('#forgetTpl') || {};
+var logTpl = document.querySelector('#logTpl') || {};
+
+var normalWindow = document.getElementsByClassName('normal_window') || [];
+
+function hideNormal () {
+    for(var i = 0; i < normalWindow.length; i++){
+        normalWindow[i].style.display = 'none';
+    }
+}
+
+function showRegistrar () {
+    hideNormal();
+    registrarTpl.classList.add('showWindow');
+    registrarTpl.style.display = 'block';
+}
+
+function showForget () {
+    hideNormal();
+    forgetTpl.classList.add('showWindow');
+    forgetTpl.style.display = 'block';
+}
+
+function showLog () {
+    hideNormal();
+    logTpl.classList.add('showWindow');
+    logTpl.style.display = 'block';
+}
 
 
-var newCountTpl = document.querySelector('#newCountTpl');
-var forgetTpl = document.querySelector('#forgetTpl');
-var logTpl = document.querySelector('#logTpl');
 
-var normalWindow = document.getElementsByClassName('normal_window');
-
-
-newCount.addEventListener('click', function (e) {
-    logTpl.classList.add('hideWindow');
-    logTpl.style.display = 'none';
-    setTimeout(function () {
-        newCountTpl.style.display = 'block';
-    },  1000);
+window.addEventListener('hashchange', function (e) {
+    var newURL = e.newURL;
+    var search = newURL.split('#');
+    if(search.length === 1){
+        showLog();
+    }else {
+        if(search[1] === 'registrar'){
+            showRegistrar();
+        }else if(search[1] === 'forget'){
+            showForget();
+        }
+    }
 });
+
+found.addEventListener('click', function () {
+    var phone = document.getElementsByName('phone');
+});
+
+

@@ -31,8 +31,28 @@ var filterString = function (str) {
 
 exports.filterString = filterString;
 
+/**
+ * @description 验证手机号
+ * @param phone
+ * @returns {boolean}
+ */
 
+var verifyPhone = function (phone) {
+    return !!(/^1[34578]\d{9}$/.test(phone));
+};
 
+exports.verifyUser = verifyPhone;
+
+/**
+ * @description 验证邮箱
+ * @param email
+ * @returns {boolean}
+ */
+var verifyEmail = function (email) {
+    return !!(/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(email));
+};
+
+exports.verifyEmail = verifyEmail;
 
 
 

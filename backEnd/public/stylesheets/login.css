@@ -12,9 +12,17 @@ h1{
     background-color: white;
     margin: 50px auto;
     width:400px;
-    height:500px;
     position: relative;
 }
+
+#logTpl,#forgetTpl{
+    height:500px;
+}
+
+#registrarTpl {
+    height:700px;
+}
+
 .input{
     margin:30px 50px;
     width:300px;
@@ -59,6 +67,38 @@ hr{
 }
 
 .hideWindow {
-    transform: translate(-400,0);
-    transition: left 2s;
+    -webkit-transition: opicity 2s;
+    -moz-transition: opicity 2s;
+    -ms-transition: opicity 2s;
+    -o-transition: opicity 2s;
+    transition: opicity 2s;
+}
+
+@keyframes hideWindow {
+    from{
+        opacity:1;
+        display: block;
+    }
+    to{
+        opacity: 0;
+        display: none;
+    }
+}
+@keyframes showWindow {
+    from{
+        opacity:0;
+        display: none;
+    }
+    to{
+        opacity:1;
+        display: block;
+    }
+}
+
+.hideWindow{
+    animation: hideWindow 2s;
+}
+
+.showWindow{
+    animation: showWindow 2s;
 }

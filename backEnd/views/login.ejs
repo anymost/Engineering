@@ -14,8 +14,7 @@
     <form action="/login" method="post">
         <input type="text" class="input" name="userName" autocomplete="off" placeholder="用户名"><br>
         <input type="password" class="input" name="password" autocomplete="new-password" placeholder="密码"><a href="#forget" class="forget" id="forget">忘记密码?</a><br>
-        <button type="submit" class="input" >登陆</button></span>
-
+        <button type="submit" class="input" id="login">登陆</button>
     </form>
     <hr>
     <div class="newCount">
@@ -23,25 +22,23 @@
     </div>
 </div>
 
-<div class="normal_window" id="newCountTpl" style="display: none">
-    <form action="/login" method="post">
-        <input type="text" class="input" name="userName" autocomplete="off" placeholder="用户名"><br>
-        <input type="password" class="input" name="password" autocomplete="new-password" placeholder="密码"><a href="/forget" class="forget" id="forget">忘记密码?</a><br>
-        <button type="submit" class="input" >注册</button></span>
-
+<div class="normal_window" id="registrarTpl" style="display: none">
+    <form action="/registrar" method="post">
+        <input type="text" class="input" name="userName" autocomplete="off" placeholder="用户名" required="required"><br>
+        <input type="email" class="input" name="email" autocomplete="off" placeholder="邮箱" required="required"><br>
+        <input type="tel" class="input" name="phone" autocomplete="off" placeholder="电话" required="required"><br>
+        <input type="password" class="input" name="password" autocomplete="new-password" placeholder="密码" required="required"><br>
+        <input type="password" class="input" name="confirm" autocomplete="new-password" placeholder="确认密码" required="required"><br>
+        <hr>
+        <button type="submit" class="input" id="registrar">确认注册</button>
     </form>
-    <hr>
-    <div class="newCount">
-        还没有账号?<a href="/registrar" id="newCount">&nbsp;&nbsp;注册新账号</a>
-    </div>
 </div>
 
 <div class="normal_window" id="forgetTpl" style="display: none">
-    <form action="/login" method="post">
+    <form action="/forget" method="post">
         <input type="text" class="input" name="userName" autocomplete="off" placeholder="用户名"><br>
         <input type="password" class="input" name="password" autocomplete="new-password" placeholder="密码"><a href="/forget" class="forget" id="forget">忘记密码?</a><br>
-        <button type="submit" class="input" >登陆</button></span>
-
+        <button type="submit" class="input" id="found">找回密码</button>
     </form>
     <hr>
     <div class="newCount">
