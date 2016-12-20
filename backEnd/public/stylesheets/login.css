@@ -57,3 +57,8 @@ hr{
     text-decoration: none;
     color: #3DA8F5;
 }
+
+.hideWindow {
+    transform: translate(-400,0);
+    transition: left 2s;
+}

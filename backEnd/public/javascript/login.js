@@ -1,16 +1,18 @@
 var newCount = document.querySelector('#newCount');
-var newCountTpl = document.querySelector('#newCountTpl');
 var forget = document.querySelector('#forget');
+
+
+var newCountTpl = document.querySelector('#newCountTpl');
 var forgetTpl = document.querySelector('#forgetTpl');
+var logTpl = document.querySelector('#logTpl');
 
 var normalWindow = document.getElementsByClassName('normal_window');
 
-function hideNormal () {
-    for (var i = 0; i < normalWindow.length; i++) {
-        normalWindow[i].style.display = 'none';
-    }
-}
-newCount.addEventListener('click', function (e) {
-    hideNormal();
 
+newCount.addEventListener('click', function (e) {
+    logTpl.classList.add('hideWindow');
+    logTpl.style.display = 'none';
+    setTimeout(function () {
+        newCountTpl.style.display = 'block';
+    },  1000);
 });
