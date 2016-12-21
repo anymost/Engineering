@@ -67,8 +67,8 @@ registrar.bind('click', function (e) {
         e.preventDefault();
         return;
     }
-    var firstPd = $('#firstPd')?$('#firstPd').val():0;
-    var confirmPd = $('#confirmPd')?$('#confirmPd').val():0;
+    var firstPd = $('#firstPd') ? $('#firstPd').val() : 0;
+    var confirmPd = $('#confirmPd') ? $('#confirmPd').val() : 0;
 
 
     if(firstPd !== confirmPd){
@@ -95,8 +95,8 @@ getCode.bind('click', function (e) {
             target.html('获取验证码');
             target.removeAttr('disabled');
         }
-        target.html(30-count+'s');
-    }, 1000)
+        target.html(30 - count + 's');
+    }, 1000);
 });
 
 
