@@ -6,12 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb81c049-e7c6-4d87-b83e-1026ee6d30d2" name="Default" comment="更新主干">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backEnd/routes/found.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backEnd/routes/registrar.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backEnd/app.js" afterPath="$PROJECT_DIR$/backEnd/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backEnd/public/javascript/login.js" afterPath="$PROJECT_DIR$/backEnd/public/javascript/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backEnd/views/login.ejs" afterPath="$PROJECT_DIR$/backEnd/views/login.ejs" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -376,7 +371,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="F:/gamecenter/gamecenterV2" />
     <property name="nodejs_interpreter_path" value="E:/node/node" />
     <property name="js.eslint.eslintPackage" value="E:\node\node_modules\eslint" />
     <property name="js-jscs-nodeInterpreter" value="E:\node\node.exe" />
@@ -514,7 +509,7 @@
       <workItem from="1482197708993" duration="1614000" />
       <workItem from="1482204669728" duration="5186000" />
       <workItem from="1482214544087" duration="24000" />
-      <workItem from="1482295001592" duration="1598000" />
+      <workItem from="1482295001592" duration="2203000" />
     </task>
     <task id="LOCAL-00001" summary="创建前后端开发目录">
       <created>1481770944425</created>
@@ -583,7 +578,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60510000" />
+    <option name="totallyTimeSpent" value="61115000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />

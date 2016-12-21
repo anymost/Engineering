@@ -11,8 +11,9 @@ router.post('/', function (req, res, next) {
     var code = filterString(req.body.code);
     var userName = filterString(req.body.userName);
     if(code){
-
+        res.render('index');
     }
+
 
 });
 
