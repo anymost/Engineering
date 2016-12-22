@@ -106,7 +106,7 @@ hr{
     animation: showWindow 2s;
 }
 
-#registrarNotice{
+.noticeTpl{
     position:absolute;
     display: none;
     left:100px;

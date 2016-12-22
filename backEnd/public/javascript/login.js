@@ -1,7 +1,8 @@
 var found = $('#found') || {};
 var registrar = $('#registrar') || {};
+var foundPhone = $('#foundPhone') || {};
 
-var registrarNotice = $('#registrarNotice') || {};
+var noticeTpl = $('.noticeTpl') || [];
 
 var getCode = $('#getCode') || {};
 
@@ -55,13 +56,12 @@ registrar.bind('click', function (e) {
     var phone = document.getElementsByName('phone')?(document.getElementsByName('phone')[0]?
         document.getElementsByName('phone')[0].val():0):0;
     phone = parseInt(phone);
+    var notice = $($('.noticetpl').eq(1));
     if(!verifyPhone(phone)){
 
-        registrarNotice.html('手机号格式有误!');
-        registrarNotice.show();
+        notice.html('手机号格式有误!').show();
         var phoneTime = setTimeout(function () {
-            registrarNotice.hide();
-            registrarNotice.html('');
+            notice.hide().html('');
             clearTimeout(phoneTime);
         }, 2000);
         e.preventDefault();
@@ -72,11 +72,9 @@ registrar.bind('click', function (e) {
 
 
     if(firstPd !== confirmPd){
-        registrarNotice.html('密码不一致!');
-        registrarNotice.show();
+        notice.html('密码不一致!').show();
         var pdTime = setTimeout(function () {
-            registrarNotice.hide();
-            registrarNotice.html('');
+            notice.hide().html('');
             clearTimeout(pdTime);
         }, 2000);
         e.preventDefault();
@@ -84,14 +82,30 @@ registrar.bind('click', function (e) {
 });
 
 getCode.bind('click', function (e) {
+
     e.preventDefault();
+    var notice = $(noticeTpl.eq(2));
+
+    if(!(foundPhone && verifyPhone(foundPhone.val()))){
+        notice.html('手机号格式有误').show();
+        var pdTime = setTimeout(function () {
+            notice.hide().html('');
+            clearTimeout(pdTime);
+        }, 2000);
+        return;
+    }
+    $.post('/getCode', {phone:foundPhone.val()},function (response) {
+    });
+
     var count = 1;
     var target = $(e.target);
+
     target.attr('disabled', 'disabled');
     var timer = setInterval(function () {
         count += 1;
         if(count === 30){
             clearInterval(timer);
+            console.log('ok');
             target.html('获取验证码');
             target.removeAttr('disabled');
         }

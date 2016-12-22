@@ -1,5 +1,5 @@
 var User = require('./Model').User;
-var Tool = require('../../tools/index');
+var Tool = require('../tools/index');
 
 /**
  * @description 新增用户

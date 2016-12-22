@@ -1,5 +1,5 @@
 var Group = require('./Model').Group;
-var Tool = require('../../tools/index');
+var Tool = require('../tools/index');
 
 /**
  * @description 新增分组
