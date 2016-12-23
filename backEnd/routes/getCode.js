@@ -20,7 +20,7 @@ router.post('/', function (req, res, next) {
                         res.send({
                             result : 0,
                             message : 'success'
-                        })
+                        });
                     }else {
                         res.send({
                             result : -1,

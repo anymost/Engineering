@@ -5,7 +5,7 @@ var redis = require('redis');
 var client = redis.createClient('6379', '127.0.0.1');
 
 var setPhoneCode = function (phone, code, callback){
-    client.set(''+phone, ''+code, function (error, res){
+    client.set('' + phone, '' + code, function (error, res){
         if(!error){
             callback({
                 result : 0,
@@ -23,8 +23,22 @@ var setPhoneCode = function (phone, code, callback){
 exports.setPhoneCode = setPhoneCode;
 
 
-var getPhoneCode = function (phone) {
-
+var getPhoneCode = function (phone, callback) {
+    client.get('' + phone, function (error, value) {
+        if(!error){
+            callback({
+                result : 0,
+                data : value
+            });
+        }else{
+            callback({
+                result : -1,
+                data :　'not found'
+            });
+        }
+    });
 };
 
 exports.getPhoneCode = getPhoneCode;
+
+
