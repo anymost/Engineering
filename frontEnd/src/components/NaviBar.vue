@@ -12,9 +12,10 @@
 </template>
 <style scoped>
   .naviBar{
-    margin-left:1%;
+    margin-left:2%;
     margin-top : 1%;
-    width:200px;
+    width:16%;
+    float:left;
   }
 
   .item{
@@ -28,6 +29,7 @@
 
 
 </style>
+
 <script>
 export default{
         data(){
@@ -39,8 +41,4 @@ export default{
 
         }
     }
-
-
-
-
 </script>

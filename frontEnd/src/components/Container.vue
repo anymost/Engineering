@@ -4,16 +4,13 @@
     <MainContent></MainContent>
   </div>
 </template>
-<style>
+
+
+<style scoped>
   .container{
     width:100%;
+    overflow:auto;
   }
-
-  .container > div{
-    float:left;
-  }
-
-
 </style>
 <script>
     import NaviBar from './NaviBar'

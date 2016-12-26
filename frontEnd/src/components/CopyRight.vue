@@ -8,7 +8,6 @@
   .copyRight{
     position : relative;
     bottom : 0;
-    background-color: white;
   }
   .copyRight hr{
     width:100%;

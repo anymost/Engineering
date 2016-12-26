@@ -5,12 +5,12 @@
 </template>
 <style>
   .mainContent{
-    margin-left:1%;
+    margin-left:8%;
     margin-top : 1%;
-    width:800px;
-    height:900px;
-    box-shadow: 4px 1px 1px grey;
-    background-color:black;
+    width:70%;
+    height:800px;
+    background-color:white;
+    float:left;
   }
 
 </style>
