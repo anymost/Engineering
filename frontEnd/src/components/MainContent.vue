@@ -3,7 +3,7 @@
     <div>this is template body</div>
   </div>
 </template>
-<style>
+<style scoped>
   .mainContent{
     margin-left:8%;
     margin-top : 1%;
