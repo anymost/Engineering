@@ -20,8 +20,9 @@ export default {
     TitleBar,
     Container,
     InfoBar,
-    CopyRight
-  }
+    CopyRight,
+  },
+
 }
 </script>
 

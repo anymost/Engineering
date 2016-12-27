@@ -23,7 +23,7 @@
         },
         components:{
           Person
-        }
+        },
     }
 
 </script>

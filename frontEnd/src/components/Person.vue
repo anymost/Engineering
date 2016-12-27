@@ -3,7 +3,7 @@
       <img  :src=src class='head' width="50%" height="100%">
       <div class='info' >{{name}}</div>
       <div>
-        <img class='arrow' @click=showInfo :src=arrow width='10%' height='10%' />
+        <img class='arrow' @click=infoDisplay :src=arrow width='10%' height='10%' />
       </div>
     </div>
 </template>
@@ -27,7 +27,7 @@
 </style>
 <script>
     import InfoBar from './InfoBar'
-
+    import {infoBar} from '../store'
     export default{
         data(){
             return{
@@ -37,14 +37,12 @@
             }
         },
         methods :{
-            showInfo : function () {
-
-            },
-            hideInfo : function () {
-            }
+           infoDisplay(){
+                infoBar.commit('changeDisplay', infoBar.state.display === 'block' ? 'none' : 'display'):
+           }
         },
         components:{
-          InfoBar
+
         }
     }
 </script>
