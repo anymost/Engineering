@@ -7,9 +7,11 @@
 </template>
 
 <script>
+
 import TitleBar from './components/TitleBar'
 import Container from './components/Container'
 import CopyRight from './components/CopyRight'
+import InfoBar from './components/InfoBar'
 
 
 export default {
@@ -17,6 +19,7 @@ export default {
   components: {
     TitleBar,
     Container,
+    InfoBar,
     CopyRight
   }
 }
