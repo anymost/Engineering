@@ -4,20 +4,21 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
+import state from './state'
+import actions from './actions'
+import mutations from './mutations'
 
 
 Vue.use(Vuex);
 
-
-const infoBar = new Vuex.Store({
-  state : {
-    infoBarDisplay : 'none'
-  },
-  mutations : {
-    changeDisplay(state, isDisplay){
-      state.infoBarDisplay = isDisplay;
-    }
-  }
+/**
+ * @description 组装导出全局store
+ * @type {Store}
+ */
+const store = new Vuex.Store({
+  state : state,
+  mutations : mutations,
+  actions : actions
 });
 
-export  {infoBar};
+export  default store;

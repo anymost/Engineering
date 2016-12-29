@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <TitleBar></TitleBar>
+    <InfoBar></InfoBar>
     <Container></Container>
     <CopyRight></CopyRight>
   </div>

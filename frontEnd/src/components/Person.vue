@@ -26,8 +26,7 @@
 
 </style>
 <script>
-    import InfoBar from './InfoBar'
-    import {infoBar} from '../store'
+    import store from '../store'
     export default{
         data(){
             return{
@@ -38,7 +37,7 @@
         },
         methods :{
            infoDisplay(){
-                infoBar.commit('changeDisplay', infoBar.state.display === 'block' ? 'none' : 'display'):
+                store.dispatch('changeDisplay');
            }
         },
         components:{
