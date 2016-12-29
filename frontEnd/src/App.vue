@@ -2,8 +2,14 @@
   <div id="app">
     <TitleBar></TitleBar>
     <InfoBar></InfoBar>
+    <router-link to="/one"> I am ONE</router-link>
+    <router-link to="/two">I am TWO</router-link>
     <Container></Container>
     <CopyRight></CopyRight>
+    <div class="hello world">
+      <router-view></router-view>
+    </div>
+
   </div>
 </template>
 
@@ -23,7 +29,6 @@ export default {
     InfoBar,
     CopyRight,
   },
-
 }
 </script>
 
