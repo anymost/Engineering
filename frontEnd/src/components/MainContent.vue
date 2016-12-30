@@ -11,9 +11,9 @@
 </template>
 <style scoped>
   .mainContent{
-    margin-left:6%;
+    margin-left:8%;
     margin-top : 1%;
-    width:72%;
+    width:70%;
     height:800px;
     background-color:white;
     float:left;
