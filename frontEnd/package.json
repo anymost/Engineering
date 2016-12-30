@@ -1,8 +1,8 @@
 {
   "name": "front",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "",
+  "description": "front end main framework",
+  "author": "bradyzhang",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
