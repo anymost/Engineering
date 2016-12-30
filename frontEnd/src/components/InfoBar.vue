@@ -13,6 +13,7 @@
     z-index: 999;
     position: absolute;
     right:0.5%;
+    top:80px;
     box-shadow: 4px 1px 1px grey;
     background-color: white;
   }

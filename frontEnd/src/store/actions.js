@@ -9,5 +9,8 @@
 export  default {
   changeDisplay ({commit}) {
     commit('changeDisplay');
+  },
+  changeTitle ({commit}) {
+    commit('changeTitle');
   }
 }

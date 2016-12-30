@@ -1,13 +1,13 @@
 <template>
   <div class='mainContent'>
-    <div>this is template body</div>
+    <div></div>
   </div>
 </template>
 <style scoped>
   .mainContent{
-    margin-left:8%;
+    margin-left:6%;
     margin-top : 1%;
-    width:70%;
+    width:72%;
     height:800px;
     background-color:white;
     float:left;

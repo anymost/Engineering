@@ -7,6 +7,7 @@
  * @description 用于构建vuex store的所有state
  */
 export default {
-  infoBarDisplay : 'none'
+  infoBarDisplay : 'none',
+  titleDisplay : 'block'
 }
 

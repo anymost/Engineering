@@ -9,5 +9,8 @@
 export  default{
   changeDisplay (state){
     state.infoBarDisplay = state.infoBarDisplay === 'none'? 'block' : 'none';
+  },
+  changeTitle (state){
+    state.titleDisplay = state.titleDisplay === 'none' ? 'block' : 'none'
   }
 }

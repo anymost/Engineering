@@ -2,14 +2,8 @@
   <div id="app">
     <TitleBar></TitleBar>
     <InfoBar></InfoBar>
-    <router-link to="/one"> I am ONE</router-link>
-    <router-link to="/two">I am TWO</router-link>
     <Container></Container>
     <CopyRight></CopyRight>
-    <div class="hello world">
-      <router-view></router-view>
-    </div>
-
   </div>
 </template>
 
@@ -37,7 +31,7 @@ body{
   margin: 0;
   padding: 0;
   background-color : rgb(241,241,241);
-  margin-top:5px;
+  overflow: auto;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
