@@ -5,24 +5,6 @@
 </template>
 <style scoped>
 
-  @keyframes hideTitle {
-    from {
-      top: 0;
-    }
-    to {
-      top:-80px;
-    }
-  }
-
-  @keyframes showTitle {
-    from {
-      top: -80px;
-    }
-    to {
-      top: 0;
-    }
-  }
-
   .showTitle {
     position: absolute;
     left: 0;
@@ -31,7 +13,8 @@
     height: 80px;
     box-shadow: 4px 1px 1px grey;
     z-index:999;
-    animation: showTitle 1s;
+    transform: translate(0,0);
+    transition: 1s;
   }
 
   .hideTitle {
@@ -42,7 +25,8 @@
     height: 80px;
     box-shadow: 4px 1px 1px grey;
     z-index:999;
-    animation: hideTitle 1s;
+    transform: translate(0,-80px);
+    transition-duration: 1s;
   }
 
 </style>
