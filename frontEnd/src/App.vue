@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <TitleBar></TitleBar>
+    <ContentBar></ContentBar>
     <InfoBar></InfoBar>
     <Container></Container>
     <CopyRight></CopyRight>
@@ -13,12 +14,14 @@ import TitleBar from './components/TitleBar'
 import Container from './components/Container'
 import CopyRight from './components/CopyRight'
 import InfoBar from './components/InfoBar'
+import ContentBar from './components/ContentBar'
 
 
 export default {
   name: 'app',
   components: {
     TitleBar,
+    ContentBar,
     Container,
     InfoBar,
     CopyRight,
