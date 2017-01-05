@@ -1,7 +1,7 @@
 <template>
     <div class='naviBar'>
         <div v-for="item in items" class="item" @click="changeTitle">
-            <img src='../assets/back.png' @click='hideBack' class='back' :style='{display:display}'>
+            <img src='../assets/back.png' @click='hideBack' class='back' :class="{showBack:back}" >
             {{item}}
         </div>
     </div>
@@ -31,7 +31,9 @@
     left:10px;
     top:20px;
   }
-
+  .showBack{
+    display:block;
+  }
 
 </style>
 
@@ -45,26 +47,25 @@
                   'member',
                   'document'
               ],
-              display:'none'
+              back:false
           }
       },
     components: {
 
     },
     methods : {
-      changeTitle () {
+      changeTitle (event) {
+          event.stopPropagation();
+          this.back = true;
           store.dispatch('changeTitle');
-          this.display = 'block';
+
       },
-      hideBack () {
-        store.dispatch('changeTitle');
-        this.display = 'none';
+      hideBack (event) {
+          event.stopPropagation();
+          this.back = false;
+          store.dispatch('changeTitle');
+
       }
-    },
-    computed : {
-          getDisplay () {
-              t
-          }
     }
 
   }
