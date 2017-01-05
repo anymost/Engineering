@@ -1,1 +1,1 @@
-**基于nodejs的多人协作管理平台**
+**the manage platform built by express and vue**
