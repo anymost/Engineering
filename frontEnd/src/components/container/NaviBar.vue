@@ -1,7 +1,7 @@
 <template>
     <div class='naviBar'>
         <div v-for="item in items" class="item" @click="changeTitle">
-            <img src='../assets/back.png' @click='hideBack' class='back' :class="{showBack:back}" >
+            <img src='../../assets/back.png' @click='hideBack' class='back' :class="{showBack:back}" >
             {{item}}
         </div>
     </div>
@@ -38,7 +38,7 @@
 </style>
 
 <script>
-  import store from '../store'
+  import store from '../../store'
   export default{
       data(){
           return {
@@ -47,7 +47,8 @@
                   'member',
                   'document'
               ],
-              back:false
+              back : false,
+              stopChangeTab : false
           }
       },
     components: {
@@ -56,12 +57,16 @@
     methods : {
       changeTitle (event) {
           event.stopPropagation();
+          if(this.stopChangeTab){
+              return;
+          }
           this.back = true;
           store.dispatch('changeTitle');
-
+          this.stopChangeTab = true;
       },
       hideBack (event) {
           event.stopPropagation();
+          this.stopChangeTab = false;
           this.back = false;
           store.dispatch('changeTitle');
 

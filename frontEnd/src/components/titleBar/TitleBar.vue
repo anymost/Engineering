@@ -32,7 +32,7 @@
 </style>
 <script>
   import Person from './Person'
-  import store from '../store'
+  import store from '../../store'
   export default{
     data(){
         return {
