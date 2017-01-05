@@ -1,2 +1,2 @@
-**the manage platform built by express and vue,powerful,fast,light**
+**the manage platform built by express and vue,powerful,fast,light,excellent**
 
