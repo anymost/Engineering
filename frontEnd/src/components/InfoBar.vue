@@ -13,7 +13,7 @@
     z-index: 2;
     position: absolute;
     right:0;
-    box-shadow: 4px 1px 1px grey;
+    box-shadow: 10px 2px 2px grey;
     background-color: white;
   }
   .show{
