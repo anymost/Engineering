@@ -1,5 +1,5 @@
 <template>
-    <div class='infoBar' :style='{display:infoBarDisplay}'>
+    <div class='infoBar' :class='[infoBarDisplay]'>
       <div class="exit" >
         退出
       </div>
@@ -7,15 +7,23 @@
 </template>
 <style scoped>
   .infoBar{
-    margin-right:1%;
+    margin-right:0;
     width:10%;
     height:200px;
-    z-index: 999;
+    z-index: 2;
     position: absolute;
-    right:0.5%;
-    top:80px;
+    right:0;
     box-shadow: 4px 1px 1px grey;
     background-color: white;
+  }
+  .show{
+    transform: translate(0,80px);
+    transition-duration: 1s;
+  }
+
+  .hide{
+    transform: translate(0,-200px);
+    transition-duration: 1s;
   }
 
 </style>
@@ -32,7 +40,7 @@
         },
         computed : {
           infoBarDisplay () {
-              return store.state.infoBarDisplay;
+            return store.state.infoBarDisplay==='block' ?'show' :'hide';
           }
         }
     }
