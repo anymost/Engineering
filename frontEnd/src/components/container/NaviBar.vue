@@ -103,7 +103,8 @@
           if(this.stopChangeTab){
               return;
           }
-
+          this.$http.jsonp('http://localhost:3000/members',{name:'jack'}).
+            then((response)=>{console.log(response.data)},(error)=>{console.log('error '+JSON.stringify(error))});
           changeDisplay(event, true, this);
 
           store.dispatch('changeTitle');
