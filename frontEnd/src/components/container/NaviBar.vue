@@ -3,6 +3,7 @@
         <div  class="item" data-index="1" @click="changeTitle">
             <img src='../../assets/back.png' data-index="1"  @click='hideBack' class='back' :class="{showMember:memberDisplay}" >
             Member
+
         </div>
 
       <div  class="item" data-index="2" @click="changeTitle">
@@ -112,6 +113,9 @@
 
           store.dispatch('changeTitle');
           this.stopChangeTab = true;
+
+
+
       },
 
       hideBack (event) {
