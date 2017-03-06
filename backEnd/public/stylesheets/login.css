@@ -1,70 +1,76 @@
-body{
+body {
     background-image: url('../images/bg.jpg');
     opacity: 0.8;
+    padding: 0;
+    margin: 0;
 }
-h1{
-    margin-top:50px;
+
+h1 {
+    margin-top: 50px;
     text-align: center;
     font-size: 40px;
 }
 
 .normal_window {
     background-color: white;
-    margin: 50px auto;
-    width:400px;
+    margin: 20px auto;
+    width: 400px;
     position: relative;
 }
 
-#logTpl,#forgetTpl{
-    height:500px;
+#logTpl, #forgetTpl {
+    height: 480px;
 }
 
 #registrarTpl {
-    height:700px;
+    height: 700px;
 }
 
-.input{
-    margin:30px 50px;
-    width:300px;
-    height:40px;
-    font-size:18px;
+.input {
+    margin: 20px 50px;
+    width: 300px;
+    height: 40px;
+    font-size: 18px;
 }
-.normal_window input{
+.input:nth-child(1){
+    margin-top:80px;
+}
+
+.normal_window input {
     border-radius: 1px;
     border: 1px solid #d9d9d9;
     padding-left: 10px;
 }
 
-
-.normal_window button[type=submit]{
-    background-color: rgb(61,168,245);
+.normal_window button[type=submit] {
+    background-color: rgb(61, 168, 245);
     border: 1px solid #3DA8F5;
-    color:white;
+    color: white;
 }
-.forget{
+
+.forget {
     position: absolute;
-    right:50px;
-    top:150px;
+    right: 50px;
+    top: 176px;
     text-decoration: none;
     color: #3DA8F5;
-    float:right;
-    z-index:5;
+    float: right;
+    z-index: 5;
 }
 
-
-
-hr{
-    margin:30px 50px;
-    width:300px;
+hr {
+    margin: 30px 50px;
+    width: 300px;
 }
 
-.newCount{
-    margin:30px 50px;
-    width:300px;
-    color:rgb(200,197,194);
+.newCount {
+    margin: 30px 50px;
+    width: 300px;
+    color: rgb(200, 197, 194);
     text-align: center;
 }
-.newCount a{
+
+.newCount a {
     text-decoration: none;
     color: #3DA8F5;
 }
@@ -78,27 +84,28 @@ hr{
 }
 
 @keyframes hideWindow {
-    from{
-        opacity:1;
+    from {
+        opacity: 1;
         display: block;
     }
-    to{
+    to {
         opacity: 0;
         display: none;
     }
 }
+
 @keyframes showWindow {
-    from{
-        opacity:0;
+    from {
+        opacity: 0;
         display: none;
     }
-    to{
-        opacity:1;
+    to {
+        opacity: 1;
         display: block;
     }
 }
 
-.hideWindow{
+.hideWindow {
     animation: hideWindow 2s;
 }
 
@@ -106,15 +113,15 @@ hr{
     animation: showWindow 2s;
 }
 
-.noticeTpl{
-    position:absolute;
+.noticeTpl {
+    position: absolute;
     display: none;
-    left:100px;
-    bottom:100px;
-    width:200px;
-    height:40px;
-    color:#3DA8F5;
-    font-size:20px;
+    left: 100px;
+    bottom: 100px;
+    width: 200px;
+    height: 40px;
+    color: #3DA8F5;
+    font-size: 20px;
     text-align: center;
     line-height: 40px;
 }
