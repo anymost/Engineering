@@ -21,28 +21,28 @@ var Pool = new Sequelize('web', 'root', 'zhangyizheng', {
  * @type {Model}
  */
 var User = Pool.define('users', {
-    userId : {
-        type : Sequelize.BIGINT,
-        primaryKey : true
+    userId: {
+        type: Sequelize.BIGINT,
+        primaryKey: true
     },
-    userName : {
-        type : Sequelize.STRING,
-        allowNull : false,
-        unique : true
+    userName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
     },
-    password : {
-        type : Sequelize.STRING,
-        allowNull : false
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false
     },
-    phone : {
-        type : Sequelize.BIGINT,
-        allowNull : false
+    phone: {
+        type: Sequelize.BIGINT,
+        allowNull: false
     },
-    email : {
-        type : Sequelize.STRING,
-        allowNull : false,
-        validate : {
-            isEmail : true
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            isEmail: true
         }
     }
 });
@@ -52,30 +52,30 @@ var User = Pool.define('users', {
  * @type {Model}
  */
 var Group = Pool.define('groups', {
-    groupId : {
-        type : Sequelize.BIGINT,
-        primaryKey : true,
+    groupId: {
+        type: Sequelize.BIGINT,
+        primaryKey: true,
     },
-    groupName : {
-        type : Sequelize.STRING,
-        allowNull : false
+    groupName: {
+        type: Sequelize.STRING,
+        allowNull: false
     },
-    ownerId : {
-        type : Sequelize.BIGINT,
-        references : {
-            model : User,
-            key : 'userId',
+    ownerId: {
+        type: Sequelize.BIGINT,
+        references: {
+            model: User,
+            key: 'userId',
 
         },
-        allowNull : false
+        allowNull: false
     },
-    members : {
-        type : Sequelize.STRING(500),
-        allowNull : false
+    members: {
+        type: Sequelize.STRING(500),
+        allowNull: false
     },
-    documents : {
-        type : Sequelize.STRING(2000),
-        allowNull : true
+    documents: {
+        type: Sequelize.STRING(2000),
+        allowNull: true
     }
 });
 
@@ -84,39 +84,46 @@ var Group = Pool.define('groups', {
  * @type {Model}
  */
 var Document = Pool.define('documents', {
-   documentId : {
-       type : Sequelize.BIGINT,
-       primaryKey : true,
-   },
-    documentName : {
-        type : Sequelize.STRING,
-        allowNull : false
+    documentId: {
+        type: Sequelize.BIGINT,
+        primaryKey: true,
     },
-    groupId : {
-        type : Sequelize.BIGINT,
-        references : {
-            model : Group,
-            key : 'groupId'
+    documentName: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    groupId: {
+        type: Sequelize.BIGINT,
+        references: {
+            model: Group,
+            key: 'groupId'
         },
-        allowNull : false
+        allowNull: false
     },
-    ownerId : {
-        type : Sequelize.BIGINT,
-        references : {
-            model : User,
-            key : 'userId'
+    ownerId: {
+        type: Sequelize.BIGINT,
+        references: {
+            model: User,
+            key: 'userId'
         },
-        allowNull : false
+        allowNull: false
     },
-    content : {
-        type : Sequelize.BLOB,
-        allowNull : false
+    content: {
+        type: Sequelize.BLOB,
+        allowNull: false
     }
 });
 
-/*   var user = User.sync({force : false});
-   var group = Group.sync({force : false});
-   var document = Document.sync({force : false});*/
+/**
+ *
+ *
+ *   var user = User.sync({force : false});
+ *   var group = Group.sync({force : false});
+ *   var document = Document.sync({force : false});
+ *
+ *
+ */
+
 
 
 

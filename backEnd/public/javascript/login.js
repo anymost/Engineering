@@ -12,6 +12,15 @@ var logTpl = $('#logTpl') || {};
 
 var normalWindow = $('.normal_window') || [];
 
+/**
+ * @description 处理路由刷新
+ */
+(function (window) {
+    window ? window.location.href.indexOf('#') !== -1 ? window.location.href = window.location.href.split('#')[0] : null : null;
+
+})(window);
+
+
 function hideNormal () {
     for(var i = 0; i < normalWindow.length; i++){
         normalWindow.eq(i).hide();
@@ -53,8 +62,8 @@ window.addEventListener('hashchange', function (e) {
 });
 
 registrar.bind('click', function (e) {
-    var phone = document.getElementsByName('phone')?(document.getElementsByName('phone')[0]?
-        document.getElementsByName('phone')[0].val():0):0;
+    var phone = document.getElementsByName('phone') ? (document.getElementsByName('phone')[0] ?
+        document.getElementsByName('phone')[0].val() : 0) : 0;
     phone = parseInt(phone);
     var notice = $($('.noticetpl').eq(1));
     if(!verifyPhone(phone)){
@@ -94,7 +103,7 @@ getCode.bind('click', function (e) {
         }, 2000);
         return;
     }
-    $.post('/getCode', {phone:foundPhone.val()},function (response) {
+    $.post('/getCode', {phone:foundPhone.val()}, function (response) {
     });
 
     var count = 1;
