@@ -11,11 +11,12 @@ var addUser = function (userInfo, callback){
         return;
     }
     User.create({
-        userId : Tool.getRandom(),
+        userId : userInfo.userId,
         userName : userInfo.userName,
         password : userInfo.password,
         phone : userInfo.phone,
-        email　: userInfo.email
+        email　: userInfo.email,
+        headPicture : userInfo.headPicture
     }).then(function () {
         callback({
             result : 0,

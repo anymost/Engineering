@@ -36,7 +36,7 @@ app.use('/login', login);
 app.use('/found', found);
 app.use('/registrar', registrar);
 app.use('/getCode', getCode);
-app.user('/getUserInfo',getUserInfo);
+app.use('/getUserInfo',getUserInfo);
 
 
 

@@ -46,7 +46,7 @@ var User = Pool.define('users', {
         }
     },
     headPicture : {
-        type : Sequelize.BINARY,
+        type : Sequelize.STRING,
         allowNull:false
     }
 });
