@@ -4,7 +4,6 @@
     <ContentBar></ContentBar>
     <InfoBar></InfoBar>
     <Container></Container>
-    <CopyRight></CopyRight>
   </div>
 </template>
 
@@ -12,7 +11,6 @@
 
 import TitleBar from './components/titleBar/TitleBar'
 import Container from './components/container/Container'
-import CopyRight from './components/CopyRight'
 import InfoBar from './components/InfoBar'
 import ContentBar from './components/ContentBar'
 
@@ -24,7 +22,6 @@ export default {
     ContentBar,
     Container,
     InfoBar,
-    CopyRight,
   },
 }
 </script>

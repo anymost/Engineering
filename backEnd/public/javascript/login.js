@@ -16,8 +16,7 @@ var normalWindow = $('.normal_window') || [];
  * @description 处理路由刷新
  */
 (function (window) {
-    window ? window.location.href.indexOf('#') !== -1 ? window.location.href = window.location.href.split('#')[0] : null : null;
-
+    window ? window.location.hash = '' : '';
 })(window);
 
 

@@ -49,7 +49,7 @@ var verifyUser = function (userInfo, callback){
         return;
     }
     User.findAll({
-        attributes : ['password'],
+        attributes : ['password','userId','headPicture'],
         where : {
             userName : userInfo.userName
         }
@@ -61,10 +61,16 @@ var verifyUser = function (userInfo, callback){
             });
         }else{
             var password = result[0] && result[0].dataValues && result[0].dataValues['password'];
+            var userId = result[0] && result[0].dataValues && result[0].dataValues['userId'];
+            var headPicture = result[0] && result[0].dataValues && result[0].dataValues['headPicture'];
+
             if(password === userInfo.password){
                 callback({
                     result :0,
-                    message : 'success'
+                    message : 'success',
+                    userId : String(userId),
+                    userName : userInfo.userName,
+                    headPicture : headPicture
                 });
             }else {
                 callback({

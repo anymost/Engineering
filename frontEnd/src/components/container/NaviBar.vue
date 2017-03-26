@@ -1,85 +1,66 @@
 <template>
     <div class='naviBar'>
-        <div  class="item" data-index="1" @click="changeTitle">
-            <img src='../../assets/back.png' data-index="1"  @click='hideBack' class='back' :class="{showMember:memberDisplay}" >
-            Member
+        <div  class="item" data-index="member" @click="changeTitle">
+            <img src='../../assets/back.png' data-index="member"  @click='hideBack' class='back' :class="{showMember:memberDisplay}" >
+            {{memberDisplay ? 'all Members' : 'Members'}}
 
         </div>
 
-      <div  class="item" data-index="2" @click="changeTitle">
-        <img src='../../assets/back.png'  data-index="2" @click='hideBack' class='back' :class="{showGroup:groupDisplay}" >
-           Group
+      <div  class="item" data-index="group" @click="changeTitle">
+        <img src='../../assets/back.png'  data-index="group" @click='hideBack' class='back' :class="{showGroup:groupDisplay}" >
+           {{groupDisplay ? 'all Groups' : 'Groups'}}
       </div>
 
-      <div  class="item" data-index="3" @click="changeTitle">
-        <img src='../../assets/back.png' data-index="3"   @click='hideBack' class='back' :class="{showDocument:documentDisplay}" >
-          Document
+      <div  class="item" data-index="document" @click="changeTitle">
+        <img src='../../assets/back.png' data-index="document"   @click='hideBack' class='back' :class="{showDocument:documentDisplay}" >
+          {{documentDisplay ? 'all Documents' : 'Documents'}}
       </div>
     </div>
 </template>
-<style scoped>
-  .naviBar {
-    margin-left: 2%;
-    margin-top: 1%;
-    width: 16%;
-    float: left;
-  }
 
-  .item {
-    position:relative;
-    width: 100%;
-    height: 80px;
-    background-color: white;
-    margin-top: 10px;
-    box-shadow: 4px 1px 1px grey;
-  }
-
-  .back{
-    display:none;
-    width:10%;
-    height:40%;
-    position:absolute;
-    left:10px;
-    top:20px;
-  }
-  .showMember{
-    display:block;
-  }
-
-  .showGroup{
-    display:block;
-  }
-
-  .showDocument{
-    display:block;
-  }
-
-</style>
 
 <script>
   import store from '../../store'
 
+  const getMemebers = ()=>{
+
+  };
+
+  const getGroups = ()=>{
+
+  };
+  const getDocuments = ()=>{
+
+  };
+
   const  changeDisplay = (event, isShow ,target) =>{
 
-    let index = parseInt(event.target.getAttribute('data-index'));
+    let index = event.target.dataset['index'];
     if(isShow) {
-      if (index === 1) {
-        target.memberDisplay = true;
-      } else if (index === 2) {
-        target.groupDisplay = true;
-      } else if (index === 3) {
-        target.documentDisplay = true;
+      if (index === 'member') {
+          getMemebers();
+          target.memberDisplay = true;
+
+      } else if (index === 'group') {
+          getGroups();
+          target.groupDisplay = true;
+      } else if (index === 'document') {
+          getDocuments();
+          target.documentDisplay = true;
       }
     }else{
-      if (index === 1) {
+      if (index === 'member') {
         target.memberDisplay = false;
-      } else if (index === 2) {
+      } else if (index === 'group') {
         target.groupDisplay = false;
-      } else if (index === 3) {
+      } else if (index === 'document') {
         target.documentDisplay = false;
       }
     }
   };
+
+
+
 
   export default{
       data(){
@@ -133,3 +114,43 @@
   }
 
 </script>
+
+
+<style scoped>
+  .naviBar {
+    margin-left: 2%;
+    margin-top: 1%;
+    width: 16%;
+    float: left;
+  }
+
+  .item {
+    position:relative;
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    margin-top: 10px;
+    box-shadow: 4px 1px 1px grey;
+  }
+
+  .back{
+    display:none;
+    width:10%;
+    height:40%;
+    position:absolute;
+    left:10px;
+    top:20px;
+  }
+  .showMember{
+    display:block;
+  }
+
+  .showGroup{
+    display:block;
+  }
+
+  .showDocument{
+    display:block;
+  }
+
+</style>

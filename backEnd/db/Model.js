@@ -44,6 +44,10 @@ var User = Pool.define('users', {
         validate: {
             isEmail: true
         }
+    },
+    headPicture : {
+        type : Sequelize.BINARY,
+        allowNull:false
     }
 });
 
@@ -114,15 +118,13 @@ var Document = Pool.define('documents', {
     }
 });
 
-/**
- *
- *
- *   var user = User.sync({force : false});
- *   var group = Group.sync({force : false});
- *   var document = Document.sync({force : false});
- *
- *
- */
+
+/*var user = User.sync({force : false});
+var group = Group.sync({force : false});
+var document = Document.sync({force : false});*/
+
+
+
 
 
 

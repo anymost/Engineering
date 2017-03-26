@@ -6,9 +6,8 @@
 </template>
 <style scoped>
   .copyRight{
-    position : absolute;
-    bottom : 0;
-    width:100%;
+    margin-top:10px;
+    width:98%;
     height:40px;
   }
   .copyRight hr{

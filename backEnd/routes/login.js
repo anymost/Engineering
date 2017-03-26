@@ -10,6 +10,7 @@ router.post('/', function (req, res, next) {
 
     User.verifyUser(requestBody, function (json) {
        if(json.result == 0){
+           res.cookie('userId',json.userId,{ expires: new Date(Date.now() + 10000 * 60 * 60 * 1) })
            res.render('index');
        }else {
            res.end(json.message);

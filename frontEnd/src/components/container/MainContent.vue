@@ -2,10 +2,9 @@
   <div class='mainContent'>
     <div>
         <div>
-          <router-link to="/one">one</router-link>
-          <router-link to="/two">two</router-link>
+
         </div>
-        <router-view></router-view>
+
     </div>
   </div>
 </template>
