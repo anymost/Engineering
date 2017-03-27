@@ -1,8 +1,8 @@
 <template>
     <div class='naviBar'>
-        <div  class="item" data-index="member" @click="changeTitle">
-            <img src='../../assets/back.png' data-index="member"  @click='hideBack' class='back' :class="{showMember:memberDisplay}" >
-            {{memberDisplay ? 'all Members' : 'Members'}}
+        <div  class="item" data-index="friend" @click="changeTitle">
+            <img src='../../assets/back.png' data-index="friend"  @click='hideBack' class='back' :class="{showFriend:friendDisplay}" >
+            {{friendDisplay ? 'all Friends' : 'Friends'}}
 
         </div>
 
@@ -21,8 +21,9 @@
 
 <script>
   import store from '../../store'
+  import {networkPost, getUserInfo} from '../../tools'
 
-  const getMemebers = ()=>{
+  const getFriends = ()=>{
 
   };
 
@@ -37,9 +38,9 @@
 
     let index = event.target.dataset['index'];
     if(isShow) {
-      if (index === 'member') {
-          getMemebers();
-          target.memberDisplay = true;
+      if (index === 'friend') {
+          getFriends();
+          target.friendDisplay = true;
 
       } else if (index === 'group') {
           getGroups();
@@ -49,8 +50,8 @@
           target.documentDisplay = true;
       }
     }else{
-      if (index === 'member') {
-        target.memberDisplay = false;
+      if (index === 'friend') {
+        target.friendDisplay = false;
       } else if (index === 'group') {
         target.groupDisplay = false;
       } else if (index === 'document') {
@@ -70,7 +71,7 @@
                   'member',
                   'document'
               ],
-              memberDisplay : false,
+              friendDisplay : false,
               groupDisplay : false,
               documentDisplay : false,
               stopChangeTab : false
@@ -141,7 +142,7 @@
     left:10px;
     top:20px;
   }
-  .showMember{
+  .showFriend{
     display:block;
   }
 
