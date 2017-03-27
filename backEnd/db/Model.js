@@ -48,6 +48,10 @@ var User = Pool.define('users', {
     headPicture : {
         type : Sequelize.STRING,
         allowNull:false
+    },
+    friends : {
+        type : Sequelize.STRING(1000),
+        allowNull:true
     }
 });
 

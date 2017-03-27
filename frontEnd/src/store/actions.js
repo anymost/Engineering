@@ -12,5 +12,8 @@ export  default {
   },
   changeTitle ({commit}) {
     commit('changeTitle');
+  },
+  getFriends (context, friends){
+    context.commit('getFriends',friends);
   }
 }

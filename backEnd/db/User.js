@@ -79,6 +79,56 @@ var getUserInfo = function (userInfo,callback){
 
 exports.getUserInfo = getUserInfo;
 
+
+var getFriends = function (userInfo, callback) {
+    if(!userInfo && !callback){
+        return ;
+    }
+    User.findAll({
+        attributes : ['friends'],
+        where : {
+            userId : userInfo.userId
+        }
+    }).then(function (result) {
+        if(result.length === 0){
+            callback({
+                result : -2,
+                message : 'user not found'
+            });
+        }else{
+            var friends = result[0] && result[0].dataValues && result[0].dataValues['friends'];
+            if(friends){
+                friends=friends.split('#');
+                var friendsId = friends.map(function (item) {
+                    return parseInt(item);
+                })
+                User.findAll({
+                    attributes : ['userId', 'userName', 'headPictures'],
+                    where : {
+                        userId : friendsId
+                    }
+                }).then(function (result) {
+                    
+                },function () {
+
+                })
+            }else{
+                callback({
+                    result :1,
+                    message : 'no friends'
+                })
+            }
+        }
+    }, function (error) {
+        callback({
+            result : -1,
+            message : error.name || 'error'
+        })
+    })
+};
+
+exports.getFriends = getFriends;
+
 /**
  * @description 验证用户身份
  * @param userInfo

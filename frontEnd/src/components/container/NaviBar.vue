@@ -1,21 +1,24 @@
 <template>
-    <div class='naviBar'>
-        <div  class="item" data-index="friend" @click="changeTitle">
-            <img src='../../assets/back.png' data-index="friend"  @click='hideBack' class='back' :class="{showFriend:friendDisplay}" >
-            {{friendDisplay ? 'all Friends' : 'Friends'}}
+  <div class='naviBar'>
+    <div class="item" data-index="friend" @click="changeTitle">
+      <img src='../../assets/back.png' data-index="friend" @click='hideBack' class='back'
+           :class="{showFriend:friendDisplay}">
+      {{friendDisplay ? 'all Friends' : 'Friends'}}
 
-        </div>
-
-      <div  class="item" data-index="group" @click="changeTitle">
-        <img src='../../assets/back.png'  data-index="group" @click='hideBack' class='back' :class="{showGroup:groupDisplay}" >
-           {{groupDisplay ? 'all Groups' : 'Groups'}}
-      </div>
-
-      <div  class="item" data-index="document" @click="changeTitle">
-        <img src='../../assets/back.png' data-index="document"   @click='hideBack' class='back' :class="{showDocument:documentDisplay}" >
-          {{documentDisplay ? 'all Documents' : 'Documents'}}
-      </div>
     </div>
+
+    <div class="item" data-index="group" @click="changeTitle">
+      <img src='../../assets/back.png' data-index="group" @click='hideBack' class='back'
+           :class="{showGroup:groupDisplay}">
+      {{groupDisplay ? 'all Groups' : 'Groups'}}
+    </div>
+
+    <div class="item" data-index="document" @click="changeTitle">
+      <img src='../../assets/back.png' data-index="document" @click='hideBack' class='back'
+           :class="{showDocument:documentDisplay}">
+      {{documentDisplay ? 'all Documents' : 'Documents'}}
+    </div>
+  </div>
 </template>
 
 
@@ -23,33 +26,20 @@
   import store from '../../store'
   import {networkPost, getUserInfo} from '../../tools'
 
-  const getFriends = ()=>{
 
-  };
 
-  const getGroups = ()=>{
-
-  };
-  const getDocuments = ()=>{
-
-  };
-
-  const  changeDisplay = (event, isShow ,target) =>{
+  const changeDisplay = (event, isShow, target) => {
 
     let index = event.target.dataset['index'];
-    if(isShow) {
+    if (isShow) {
       if (index === 'friend') {
-          getFriends();
-          target.friendDisplay = true;
-
+        target.friendDisplay = true;
       } else if (index === 'group') {
-          getGroups();
-          target.groupDisplay = true;
+        target.groupDisplay = true;
       } else if (index === 'document') {
-          getDocuments();
-          target.documentDisplay = true;
+        target.documentDisplay = true;
       }
-    }else{
+    } else {
       if (index === 'friend') {
         target.friendDisplay = false;
       } else if (index === 'group') {
@@ -61,53 +51,52 @@
   };
 
 
-
-
   export default{
-      data(){
-          return {
-              items : [
-                  'project',
-                  'member',
-                  'document'
-              ],
-              friendDisplay : false,
-              groupDisplay : false,
-              documentDisplay : false,
-              stopChangeTab : false
-          }
-      },
-    components: {
-
+    data(){
+      return {
+        friendDisplay: false,
+        groupDisplay: false,
+        documentDisplay: false,
+        stopChangeTab: false
+      }
     },
-    methods : {
+    components: {},
+    methods: {
+      getFriends (event) {
+          const userId = getUserInfo().userId;
+          networkPost('/getFriends', {userId:userId}).then(response=>{
+              if(response.ok){
+
+              }
+            }
+          )
+      },
       changeTitle (event) {
-          event.stopPropagation();
-          if(this.stopChangeTab){
-              return;
-          }
+        event.stopPropagation();
+        if (this.stopChangeTab) {
+          return;
+        }
 
-          if(store.state.infoBarDisplay === 'block'){
-              store.dispatch('changeDisplay');
-          }
+        if (store.state.infoBarDisplay === 'block') {
+          store.dispatch('changeDisplay');
+        }
 
-          changeDisplay(event, true, this);
+        changeDisplay(event, true, this);
 
-          store.dispatch('changeTitle');
-          this.stopChangeTab = true;
-
+        store.dispatch('changeTitle');
+        this.stopChangeTab = true;
 
 
       },
 
       hideBack (event) {
-          event.stopPropagation();
-          this.stopChangeTab = false;
+        event.stopPropagation();
+        this.stopChangeTab = false;
 
-          changeDisplay(event, false, this);
+        changeDisplay(event, false, this);
 
 
-          store.dispatch('changeTitle');
+        store.dispatch('changeTitle');
 
       }
     }
@@ -126,7 +115,7 @@
   }
 
   .item {
-    position:relative;
+    position: relative;
     width: 100%;
     height: 80px;
     background-color: white;
@@ -134,24 +123,25 @@
     box-shadow: 4px 1px 1px grey;
   }
 
-  .back{
-    display:none;
-    width:10%;
-    height:40%;
-    position:absolute;
-    left:10px;
-    top:20px;
-  }
-  .showFriend{
-    display:block;
+  .back {
+    display: none;
+    width: 10%;
+    height: 40%;
+    position: absolute;
+    left: 10px;
+    top: 20px;
   }
 
-  .showGroup{
-    display:block;
+  .showFriend {
+    display: block;
   }
 
-  .showDocument{
-    display:block;
+  .showGroup {
+    display: block;
+  }
+
+  .showDocument {
+    display: block;
   }
 
 </style>

@@ -12,5 +12,9 @@ export  default{
   },
   changeTitle (state){
     state.titleDisplay = state.titleDisplay === 'none' ? 'block' : 'none'
+  },
+  getFriends (state, friends){
+    state.friendState = true;
+    state.allFriends = friends;
   }
 }

@@ -8,6 +8,8 @@
  */
 export default {
   infoBarDisplay : 'none',
-  titleDisplay : 'block'
+  titleDisplay : 'block',
+  friendsState : false,
+  allFriends : []
 }
 
