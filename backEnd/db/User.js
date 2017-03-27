@@ -39,6 +39,45 @@ var addUser = function (userInfo, callback){
 
 
 exports.addUser = addUser;
+/**
+ * @description 获取用户信息
+ * @param userInfo
+ * @param callback
+ */
+var getUserInfo = function (userInfo,callback){
+  if(!userInfo && !callback){
+      return;
+  }
+  User.findAll({
+      attributes : ['userName','headPicture'],
+      where : {
+          userId : userInfo.userId
+      }
+  }).then(function (result) {
+      if(result.length === 0){
+          callback({
+              result : -2,
+              message : 'user not found'
+          });
+      }else{
+          var userName = result[0] && result[0].dataValues && result[0].dataValues['userName'];
+          var headPicture = result[0] && result[0].dataValues && result[0].dataValues['headPicture'];
+          callback({
+              result : 0,
+              userName : userName,
+              headPicture : headPicture
+          })
+      }
+  }, function (error) {
+      callback({
+          result : -1,
+          message : error.name || 'get user info error'
+      });
+  })
+
+};
+
+exports.getUserInfo = getUserInfo;
 
 /**
  * @description 验证用户身份
