@@ -40,6 +40,9 @@ router.post('/', upload.single('headPicture'), function (req, res, next) {
 
     User.addUser(data, function (json) {
         if(json.result === 0){
+            res.cookie('userId', data.userId, { expires: new Date(Date.now() + 10000 * 60 * 60) });
+            res.cookie('userName', data.userName, { expires: new Date(Date.now() + 10000 * 60 * 60) });
+            res.cookie('headPicture', data.headPicture ,{ expires: new Date(Date.now() + 10000 * 60 * 60) });
             res.render('index');
         }else {
             res.send(json);
