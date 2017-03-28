@@ -101,20 +101,34 @@ var getFriends = function (userInfo, callback) {
                 friends=friends.split('#');
                 var friendsId = friends.map(function (item) {
                     return parseInt(item);
-                })
+                });
                 User.findAll({
-                    attributes : ['userId', 'userName', 'headPictures'],
+                    attributes : ['userId', 'userName', 'headPicture'],
                     where : {
                         userId : friendsId
                     }
                 }).then(function (result) {
-                    
-                },function () {
-
+                    friends = result.map(function (item) {
+                        item = item.dataValues;
+                        return {
+                            userId : item['userId'],
+                            userName : item['userName'],
+                            headPicture : item['headPicture']
+                        }
+                    });
+                    callback({
+                        result : 0,
+                        data : friends
+                    });
+                },function (error) {
+                    callback({
+                        result : -3,
+                        message : error//'get friends error'
+                    })
                 })
             }else{
                 callback({
-                    result :1,
+                    result :-2,
                     message : 'no friends'
                 })
             }

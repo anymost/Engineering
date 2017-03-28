@@ -65,9 +65,9 @@
       getFriends (event) {
           const userId = getUserInfo().userId;
           networkPost('/getFriends', {userId:userId}).then(response=>{
-              if(response.ok){
-
-              }
+              console.log(response);
+              /*if(response.ok){
+              }*/
             }
           )
       },
@@ -85,7 +85,15 @@
 
         store.dispatch('changeTitle');
         this.stopChangeTab = true;
-
+        (function () {
+          const userId = getUserInfo().userId;
+          networkPost('/getFriends', {userId:userId}).then(response=>{
+              console.log(response);
+              /*if(response.ok){
+               }*/
+            }
+          )
+        }())
 
       },
 
