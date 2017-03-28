@@ -1,6 +1,11 @@
 <template>
+    <div v-if="myFriends !== []">
     <div :class="contentState">
-            <div>hello world</div>
+            <div  v-for="friend in myFriends" :data-userId="friend.userId">
+              <img :src="friend.headPicture" alt="friend">
+              <span>{{friend.userName}}</span>
+            </div>
+    </div>
     </div>
 </template>
 <style scoped>
@@ -33,7 +38,8 @@
     export default{
         data(){
             return{
-                msg:'hello vue'
+
+
             }
         },
         components:{
@@ -43,6 +49,9 @@
             contentState (){
 
                 return store.state.titleDisplay === 'block' ? 'hideBar' : 'showBar';
+            },
+            myFriends (){
+                return store.state.myFriends;
             }
         }
     }
