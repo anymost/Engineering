@@ -9,7 +9,12 @@
 export default {
   infoBarDisplay : 'none',
   titleDisplay : 'block',
-  friendsState : false,
-  allFriends : []
+  friendState : false,
+  groupState : false,
+  documentState : false,
+  myFriends : [],
+  myGroups : [],
+  myDocuments : []
+
 }
 

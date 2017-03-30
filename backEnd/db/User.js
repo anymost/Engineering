@@ -1,4 +1,5 @@
 var User = require('./Model').User;
+var Group = require('./Model').Group;
 var Tool = require('../tools/index');
 
 /**
@@ -142,6 +143,81 @@ var getFriends = function (userInfo, callback) {
 };
 
 exports.getFriends = getFriends;
+
+/**
+ * 获取用于的组信息
+ * @param userInfo
+ * @param callback
+ */
+var getGroups = function (userInfo, callback) {
+    if(!userInfo && !callback){
+        return ;
+    }
+    User.findAll({
+        attributes:['groups'],
+        where : {
+            userId : userInfo.userId
+        }
+    }).then(function (result) {
+        if(result.length == 0){
+            callback({
+                result : -1,
+                message : 'groups not found'
+            })
+        }else{
+            var groups = result[0] && result[0].dataValues && result[0].dataValues['groups'];
+            groups = groups.split('#');
+            var groupsId =groups.map(function (item) {
+                return parseInt(item);
+            });
+            if(groupsId){
+                Group.findAll({
+                    attributes : ['groupName', 'groupId', 'ownerId', 'headPicture'],
+                    where : {
+                        groupId : groupsId
+                    }
+                }).then(function (result) {
+                    var groupId = result[0] && result[0].dataValues && result[0].dataValues['groupId'];
+                    var groupName  = result[0] && result[0].dataValues && result[0].dataValues['groupName'];
+                    var headPicture  = result[0] && result[0].dataValues && result[0].dataValues['headPicture'];
+                    var ownerId  = result[0] && result[0].dataValues && result[0].dataValues['ownerId'];
+                    getUserInfo({userId:ownerId},function (result) {
+                        if(result.result == 0){
+                            var data = {
+                                groupId : groupId,
+                                groupName : groupName,
+                                groupHeadPicture : headPicture,
+                                ownerId : ownerId,
+                                ownerName : result.data.userName,
+                                ownerHeadPicture : result.data.headPicture
+                            };
+                            callback({
+                                result : 0,
+                                data : data
+                            });
+                        }else{
+                            callback(result);
+                        }
+                    });
+
+
+                },function (error) {
+                    callback({
+                        result : -2,
+                        message : 'find groups error'
+                    })
+                })
+            }
+        }
+    },function (error) {
+        callback({
+            result : -1,
+            message : error.name ||'error'
+        })
+    })
+};
+
+exports.getGroups = getGroups;
 
 /**
  * @description 验证用户身份

@@ -4,7 +4,8 @@
 var express = require('express');
 var multer = require('multer');
 var fs = require('fs');
-var upload = multer({ dest: 'temp/' })
+var path = require('path');
+var upload = multer({ dest: 'temp/' });
 var router = express.Router();
 var User = require('../db/User');
 var filterString = require('../tools/index').filterString;
@@ -17,10 +18,10 @@ router.post('/', upload.single('headPicture'), function (req, res, next) {
     var userId = getRandom();
 
     var pictureType = req.file['originalname'].split('.')[1];
-    if(!fs.existsSync('headPictures/'+userId)){
-        fs.mkdirSync('headPictures/'+userId);
+    if(!fs.existsSync('headPictures/users/'+userId)){
+        fs.mkdirSync('headPictures/users/',userId);
     }
-    var pictureName ='headPictures/'+userId+'/'+filterString(req.file['filename'])+'.'+pictureType;
+    var pictureName ='headPictures/users/'+userId+'/'+filterString(req.file['filename'])+'.'+pictureType;
 
     fs.createReadStream('temp/'+filterString(req.file['filename'])).pipe(fs.createWriteStream(pictureName));
 

@@ -1,11 +1,14 @@
 <template>
-    <div v-if="myFriends !== []">
+
     <div :class="contentState">
-            <div  v-for="friend in myFriends" :data-userId="friend.userId">
-              <img :src="friend.headPicture" alt="friend">
-              <span>{{friend.userName}}</span>
-            </div>
-    </div>
+      <div v-if="friendState">
+            <Friends :friends="myFriends"/>
+      </div>
+      <div v-if="groupState">
+            <Groups :groups="myGroups"/>
+      </div>
+
+
     </div>
 </template>
 <style scoped>
@@ -34,7 +37,10 @@
   }
 </style>
 <script>
-    import store from '../store'
+    import store from '../../store'
+    import Friends from './Friends'
+    import Groups from './Groups'
+
     export default{
         data(){
             return{
@@ -43,16 +49,27 @@
             }
         },
         components:{
-
+          Friends,
+          Groups
         },
         computed : {
             contentState (){
 
                 return store.state.titleDisplay === 'block' ? 'hideBar' : 'showBar';
             },
+            friendState () {
+                return store.state.friendState && store.state.myFriends.length !== 0;
+            },
+            groupState () {
+                return store.state.groupState && store.state.myGroups.length !== 0;
+            },
             myFriends (){
                 return store.state.myFriends;
+            },
+            myGroups () {
+                return store.state.myGroups
             }
+
         }
     }
 </script>

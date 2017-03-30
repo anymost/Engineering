@@ -52,6 +52,10 @@ var User = Pool.define('users', {
     friends : {
         type : Sequelize.STRING(1000),
         allowNull:true
+    },
+    groups : {
+        type : Sequelize.STRING(1000),
+        allowNull : true
     }
 });
 
@@ -84,6 +88,10 @@ var Group = Pool.define('groups', {
     documents: {
         type: Sequelize.STRING(2000),
         allowNull: true
+    },
+    headPicture : {
+        type : Sequelize.STRING(500),
+        allowNull : false
     }
 });
 

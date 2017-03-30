@@ -1,0 +1,45 @@
+<template>
+  <div class="container">
+      <div class="item"  v-for="friend in friends" :data-userId="friend.userId">
+        <img width="60%" height="64px" :src="friend.headPicture" alt="friend">
+        <span>{{friend.userName}}</span>
+      </div>
+  </div>
+</template>
+<style scoped>
+  .container{
+    width:100%;
+    height:80px
+  }
+  .item{
+    width:10%;
+    height:80px;
+    float:left;
+    border-right: 1px solid darkgray;
+  }
+  img{
+    float:left;
+    margin:8px 0 8px 5px;
+    border-radius : 50%;
+
+  }
+  span{
+    float:left;
+    margin-top:35px;
+    overflow:hidden;
+  }
+</style>
+<script>
+  export default{
+    data(){
+      return{
+
+
+      }
+    },
+    props : ['friends'],
+    components:{
+
+    },
+  }
+</script>

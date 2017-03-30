@@ -15,6 +15,7 @@ var registrar = require('./routes/registrar');
 var getCode  = require('./routes/getCode');
 var getUserInfo = require('./routes/getUserInfo');
 var getFriends = require('./routes/getFriends');
+var getGroups = require('./routes/getGroups');
 
 
 var app = express();
@@ -49,6 +50,7 @@ app.use('/registrar', registrar);
 app.use('/getCode', getCode);
 app.use('/getUserInfo',getUserInfo);
 app.use('/getFriends', getFriends);
+app.use('/getGroups', getGroups);
 
 
 

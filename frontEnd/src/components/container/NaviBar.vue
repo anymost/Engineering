@@ -1,13 +1,13 @@
 <template>
   <div class='naviBar'>
-    <div class="item" data-index="friend" @click="changeTitle">
+    <div class="item" data-index="friend" @click="changeTitle($event),getFriends()">
       <img src='../../assets/back.png' data-index="friend" @click='hideBack' class='back'
            :class="{showFriend:friendDisplay}">
       {{friendDisplay ? 'all Friends' : 'Friends'}}
 
     </div>
 
-    <div class="item" data-index="group" @click="changeTitle">
+    <div class="item" data-index="group" @click="changeTitle($event),getGroups()">
       <img src='../../assets/back.png' data-index="group" @click='hideBack' class='back'
            :class="{showGroup:groupDisplay}">
       {{groupDisplay ? 'all Groups' : 'Groups'}}
@@ -62,15 +62,7 @@
     },
     components: {},
     methods: {
-      getFriends (event) {
-          const userId = getUserInfo().userId;
-          networkPost('/getFriends', {userId:userId}).then(response=>{
-              console.log(response);
-              /*if(response.ok){
-              }*/
-            }
-          )
-      },
+
       changeTitle (event) {
         event.stopPropagation();
         if (this.stopChangeTab) {
@@ -85,15 +77,6 @@
 
         store.dispatch('changeTitle');
         this.stopChangeTab = true;
-        (function () {
-          const userId = getUserInfo().userId;
-          networkPost('/getFriends', {userId:userId}).then(response=>{
-              console.log(response);
-              /*if(response.ok){
-               }*/
-            }
-          )
-        }())
 
       },
 
@@ -106,6 +89,29 @@
 
         store.dispatch('changeTitle');
 
+      },
+      getFriends (event) {
+        const userId = getUserInfo().userId;
+        networkPost('/getFriends', {userId:userId}).then(response=>{
+            if(response.ok){
+               let data = response.data;
+               if(data.result == 0){
+                   store.dispatch('getFriends',data.data);
+               }
+            }
+          }
+        )
+      },
+      getGroups (event) {
+          const userId = getUserInfo().userId;
+          networkPost('/getGroups', {userId:userId}).then(response=>{
+            if(response.ok){
+                let data = response.data;
+                if(data.result == 0){
+                    store.dispatch('getGroups', data.data);
+                }
+            }
+          })
       }
     }
 

@@ -15,5 +15,8 @@ export  default {
   },
   getFriends (context, friends){
     context.commit('getFriends',friends);
+  },
+  getGroups (context, groups){
+    context.commit('getGroups', groups);
   }
 }

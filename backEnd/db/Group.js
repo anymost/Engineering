@@ -15,7 +15,8 @@ var addGroup = function (groupInfo, callback){
         groupName : groupInfo.userName,
         ownerId : groupInfo.ownerId,
         members : groupInfo.members,
-        documents : groupInfo.documents
+        documents : groupInfo.documents,
+        headPicture : groupInfo.headPicture
     }).then(function () {
         callback({
             result : 0,
