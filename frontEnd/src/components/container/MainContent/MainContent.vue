@@ -1,10 +1,7 @@
 <template>
   <div class='mainContent'>
-    <div>
-        <div>
-
-        </div>
-
+    <div v-if="addFriend">
+      <AddFriend/>
     </div>
   </div>
 </template>
@@ -20,7 +17,8 @@
 
 </style>
 <script>
-
+    import store from '../../../store'
+    import AddFriend from './AddFriend'
     export default{
         data(){
             return{
@@ -28,7 +26,12 @@
             }
         },
         components:{
-
+          AddFriend
+        },
+        computed : {
+            addFriend (){
+                return store.state.addFriend;
+            }
         }
     }
 

@@ -19,8 +19,9 @@ router.post('/', upload.single('headPicture'), function (req, res, next) {
 
     var pictureType = req.file['originalname'].split('.')[1];
     if(!fs.existsSync('headPictures/users/'+userId)){
-        fs.mkdirSync('headPictures/users/',userId);
+        fs.mkdirSync('headPictures/users/'+userId);
     }
+
     var pictureName ='headPictures/users/'+userId+'/'+filterString(req.file['filename'])+'.'+pictureType;
 
     fs.createReadStream('temp/'+filterString(req.file['filename'])).pipe(fs.createWriteStream(pictureName));

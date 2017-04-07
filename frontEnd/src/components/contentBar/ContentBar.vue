@@ -58,10 +58,10 @@
                 return store.state.titleDisplay === 'block' ? 'hideBar' : 'showBar';
             },
             friendState () {
-                return store.state.friendState && store.state.myFriends.length !== 0;
+                return store.state.friendState ;
             },
             groupState () {
-                return store.state.groupState && store.state.myGroups.length !== 0;
+                return store.state.groupState ;
             },
             myFriends (){
                 return store.state.myFriends;

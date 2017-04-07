@@ -18,27 +18,38 @@ export  default{
     state.groupState = false;
     state.documentState = false;
     state.friendState = true;
-    state.myFriends = friends.map(function (friend) {
-        return {
-          userId : friend.userId,
-          userName : friend.userName,
-          headPicture : handlePicPath(friend.headPicture)
-        }
-    })
+    if(friends){
+      state.myFriends = friends.map(function (friend) {
+          return {
+            userId : friend.userId,
+            userName : friend.userName,
+            headPicture : handlePicPath(friend.headPicture)
+          }
+      });
+    }else{
+      return {};
+    }
   },
   getGroups (state, groups){
     state.friendState = false;
     state.documentState = false;
     state.groupState = true;
-    state.myGroups = groups.map(function (group) {
+    if(groups) {
+      state.myGroups = groups.map(function (group) {
         return {
-           groupId : group.groupId,
-           groupName : group.groupName,
-           headPicture : group.headPicture,
-           ownerId : group.ownerId,
-           ownerName : group.ownerName,
-           ownerHeadPicture : group.ownerHeadPicture
+          groupId: group.groupId,
+          groupName: group.groupName,
+          headPicture: group.headPicture,
+          ownerId: group.ownerId,
+          ownerName: group.ownerName,
+          ownerHeadPicture: group.ownerHeadPicture
         }
-    })
+      })
+    }else{
+      return {};
+    }
+  },
+  addFriend(state){
+      state.addFriend = true;
   }
 }

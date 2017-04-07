@@ -18,6 +18,7 @@ var getFriends = require('./routes/getFriends');
 var getGroups = require('./routes/getGroups');
 
 
+
 var app = express();
 
 // view engine setup

@@ -14,7 +14,7 @@ export default {
   documentState : false,
   myFriends : [],
   myGroups : [],
-  myDocuments : []
-
+  myDocuments : [],
+  addFriend : false
 }
 

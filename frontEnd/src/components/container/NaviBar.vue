@@ -92,11 +92,13 @@
       },
       getFriends (event) {
         const userId = getUserInfo().userId;
-        networkPost('/getFriends', {userId:userId}).then(response=>{
+        networkPost('/getFriends', {userId:userId}).then(function(response){
             if(response.ok){
                let data = response.data;
                if(data.result == 0){
                    store.dispatch('getFriends',data.data);
+               }else if(data.result == -2){
+                   store.dispatch('getFriends', null);
                }
             }
           }
@@ -104,13 +106,20 @@
       },
       getGroups (event) {
           const userId = getUserInfo().userId;
-          networkPost('/getGroups', {userId:userId}).then(response=>{
-            if(response.ok){
+          console.log('get groups');
+          networkPost('/getGroups', {userId:userId}).then(function(response){
+              console.log('success');
+              if(response.ok){
                 let data = response.data;
+                console.log(data.result);
                 if(data.result == 0){
                     store.dispatch('getGroups', data.data);
+                }else if(data.result == -3){
+                    store.dispatch('getGroups', null);
                 }
             }
+          }, function(error){
+              console.log('error');
           })
       }
     }

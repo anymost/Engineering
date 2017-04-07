@@ -4,6 +4,9 @@
         <img width="60%" height="64px" :src="friend.headPicture" alt="friend">
         <span>{{friend.userName}}</span>
       </div>
+     <div class="item add" @click="addFriend">
+       +
+     </div>
   </div>
 </template>
 <style scoped>
@@ -16,6 +19,10 @@
     height:80px;
     float:left;
     border-right: 1px solid darkgray;
+  }
+  .add{
+    font-size:36px;
+    line-height:80px;
   }
   img{
     float:left;
@@ -30,6 +37,7 @@
   }
 </style>
 <script>
+  import store from '../../store'
   export default{
     data(){
       return{
@@ -41,5 +49,10 @@
     components:{
 
     },
+    methods : {
+        addFriend (){
+            store.dispatch('addFriend');
+        }
+    }
   }
 </script>

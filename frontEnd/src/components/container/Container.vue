@@ -17,7 +17,7 @@
 </style>
 <script>
     import NaviBar from './NaviBar'
-    import MainContent from './MainContent'
+    import MainContent from './MainContent/MainContent'
     import CopyRight from './CopyRight'
     export default{
         data(){

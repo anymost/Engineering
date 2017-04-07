@@ -1,9 +1,11 @@
 <template>
   <div class="container">
-    <div class="item"  v-for="group in groups" :data-groupId="group.groupId">
+    <div class="item"  v-for="group in groups" :data-groupId="group.groupId" :data-ownerId="group.ownerId" :data-ownerName="group.ownerName"
+         :data-ownerHeadPciture="group.ownerHeadPicture">
       <img width="60%" height="64px" :src="group.headPicture" alt="group">
       <span>{{group.groupName}}</span>
     </div>
+    <div class="item add">+</div>
   </div>
 </template>
 <style scoped>
@@ -16,6 +18,10 @@
     height:80px;
     float:left;
     border-right: 1px solid darkgray;
+  }
+  .add{
+    font-size:36px;
+    line-height: 80px;
   }
   img{
     float:left;
