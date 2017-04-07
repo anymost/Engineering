@@ -3,6 +3,7 @@
  */
 
 
+
 var express = require('express');
 var User = require('../db/User');
 var router = express.Router();
@@ -11,9 +12,10 @@ var router = express.Router();
 
 router.post('/', function (req, res, next) {
 
-    var userName = req.body.userName;
-    if(userName) {
-        User.searchFriend({userName:userName}, function (data) {
+    let userId = req.body.userId;
+    let friendId = req.body.friendId;
+    if(userId && friendId) {
+        User.addFriend({userId:userId,friendId:friendId}, function (data) {
             res.send(data);
         })
     }

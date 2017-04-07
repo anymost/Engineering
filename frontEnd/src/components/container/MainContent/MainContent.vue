@@ -18,7 +18,7 @@
 </style>
 <script>
     import store from '../../../store'
-    import AddFriend from './AddFriend'
+    import AddFriend from './AddFriend/AddFriend'
     export default{
         data(){
             return{

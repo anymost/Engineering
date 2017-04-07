@@ -16,7 +16,8 @@ var getCode  = require('./routes/getCode');
 var getUserInfo = require('./routes/getUserInfo');
 var getFriends = require('./routes/getFriends');
 var getGroups = require('./routes/getGroups');
-
+var searchFriend = require('./routes/searchFriend');
+var addFriend = require('./routes/addFriend');
 
 
 var app = express();
@@ -52,7 +53,8 @@ app.use('/getCode', getCode);
 app.use('/getUserInfo',getUserInfo);
 app.use('/getFriends', getFriends);
 app.use('/getGroups', getGroups);
-
+app.use('/searchFriend', searchFriend);
+app.use('/addFriend', addFriend);
 
 
 // catch 404 and forward to error handler

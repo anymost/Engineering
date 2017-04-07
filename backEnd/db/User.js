@@ -79,8 +79,117 @@ var getUserInfo = function (userInfo,callback){
 };
 
 exports.getUserInfo = getUserInfo;
+/**
+ * @description 搜索用户信息
+ * @param userInfo
+ * @param callback
+ */
+var searchFriend = function (userInfo, callback){
+    if(!userInfo && !callback){
+        return;
+    }
+    User.findAll({
+        attributes : ['userId','userName', 'headPicture'],
+        where : {
+            userName : userInfo.userName
+        }
+    }).then(function (result) {
+        if(result.length === 0){
+            callback({
+                result : -2,
+                message : 'user not found'
+            });
+        }else{
+            var userId = result[0] && result[0].dataValues && result[0].dataValues['userId'];
+            var userName = result[0] && result[0].dataValues && result[0].dataValues['userName'];
+            var headPicture = result[0] && result[0].dataValues && result[0].dataValues['headPicture'];
+            callback({
+                result : 0,
+                userId : userId,
+                userName : userName,
+                headPicture : headPicture
+            })
+        }
+    }, function (error) {
+        callback({
+            result : -1,
+            message : error.name || 'get user info error'
+        });
+    })
 
+};
+exports.searchFriend = searchFriend;
 
+/**
+ * @description 添加好友
+ * @param userInfo
+ * @param callback
+ */
+var addFriend = function (userInfo, callback){
+    if(!userInfo || !callback){
+        return ;
+    }
+    var userId = userInfo.userId, friendId = userInfo.friendId;
+    User.findAll({
+        attributes : ['friends'],
+        where : {
+            userId : userId
+        }
+    }).then(function (result) {
+        if(result.length === 0){
+            callback({
+                result : -2,
+                message : 'user not found'
+            });
+        }else{
+            var friends = result[0] && result[0].dataValues && result[0].dataValues['friends'];
+            if(friends){
+                if(friends.indexOf(friendId)){
+                    callback({
+                        result : -3,
+                        message : 'friend exist'
+                    });
+                    return;
+                }else{
+                    friends = friends+'#'+friendId;
+                }
+            }else{
+                friends = friendId;
+            }
+            User.update({friends : friends},
+                {
+                    where :
+                        {
+                            userId : userId
+                        }
+                }).then(function () {
+                    callback({
+                        result : 0,
+                        message : 'success'
+                    });
+                },
+                function (error) {
+                    callback({
+                        result : -4,
+                        message : error.name || 'addFriend error'
+                    });
+                })
+
+        }
+    }, function (error) {
+        callback({
+            result : -1,
+            message : error.name || 'get user info error'
+        });
+    })
+    
+};
+exports.addFriend = addFriend;
+/**
+ * @description 获取用户好友列表
+ * @param userInfo
+ * @param callback
+ */
 var getFriends = function (userInfo, callback) {
     if(!userInfo && !callback){
         return ;
