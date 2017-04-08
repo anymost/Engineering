@@ -143,12 +143,14 @@ var addFriend = function (userInfo, callback){
             });
         }else{
             var friends = result[0] && result[0].dataValues && result[0].dataValues['friends'];
+
             if(friends){
-                if(friends.indexOf(friendId)){
+                if(friends.indexOf(friendId)!==-1){
                     callback({
                         result : -3,
                         message : 'friend exist'
                     });
+
                     return;
                 }else{
                     friends = friends+'#'+friendId;
@@ -156,6 +158,7 @@ var addFriend = function (userInfo, callback){
             }else{
                 friends = friendId;
             }
+
             User.update({friends : friends},
                 {
                     where :
@@ -163,10 +166,39 @@ var addFriend = function (userInfo, callback){
                             userId : userId
                         }
                 }).then(function () {
-                    callback({
-                        result : 0,
-                        message : 'success'
-                    });
+                    User.findAll({
+                        attributes : ['friends'],
+                        where : {
+                            userId : friendId
+                        }
+                    }).then(function (result) {
+                        var friends = result[0] && result[0].dataValues && result[0].dataValues['friends'];
+
+                        if(friends){
+                            friends = friends+'#'+userId;
+
+                        }else{
+                            friends = userId;
+                        }
+
+                        User.update({friends : friends},
+                            {
+                                where :
+                                    {
+                                        userId : friendId
+                                    }
+                            }).then(function(){
+                                callback({
+                                    result : 0,
+                                    message : 'success'
+                                });
+                        }, function(error){
+                                callback({
+                                    result : -5,
+                                    message : error.name || 'add friend failed'
+                                });
+                        })
+                    })
                 },
                 function (error) {
                     callback({

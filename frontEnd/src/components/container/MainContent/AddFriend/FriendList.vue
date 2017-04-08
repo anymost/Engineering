@@ -4,7 +4,7 @@
       <li :data-id="searchList.userId">
         <img :src="searchList.headPicture">
         <p>{{searchList.userName}}</p>
-        <div class="add" @click="addFriend" v-if="!haveAdded">+</div>
+        <div class="add" @click.once="addFriend">{{friendState}}</div>
       </li>
     </ul>
   </div>
@@ -47,7 +47,7 @@
   .add{
     float:right;
     font-size:26px;
-    width:50px;
+    width:100px;
     height:50px;
     line-height:50px;
     text-align: center;
@@ -59,7 +59,7 @@
     data(){
       return {
           userId : getUserInfo().userId,
-          haveAdded : false
+          friendState : '+'
       }
     },
     props: ['searchList'],
@@ -75,7 +75,9 @@
             networkPost('/addFriend', data).then((response)=>{
               if(response.ok){
                   if(response.data.result == 0){
-                    this.haveAdded = true;
+                    this.friendState = 'added';
+                  }else if(response.data.result == -3){
+                      this.friendState ='existed';
                   }
               }
             });
