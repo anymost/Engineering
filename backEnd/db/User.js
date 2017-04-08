@@ -218,6 +218,104 @@ var addFriend = function (userInfo, callback){
 };
 exports.addFriend = addFriend;
 /**
+ * @description 删除好友
+ * @param userInfo
+ * @param callback
+ */
+var deleteFriend = function (userInfo, callback) {
+
+    if(!userInfo || !callback){
+        return ;
+    }
+    var userId = userInfo.userId, friendId = userInfo.friendId;
+    User.findAll({
+        attributes : ['friends'],
+        where : {
+            userId : userId
+        }
+    }).then(function (result) {
+        if(result.length === 0){
+            callback({
+                result : -2,
+                message : 'empty friends list'
+            });
+        }else{
+            var friends = result[0] && result[0].dataValues && result[0].dataValues['friends'];
+
+            if(friends){
+                if(friends.indexOf(friendId)===-1){
+                    callback({
+                        result : -3,
+                        message : 'friend not exist'
+                    });
+
+                    return;
+                }else{
+                    friends = friends+'#'+friendId;
+                }
+            }else{
+                friends = friendId;
+            }
+
+            User.update({friends : friends},
+                {
+                    where :
+                        {
+                            userId : userId
+                        }
+                }).then(function () {
+                    User.findAll({
+                        attributes : ['friends'],
+                        where : {
+                            userId : friendId
+                        }
+                    }).then(function (result) {
+                        var friends = result[0] && result[0].dataValues && result[0].dataValues['friends'];
+
+                        if(friends){
+                            friends = friends+'#'+userId;
+
+                        }else{
+                            friends = userId;
+                        }
+
+                        User.update({friends : friends},
+                            {
+                                where :
+                                    {
+                                        userId : friendId
+                                    }
+                            }).then(function(){
+                            callback({
+                                result : 0,
+                                message : 'success'
+                            });
+                        }, function(error){
+                            callback({
+                                result : -5,
+                                message : error.name || 'add friend failed'
+                            });
+                        })
+                    })
+                },
+                function (error) {
+                    callback({
+                        result : -4,
+                        message : error.name || 'addFriend error'
+                    });
+                })
+
+        }
+    }, function (error) {
+        callback({
+            result : -1,
+            message : error.name || 'get user info error'
+        });
+    })
+
+};
+exports.deleteFriend = deleteFriend;
+/**
  * @description 获取用户好友列表
  * @param userInfo
  * @param callback

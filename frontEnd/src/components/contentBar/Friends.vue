@@ -62,7 +62,7 @@
 </style>
 <script>
   import store from '../../store'
-  import {networkPost} from '../../tools'
+  import {networkPost, getUserInfo} from '../../tools'
   export default{
     data(){
       return{
@@ -83,9 +83,13 @@
             if(isDelete){
                 let friendId = event.target ? event.target.dataset['userid']:false;
                 if(friendId) {
-                  networkPost('/deleteFriend', {friendId: friendId}).then((response=>{
+                    let userId = getUserInfo().userId;
+                  networkPost('/deleteFriend', {
+                      friendId: friendId,
+                      userId : userId
+                  }).then(function () {
 
-                  }));
+                  });
                 }
             }
         }

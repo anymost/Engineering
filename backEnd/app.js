@@ -18,6 +18,7 @@ var getFriends = require('./routes/getFriends');
 var getGroups = require('./routes/getGroups');
 var searchFriend = require('./routes/searchFriend');
 var addFriend = require('./routes/addFriend');
+var deleteFriend = require('./routes/deleteFriend');
 
 
 var app = express();
@@ -55,7 +56,7 @@ app.use('/getFriends', getFriends);
 app.use('/getGroups', getGroups);
 app.use('/searchFriend', searchFriend);
 app.use('/addFriend', addFriend);
-
+app.use('/deleteFriend', deleteFriend);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
