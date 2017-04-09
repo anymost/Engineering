@@ -50,11 +50,17 @@ export  default{
     }
   },
   addFriend(state){
+      state.sendMessage = {};
       state.addFriend = true;
   },
   sendMessage(state, info){
-      state.sendMessage = true;
-      state.sender = info.sender;
-      state.receiver = info.receiver;
+      state.addFriend = false;
+      state.sendMessage = {
+        isSend : true,
+        senderId : info.senderId,
+        receiverId : info.receiverId,
+        receiverName : info.receiverName,
+        receiverPic : info.receiverPic
+      };
   }
 }
