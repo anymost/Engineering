@@ -251,10 +251,21 @@ var deleteFriend = function (userInfo, callback) {
 
                     return;
                 }else{
-                    friends = friends+'#'+friendId;
+                    friends = friends.split('#');
+                    for(var i=0; i<friends.length; i++){
+                        if(friends[i] == friendId){
+                            break;
+                        }
+                    }
+                    friends.splice(i,1);
+                    if(friends.length>0){
+                        friends = friends.join('#');
+                    }else{
+                        friends = '';
+                    }
                 }
             }else{
-                friends = friendId;
+                friends = '';
             }
 
             User.update({friends : friends},
@@ -273,10 +284,21 @@ var deleteFriend = function (userInfo, callback) {
                         var friends = result[0] && result[0].dataValues && result[0].dataValues['friends'];
 
                         if(friends){
-                            friends = friends+'#'+userId;
+                            friends = friends.split('#');
+                            for(var i=0; i<friends.length; i++){
+                                if(friends[i] == userId){
+                                    break;
+                                }
+                            }
+                            friends.splice(i,1);
+                            if(friends.length>0){
+                                friends = friends.join('#');
+                            }else{
+                                friends = '';
+                            }
 
                         }else{
-                            friends = userId;
+                            friends = '';
                         }
 
                         User.update({friends : friends},

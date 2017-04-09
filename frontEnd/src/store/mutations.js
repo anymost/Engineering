@@ -51,5 +51,10 @@ export  default{
   },
   addFriend(state){
       state.addFriend = true;
+  },
+  sendMessage(state, info){
+      state.sendMessage = true;
+      state.sender = info.sender;
+      state.receiver = info.receiver;
   }
 }

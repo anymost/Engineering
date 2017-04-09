@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-      <div class="item"  v-for="friend in friends" :data-userid="friend.userId">
+      <div class="item"   v-for="(friend, index) in friends" :rank="index" :data-userid="friend.userId">
         <img width="60%" height="64px" :src="friend.headPicture" alt="friend">
        <div class="info">
-          <div class="delete" @click="deleteFriend" :data-userid="friend.userId">x</div>
-          <div>{{friend.userName}}</div>
-         <div class="sendMessage"></div>
+          <div class="delete" :data-index="index" @click="deleteFriend" :data-userid="friend.userId">x</div>
+          <div class="userName">{{friend.userName}}</div>
+         <div class="sendMessage" :data-userid="friend.userId" @click="sendMessage"></div>
        </div>
       </div>
      <div class="item add" @click="addFriend">
@@ -33,26 +33,26 @@
   }
   .info{
     float:left;
-    width:40%;
     height:64px;
   }
   .delete{
     width:100%;
-    height:30%;
+    height:40%;
     text-align: right;
   }
 
-  span{
+  .userName{
     width:100%;
     height:40%;
     overflow:hidden;
   }
   .sendMessage{
     width:100%;
-    height:300%;
+    height:40%;
     background-image: url('http://localhost:3000/headPictures/tools/icon.jpg');
     background-position: 105px 214px;
     background-size: 56px 38px;
+    background-repeat:no-repeat;
   }
 
   .add{
@@ -66,7 +66,7 @@
   export default{
     data(){
       return{
-
+        userId : getUserInfo().userId
 
       }
     },
@@ -80,18 +80,29 @@
         },
         deleteFriend (event) {
             var isDelete = window && window.confirm('delete this friend?') ;
+
             if(isDelete){
+                let index = event.target.dataset[index];
                 let friendId = event.target ? event.target.dataset['userid']:false;
                 if(friendId) {
-                    let userId = getUserInfo().userId;
+
                   networkPost('/deleteFriend', {
                       friendId: friendId,
-                      userId : userId
-                  }).then(function () {
-
+                      userId : this.userId
+                  }).then(function (response) {
+                     if(response.ok && response.data.result == 0){
+                        document.querySelector('div[rank="'+index+'"]').style.display='none';
+                     }
                   });
                 }
             }
+        },
+        sendMessage (event) {
+            let friendId = event.target ? event.target.dataset['userid']:false;
+            store.commit('sendMessage',{
+               sender : this.userId,
+               receiver : friendId
+            });
         }
 
     }

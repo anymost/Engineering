@@ -21,5 +21,8 @@ export  default {
   },
   addFriend (context){
     context.commit('addFriend');
+  },
+  sendMessage ({commit}, info){
+    commit('sendMessage', info);
   }
 }
