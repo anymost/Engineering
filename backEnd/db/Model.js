@@ -130,6 +130,31 @@ var Document = Pool.define('documents', {
     }
 });
 
+var Message = pool.define('message', {
+    senderId : {
+        type : Sequelize.BIGINT,
+        allowNull : false,
+        references: {
+            model: User,
+            key: 'userId',
+
+        },
+    },
+    senderId : {
+        type : Sequelize.BIGINT,
+        allowNull : false,
+        references: {
+            model: User,
+            key: 'userId',
+
+        },
+    },
+    Message : {
+        
+    }
+
+});
+
 
 /*var user = User.sync({force : false});
 var group = Group.sync({force : false});

@@ -51,5 +51,17 @@ var getPhoneCode = function (phone, callback) {
 };
 
 exports.getPhoneCode = getPhoneCode;
+/**
+ * @description 在缓存中保存用户发送的消息
+ * @param data
+ * @param callback
+ */
+var saveMessage = function(data, callback){
+    var senderId = data.senderId,
+        receiverId = data.receiverId,
+        message = data.message;
+    client
+};
+exports.saveMessage = saveMessage;
 
 

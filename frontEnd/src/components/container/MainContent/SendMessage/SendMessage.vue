@@ -33,7 +33,7 @@
   import store from '../../../../store'
 
   import {networkPost, handlePicPath} from '../../../../tools'
-  export default{
+  export default {
     data () {
       return {
         message: ''
@@ -43,7 +43,20 @@
     components: {},
     methods: {
       sendMessage (event){
+          let message = this.message;
+          let target = event.target;
+          let senderId = target.getAttribute('senderId');
+          let receiverId = target.getAttribute('receiverId');
 
+          networkPost('/sendMessage',{
+              senderId : senderId,
+              receiverId : receiverId,
+              message : message
+          }).then(response=>{
+              if(response && response.ok &&  response.data && response.data.result == 0 ){
+                  this.message = '';
+              }
+          });
       }
     },
     computed: {}
