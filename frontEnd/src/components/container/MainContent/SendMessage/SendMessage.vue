@@ -2,14 +2,20 @@
   <div class="container">
     <div class="mainContent">
       <div class="leftContent">
-        <textarea name="" id="" cols="30" rows="10" v-model="message"></textarea>
-        <input type="button" :receiverId="receiver.receiverId"
-           :senderId="sender.senderId"  value="send" @click="sendMessage">
+        <h2>message</h2>
+        <div class="messageWindow">
+            <Message :messageList="messageList"></Message>
+        </div>
+
       </div>
 
       <div class="rightContent">
-        <img :src="receiver.receiverPic" alt="receiverPic">
+        <img :src="receiver.receiverPic" width="80%" height="200px" alt="receiverPic">
         <p>{{receiver.receiverName}}</p>
+        <textarea  name="" id=""  v-model="message"></textarea>
+        <br>
+        <input type="button" :receiverId="receiver.receiverId"
+               :senderId="sender.senderId"  value="send" @click="sendMessage">
       </div>
     </div>
   </div>
@@ -22,25 +28,48 @@
   .leftContent{
     float:left;
     width:60%;
+    height:400px;
   }
   .rightContent{
     float:left;
     width:40%;
+    height:200px;
   }
-
+  .messageWindow{
+    width:60%;
+    height:400px;
+    border: 1px solid rgb(169, 169, 169);
+    margin-left:100px;
+  }
+  textarea{
+    width:80%;
+    height:100px;
+  }
+  input{
+    width:200px;
+    height:40px;
+    font-size:20px;
+  }
+  h2{
+    text-align: center;
+  }
 </style>
 <script>
   import store from '../../../../store'
+  import Message from './Message'
 
   import {networkPost, handlePicPath} from '../../../../tools'
   export default {
     data () {
       return {
-        message: ''
+        message: '',
+        messageList:[]
       }
     },
     props: ['sender', 'receiver'],
-    components: {},
+    components: {
+        Message
+    },
     methods: {
       sendMessage (event){
           let message = this.message;
@@ -54,6 +83,7 @@
               message : message
           }).then(response=>{
               if(response && response.ok &&  response.data && response.data.result == 0 ){
+                  this.messageList.push(this.message);
                   this.message = '';
               }
           });
