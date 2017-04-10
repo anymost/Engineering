@@ -130,7 +130,7 @@ var Document = Pool.define('documents', {
     }
 });
 
-var Message = pool.define('message', {
+var Message = Pool.define('message', {
     senderId : {
         type : Sequelize.BIGINT,
         allowNull : false,
@@ -149,16 +149,29 @@ var Message = pool.define('message', {
 
         },
     },
-    Message : {
-        
+    sentMessage : {
+        type:Sequelize.STRING,
+        allowNull : false
+    },
+    unsentMessage : {
+        type : Sequelize.STRING,
+        allowNull : false
+    },
+    date : {
+        type : Sequelize.BIGINT,
+        allowNull : false
     }
 
 });
 
 
-/*var user = User.sync({force : false});
+
+/*
+var user = User.sync({force : false});
 var group = Group.sync({force : false});
-var document = Document.sync({force : false});*/
+var document = Document.sync({force : false});
+var message = Message.sync({force: false});
+*/
 
 
 
@@ -170,3 +183,4 @@ var document = Document.sync({force : false});*/
 exports.User = User;
 exports.Group = Group;
 exports.Document = Document;
+exports.Message = Message;

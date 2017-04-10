@@ -19,7 +19,8 @@ router.post('/', function (req, res, next) {
         redisCache.saveMessage({
             senderId : senderId,
             receiverId : receiverId,
-            message : message
+            message : message,
+            date : Date.now()
         }, function(result){
 
         });

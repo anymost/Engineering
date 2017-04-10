@@ -59,7 +59,8 @@ exports.getPhoneCode = getPhoneCode;
 var saveMessage = function(data, callback){
     var senderId = data.senderId,
         receiverId = data.receiverId,
-        message = data.message;
+        message = data.message,
+        date = data.date;
     client
 };
 exports.saveMessage = saveMessage;
