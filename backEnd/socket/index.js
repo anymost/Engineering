@@ -8,6 +8,13 @@ var socket_io = require('socket.io');
 socketIO.getSocketIO = function(server){
 
     var io = socket_io.listen(server);
+    io.sockets.on('connection',function(socket){
+        console.log('socket io progress connect succeed');
+        socket.on('sendMessage', function (data) {
+            socket.emit('receiveMessage',{});
+        });
+        socket.emit('pushMessage',{});
+    })
 
 };
 

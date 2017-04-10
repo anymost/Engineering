@@ -130,36 +130,38 @@ var Document = Pool.define('documents', {
     }
 });
 
-var Message = Pool.define('message', {
+/**
+ * @description 消息类型模型
+ * @type {Model}
+ */
+var Message = Pool.define('messages', {
     senderId : {
         type : Sequelize.BIGINT,
         allowNull : false,
         references: {
             model: User,
             key: 'userId',
-
         },
+        primaryKey:true
     },
-    senderId : {
+    receiverId : {
         type : Sequelize.BIGINT,
         allowNull : false,
         references: {
             model: User,
-            key: 'userId',
-
+            key: 'userId'
         },
+        primaryKey:true
     },
-    sentMessage : {
-        type:Sequelize.STRING,
-        allowNull : false
-    },
-    unsentMessage : {
+    message : {
         type : Sequelize.STRING,
-        allowNull : false
-    },
+        allow : false,
+    }
+    ,
     date : {
         type : Sequelize.BIGINT,
-        allowNull : false
+        allowNull : false,
+        primaryKey : true
     }
 
 });
