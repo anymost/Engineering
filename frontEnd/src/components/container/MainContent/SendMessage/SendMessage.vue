@@ -57,7 +57,7 @@
 <script>
   import store from '../../../../store'
   import Message from './Message'
-  import io from 'socket.io-client'
+  import tools from '../../../../tools'
 
   import {networkPost, handlePicPath} from '../../../../tools'
   export default {
@@ -77,25 +77,24 @@
           let target = event.target;
           let senderId = target.getAttribute('senderId');
           let receiverId = target.getAttribute('receiverId');
-
-         /* networkPost('/sendMessage',{
-              senderId : senderId,
-              receiverId : receiverId,
-              message : message
-          }).then(response=>{
-              if(response && response.ok &&  response.data && response.data.result == 0 ){
-                  this.messageList.push(this.message);
-                  this.message = '';
-              }
-          });*/
-          var socket = io('http://localhost:3000');
+          let date = Date.now();
+          var socket = tools.createSocket();
           socket.emit('sendMessage',{
               senderId : senderId,
               receiverId : receiverId,
-              message : message
+              message : message,
+              date : date
           });
-          socket.on('receiverMessage', function(data){
+          let self = this;
+          socket.on('receiveMessage', function (data) {
+            if(data.result==0){
+              if(data.senderId == senderId && data.receiverId == receiverId && data.date == date){
+                  self.messageList.push(message);
+                  self.message = '';
+              }
+            }else{
 
+            }
           });
       }
     },

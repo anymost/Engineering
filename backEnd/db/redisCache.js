@@ -62,8 +62,23 @@ var saveMessage = function(data, callback){
         receiverId = data.receiverId,
         message = data.message,
         date = data.date;
-    client
+    var listKey ='message:'+senderId +'#'+receiverId;
+    var data = date+'#'+message;
+    client.rpush(listKey,data,function(error, result){
+        if(!error){
+            callback({
+                result : 0,
+                message : result
+            })
+        }else{
+            callback({
+                result : -1,
+                message : error
+            })
+        }
+    })
 };
 exports.saveMessage = saveMessage;
+
 
 
