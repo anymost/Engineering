@@ -62,8 +62,8 @@ var saveMessage = function(data, callback){
         receiverId = data.receiverId,
         message = data.message,
         date = data.date;
-    var listKey ='message:'+senderId +'#'+receiverId;
-    var data = date+'#'+message;
+    var listKey =receiverId;
+    var data = senderId+'#'+date+'#'+message;
     client.rpush(listKey,data,function(error, result){
         if(!error){
             callback({
@@ -80,5 +80,35 @@ var saveMessage = function(data, callback){
 };
 exports.saveMessage = saveMessage;
 
+var getMessage = function(info, callback){
+    var receiverId = String(info.receiverId);
+    client.llen(receiverId, function(error, listLength){
+       if(error){
+           callback({
+               result : -1,
+               message : 'get list length error'
+           });
+       } else{
+           client.lrange(receiverId, 0, parseInt(listLength)-1, function(error, result){
+               if(!error){
+                   callback({
+                       result : 0,
+                       data : result,
+                       message : 'success',
+                       length : listLength
+                   });
+               }else{
+                   callback({
+                       result : -2,
+                       message : error
+                   });
+               }
+           })
+       }
 
+    });
+
+};
+
+exports.getMesage = getMessage;
 
