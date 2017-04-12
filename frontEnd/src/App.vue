@@ -15,14 +15,20 @@ import InfoBar from './components/InfoBar'
 import ContentBar from './components/contentBar/ContentBar'
 
 
+
+
 export default {
   name: 'app',
+  data (){
+    return {
+    }
+  },
   components: {
     TitleBar,
     ContentBar,
     Container,
     InfoBar,
-  },
+  }
 }
 </script>
 

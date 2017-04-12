@@ -57,9 +57,9 @@
 <script>
   import store from '../../../../store'
   import Message from './Message'
-  import tools from '../../../../tools'
 
-  import {networkPost, handlePicPath} from '../../../../tools'
+  import {networkPost, handlePicPath, createSocket} from '../../../../tools'
+
   export default {
     data () {
       return {
@@ -78,7 +78,7 @@
           let senderId = target.getAttribute('senderId');
           let receiverId = target.getAttribute('receiverId');
           let date = Date.now();
-          var socket = tools.createSocket();
+          var socket = createSocket();
           socket.emit('sendMessage',{
               senderId : senderId,
               receiverId : receiverId,

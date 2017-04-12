@@ -80,6 +80,11 @@ var saveMessage = function(data, callback){
 };
 exports.saveMessage = saveMessage;
 
+/**
+ * @description 通过receiverId获取消息
+ * @param info
+ * @param callback
+ */
 var getMessage = function(info, callback){
     var receiverId = String(info.receiverId);
     client.llen(receiverId, function(error, listLength){
@@ -111,4 +116,72 @@ var getMessage = function(info, callback){
 };
 
 exports.getMesage = getMessage;
+
+/**
+ * @description 通过receiverId删除消息
+ * @param info
+ * @param callback
+ */
+var removeMessage = function (info, callback){
+    var receiverId = String(info.receiverId);
+    client.ltrim(receiver, 1, 0, function (error, result) {
+        if(!error){
+            callback({
+                result : 0,
+                message : 'success'
+            })
+        }else{
+            callback({
+                result : -1,
+                message : error
+            })
+        }
+    })
+};
+exports.removeMessage = removeMessage;
+
+/**
+ * @description mysql和redis之间同步消息
+ * @param info
+ * @param callback
+ */
+var syncMessage = function (info, callback){
+    var recieverId = String(info.receiverId);
+    client.llen(receiverId, function(error, listLength){
+        if(error){
+            callback({
+                result : -1,
+                message : 'get list length error'
+            });
+        } else{
+            client.lrange(receiverId, 0, parseInt(listLength)-1, function(error, result){
+                if(!error){
+                     Array(result.data).forEach(function(item){
+                         item = item.split('#');
+                         Mesage.saveMessage({
+                             senderId : parseInt(item[0]),
+                             receiverId : parseInt(receiverId),
+                             date : parseInt(item[1]),
+                             message : item[2]
+                         })
+                     });
+                    callback({
+                        result : 0,
+                        message : 'success'
+                    })
+                }else{
+                    callback({
+                        result : -2,
+                        message : error
+                    });
+                }
+            })
+        }
+
+    });
+
+};
+exports.syncMessage = syncMessage;
+
+
 

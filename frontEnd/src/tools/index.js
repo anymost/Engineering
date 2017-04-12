@@ -1,6 +1,8 @@
 import  Vue from 'vue'
-import io from 'socket.io-client'
 import VueResource from 'vue-resource'
+import io from 'socket.io-client'
+
+
 Vue.use(VueResource);
 
 export let getUserInfo = function () {
@@ -24,10 +26,10 @@ export let networkGET = function (path){
 export let networkPost = function (path, data) {
   return Vue.http.post('http://localhost:3000'+path,data)
 };
-
 export const createSocket =  function () {
   return io('http://localhost:3000');
 
 };
+
 
 

@@ -12,6 +12,8 @@ socketIO.getSocketIO = function(server){
     var timerCount = {
 
     };
+
+
     io.sockets.on('connection',function(socket){
         console.log('socket io progress connect succeed');
         socket.on('sendMessage', function (data) {
@@ -30,31 +32,55 @@ socketIO.getSocketIO = function(server){
             });
 
         });
+
+
+
         socket.on('heartbeat',function (data){
             var userId = data.userId;
+            var pushMessage = function () {
+                redisCache.getMesage({receiverId:data.userId}, function(result){
+                    if(result.result == 0 && result.length>0){
+                        var  map=result.data.map(function (item) {
+                            item = item.split('#');
+                            return {
+                                senderId : parseInt(item[0]),
+                                receiverId : parseInt(data.userId),
+                                date : parseInt(item[1]),
+                                message : item[2]
+                            }
+                        });
+
+                        socket.emit('pushMessage',{data:map});
+                        redisCache.on('confirmPushMessage', function (data){
+                            if(data.result == 0){
+                                redisCache.syncMessage({receiverId:data.userId},function(result){
+                                    if(result.result == 0){
+                                        console.log('sync message success');
+                                        redisCache.removeMessage({receiverId:data.userId}, function(result){
+                                            if(result.result == 0){
+                                                console.log('remove message success');
+                                            }
+                                        })
+                                    }else{
+
+                                    }
+                                })
+                            }
+                        });
+                    }
+                });
+            };
+
             if(!timerCount[userId]){
                 timerCount[userId] = {
                     count : 0
                 };
-                redisCache.getMesage({receiverId:data.userId}, function(result){
-                    if(result.result == 0 && result.length>0){
-                        var  map=result.data.map(function (item) {
-                                item = item.split('#');
-                                return {
-                                    senderId : parseInt(item[0]),
-                                    receiverId : parseInt(data.userId),
-                                    date : parseInt(item[1]),
-                                    message : item[2]
-                                }
-                        });
 
-                        socket.emit('pushMessage',{data:data});
-                    }
-                });
+                pushMessage();
 
             }
             else if(timerCount[userId].count/10==0){
-                socket.emit('pushMessage', {});
+               pushMessage();
             }
             timerCount[userId].count++;
         })
