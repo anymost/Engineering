@@ -62,5 +62,19 @@ export  default{
         receiverName : info.receiverName,
         receiverPic : info.receiverPic
       };
+  },
+  receiveMessage (state, info){
+
+    if(!state.message.isRead ) {
+      state.message.data = state.message.data.concat(info.data);
+    }else{
+      state.message.data = info.data;
+      state.message.isRead = false;
+    }
+  },
+  readMessage (state){
+    state.message.isRead = true;
+    state.message.data = [];
   }
+
 }

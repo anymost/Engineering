@@ -21,8 +21,13 @@ export default {
     senderId : null,
     receiverId : null,
     receiverName : null,
-    recieverPic : null
+    receiverPic : null
 
+  },
+  message : {
+    isRead : true,
+    data　: [],
+    allMessage : []
   }
 }
 

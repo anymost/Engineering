@@ -5,6 +5,7 @@ import Vue from 'vue'
 import router from './router'
 import App from './App'
 import {getUserInfo, createSocket} from './tools'
+import store from './store'
 
 let heartbeat = null;
 
@@ -22,7 +23,16 @@ new Vue({
 
       socket.emit('heartbeat',{usrId:userId});
 
-    },1000*60*2)
+    },1000*60*2);
+    socket.on('PushMessage', function(message){
+      socket.emit('confirmPushMessage',{
+        result : 0,
+        userId : userId
+      });
+      if(message){
+        store.commit('receiveMessage', message);
+      }
+    })
   },
 
   destroyed () {

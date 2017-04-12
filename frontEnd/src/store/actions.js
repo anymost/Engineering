@@ -24,5 +24,11 @@ export  default {
   },
   sendMessage ({commit}, info){
     commit('sendMessage', info);
+  },
+  receiveMessage({commit}, info){
+    commit('receiveMessage', info);
+  },
+  readMessage ({commit}, info){
+    commit('readMessage', info);
   }
 }
