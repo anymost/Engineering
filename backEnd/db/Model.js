@@ -153,6 +153,10 @@ var Message = Pool.define('messages', {
         },
         primaryKey:true
     },
+    senderName : {
+        type : Sequelize.STRING,
+        allowNull : false,
+    },
     message : {
         type : Sequelize.STRING,
         allow : false,

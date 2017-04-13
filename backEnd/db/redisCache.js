@@ -11,17 +11,17 @@ var Message = require('./Message');
  * @param code
  * @param callback
  */
-var setPhoneCode = function (phone, code, callback){
-    client.set('' + phone, '' + code, function (error, res){
-        if(!error){
+var setPhoneCode = function (phone, code, callback) {
+    client.set('' + phone, '' + code, function (error, res) {
+        if (!error) {
             callback({
-                result : 0,
-                data : res
+                result: 0,
+                data: res
             });
-        }else {
+        } else {
             callback({
-                result : -1,
-                data :error
+                result: -1,
+                data: error
             });
         }
     });
@@ -37,15 +37,15 @@ exports.setPhoneCode = setPhoneCode;
  */
 var getPhoneCode = function (phone, callback) {
     client.get('' + phone, function (error, value) {
-        if(!error){
+        if (!error) {
             callback({
-                result : 0,
-                data : value
+                result: 0,
+                data: value
             });
-        }else{
+        } else {
             callback({
-                result : -1,
-                data :　'not found'
+                result: -1,
+                data: 'not found'
             });
         }
     });
@@ -57,23 +57,24 @@ exports.getPhoneCode = getPhoneCode;
  * @param data
  * @param callback
  */
-var saveMessage = function(data, callback){
+var saveMessage = function (data, callback) {
     var senderId = data.senderId,
+        senderName = data.senderName,
         receiverId = data.receiverId,
         message = data.message,
         date = data.date;
-    var listKey =receiverId;
-    var data = senderId+'#'+date+'#'+message;
-    client.rpush(listKey,data,function(error, result){
-        if(!error){
+    var listKey = receiverId;
+    var data = senderId + '#' + date + '#' + message+'#'+senderName;
+    client.rpush(listKey, data, function (error, result) {
+        if (!error) {
             callback({
-                result : 0,
-                message : result
+                result: 0,
+                message: result
             })
-        }else{
+        } else {
             callback({
-                result : -1,
-                message : error
+                result: -1,
+                message: error
             })
         }
     })
@@ -85,31 +86,31 @@ exports.saveMessage = saveMessage;
  * @param info
  * @param callback
  */
-var getMessage = function(info, callback){
+var getMessage = function (info, callback) {
     var receiverId = String(info.receiverId);
-    client.llen(receiverId, function(error, listLength){
-       if(error){
-           callback({
-               result : -1,
-               message : 'get list length error'
-           });
-       } else{
-           client.lrange(receiverId, 0, parseInt(listLength)-1, function(error, result){
-               if(!error){
-                   callback({
-                       result : 0,
-                       data : result,
-                       message : 'success',
-                       length : listLength
-                   });
-               }else{
-                   callback({
-                       result : -2,
-                       message : error
-                   });
-               }
-           })
-       }
+    client.llen(receiverId, function (error, listLength) {
+        if (error) {
+            callback({
+                result: -1,
+                message: 'get list length error'
+            });
+        } else {
+            client.lrange(receiverId, 0, parseInt(listLength) - 1, function (error, result) {
+                if (!error) {
+                    callback({
+                        result: 0,
+                        data: result,
+                        message: 'success',
+                        length: listLength
+                    });
+                } else {
+                    callback({
+                        result: -2,
+                        message: error
+                    });
+                }
+            })
+        }
 
     });
 
@@ -122,18 +123,18 @@ exports.getMesage = getMessage;
  * @param info
  * @param callback
  */
-var removeMessage = function (info, callback){
+var removeMessage = function (info, callback) {
     var receiverId = String(info.receiverId);
-    client.ltrim(receiver, 1, 0, function (error, result) {
-        if(!error){
+    client.ltrim(receiverId, 1, 0, function (error, result) {
+        if (!error) {
             callback({
-                result : 0,
-                message : 'success'
+                result: 0,
+                message: 'success'
             })
-        }else{
+        } else {
             callback({
-                result : -1,
-                message : error
+                result: -1,
+                message: error
             })
         }
     })
@@ -145,34 +146,37 @@ exports.removeMessage = removeMessage;
  * @param info
  * @param callback
  */
-var syncMessage = function (info, callback){
-    var recieverId = String(info.receiverId);
-    client.llen(receiverId, function(error, listLength){
-        if(error){
+var syncMessage = function (info, callback) {
+    var receiverId = String(info.receiverId);
+    client.llen(receiverId, function (error, listLength) {
+        if (error) {
             callback({
-                result : -1,
-                message : 'get list length error'
+                result: -1,
+                message: 'get list length error'
             });
-        } else{
-            client.lrange(receiverId, 0, parseInt(listLength)-1, function(error, result){
-                if(!error){
-                     Array(result.data).forEach(function(item){
-                         item = item.split('#');
-                         Mesage.saveMessage({
-                             senderId : parseInt(item[0]),
-                             receiverId : parseInt(receiverId),
-                             date : parseInt(item[1]),
-                             message : item[2]
-                         })
-                     });
+        } else {
+            client.lrange(receiverId, 0, parseInt(listLength) - 1, function (error, result) {
+                if (!error) {
+                    Array(result.data).forEach(function (item) {
+                        if (item) {
+                            item = item.split('#');
+                            Mesage.saveMessage({
+                                senderId: parseInt(item[0]),
+                                receiverId: parseInt(receiverId),
+                                date: parseInt(item[1]),
+                                message: item[2],
+                                senderName : item[3]
+                            })
+                        }
+                    });
                     callback({
-                        result : 0,
-                        message : 'success'
+                        result: 0,
+                        message: 'success'
                     })
-                }else{
+                } else {
                     callback({
-                        result : -2,
-                        message : error
+                        result: -2,
+                        message: error
                     });
                 }
             })

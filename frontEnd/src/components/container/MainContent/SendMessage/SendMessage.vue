@@ -58,7 +58,7 @@
   import store from '../../../../store'
   import Message from './Message'
 
-  import {networkPost, handlePicPath, createSocket} from '../../../../tools'
+  import {networkPost, handlePicPath, createSocket, getUserInfo} from '../../../../tools'
 
   export default {
     data () {
@@ -82,6 +82,7 @@
           socket.emit('sendMessage',{
               senderId : senderId,
               receiverId : receiverId,
+              senderName : getUserInfo().userName,
               message : message,
               date : date
           });

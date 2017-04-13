@@ -10,6 +10,7 @@ var Message = require('./Model').Message;
  */
 var saveMessage = function(data, callback){
     var senderId = parseInt(data.senderId),
+        senderName = data.senderName,
         receiverId = parseInt(data.receiverId),
         message = data.message,
         date = parseInt(data.date);
@@ -18,7 +19,8 @@ var saveMessage = function(data, callback){
             senderId : senderId,
             receiverId : receiverId,
             message : message,
-            date    : date
+            date    : date,
+            senderName : senderName
         }).then(function () {
 
         },function () {
@@ -68,6 +70,7 @@ var getMessage = function (data, callback) {
                 result : 0,
                 message : 'success',
                 senderId : senderId,
+                senderName : senderName,
                 receiverId : receiverId,
                 messageList : messageList
             });

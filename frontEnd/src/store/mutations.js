@@ -71,8 +71,10 @@ export  default{
       state.message.data = info.data;
       state.message.isRead = false;
     }
+    state.message.message = [];
   },
   readMessage (state){
+    state.message.message = state.message.data;
     state.message.isRead = true;
     state.message.data = [];
   }

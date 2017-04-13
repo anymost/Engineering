@@ -13,12 +13,11 @@ socketIO.getSocketIO = function(server){
 
     };
 
-
     io.sockets.on('connection',function(socket){
-        console.log('socket io progress connect succeed');
         socket.on('sendMessage', function (data) {
             var message = {
                 senderId : data.senderId,
+                senderName : data.senderName,
                 receiverId : data.receiverId,
                 message : data.message,
                 date : data.date
@@ -28,15 +27,20 @@ socketIO.getSocketIO = function(server){
                 response.senderId = data.senderId;
                 response.receiverId = data.receiverId;
                 response.date = data.date;
+                response.senderName = data.senderName;
                 socket.emit('receiveMessage',response);
             });
 
         });
 
 
-
+        socket.on('clearMessage', function (data){
+            var userId = data.userId;
+            delete timerCount[userId];
+        });
         socket.on('heartbeat',function (data){
             var userId = data.userId;
+
             var pushMessage = function () {
                 redisCache.getMesage({receiverId:data.userId}, function(result){
                     if(result.result == 0 && result.length>0){
@@ -45,22 +49,23 @@ socketIO.getSocketIO = function(server){
                             return {
                                 senderId : parseInt(item[0]),
                                 receiverId : parseInt(data.userId),
+                                senderName : item[3],
                                 date : parseInt(item[1]),
                                 message : item[2]
                             }
                         });
-
                         socket.emit('pushMessage',{data:map});
-                        redisCache.on('confirmPushMessage', function (data){
+                        socket.on('confirmPushMessage', function (data){
                             if(data.result == 0){
                                 redisCache.syncMessage({receiverId:data.userId},function(result){
                                     if(result.result == 0){
-                                        console.log('sync message success');
-                                        redisCache.removeMessage({receiverId:data.userId}, function(result){
-                                            if(result.result == 0){
-                                                console.log('remove message success');
-                                            }
-                                        })
+                                        setTimeout(function () {
+                                            redisCache.removeMessage({receiverId: data.userId}, function (result) {
+                                                if (result.result == 0) {
+                                                    console.log('remove message success');
+                                                }
+                                            })
+                                        }, 10000);
                                     }else{
 
                                     }
@@ -70,7 +75,6 @@ socketIO.getSocketIO = function(server){
                     }
                 });
             };
-
             if(!timerCount[userId]){
                 timerCount[userId] = {
                     count : 0
@@ -79,7 +83,7 @@ socketIO.getSocketIO = function(server){
                 pushMessage();
 
             }
-            else if(timerCount[userId].count/10==0){
+            else if(timerCount[userId].count%10==0){
                pushMessage();
             }
             timerCount[userId].count++;

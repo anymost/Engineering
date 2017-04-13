@@ -27,7 +27,8 @@ export default {
   message : {
     isRead : true,
     data　: [],
-    allMessage : []
+    message : [],
+
   }
 }
 

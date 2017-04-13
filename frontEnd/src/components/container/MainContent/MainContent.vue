@@ -13,6 +13,7 @@
     import store from '../../../store'
     import AddFriend from './AddFriend/AddFriend'
     import SendMessage from './SendMessage/SendMessage'
+    import {getUserInfo} from '../../../tools'
     export default{
         data(){
             return{
@@ -31,7 +32,10 @@
                 return store.state.sendMessage.isSend;
             },
             sender () {
-                return {senderId:store.state.sendMessage.senderId};
+                return {
+                    senderId:store.state.sendMessage.senderId
+
+                };
             },
             receiver () {
                 return {

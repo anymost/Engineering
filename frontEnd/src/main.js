@@ -1,5 +1,3 @@
-
-
 import Vue from 'vue'
 
 import router from './router'
@@ -14,30 +12,42 @@ new Vue({
 
   el: '#app',
   template: '<App/>',
-  components: { App },
+  components: {App},
   router,
   mounted () {
+
     const userId = getUserInfo().userId;
     const socket = createSocket();
-    heartbeat = setTimeout(function(){
+    window.addEventListener('load', function(){
 
-      socket.emit('heartbeat',{usrId:userId});
+      socket.emit('clearMessage', {userId:userId});
+    });
+    window.addEventListener('reload', function(){
+      socket.emit('clearMessage', {userId:userId});
+    });
 
-    },1000*60*2);
-    socket.on('PushMessage', function(message){
-      socket.emit('confirmPushMessage',{
-        result : 0,
-        userId : userId
+    heartbeat = setInterval(function () {
+      socket.emit('heartbeat', {userId: userId});
+    }, 1000*60*2);
+
+
+    socket.on('pushMessage', function (message) {
+
+      socket.emit('confirmPushMessage', {
+        result: 0,
+        userId: userId
       });
-      if(message){
+      if (message) {
         store.commit('receiveMessage', message);
       }
-    })
+    });
+
+
   },
 
   destroyed () {
-    if(heartbeat) {
-      clearTimeout(heartbeat);
+    if (heartbeat) {
+      clearInterval(heartbeat);
       heartbeat = null;
     }
   }
