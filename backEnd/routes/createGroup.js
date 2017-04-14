@@ -7,7 +7,7 @@ var fs = require('fs');
 var path = require('path');
 var upload = multer({ dest: 'temp/' });
 var router = express.Router();
-var User = require('../db/User');
+var Group = require('../db/Group');
 var filterString = require('../tools/index').filterString;
 var getRandom = require('../tools/index').getRandom;
 
@@ -15,14 +15,14 @@ var getRandom = require('../tools/index').getRandom;
 
 
 router.post('/', upload.single('headPicture'), function (req, res, next) {
-    var userId = getRandom();
-
+    var groupId = getRandom();
+    console.log(req.file);
     var pictureType = req.file['originalname'].split('.')[1];
-    if(!fs.existsSync('headPictures/users/'+userId)){
-        fs.mkdirSync('headPictures/users/'+userId);
+    if(!fs.existsSync('headPictures/groups/'+groupId)){
+        fs.mkdirSync('headPictures/groups/'+groupId);
     }
 
-    var pictureName ='headPictures/users/'+userId+'/'+filterString(req.file['filename'])+'.'+pictureType;
+    var pictureName ='headPictures/groups/'+groupId+'/'+filterString(req.file['filename'])+'.'+pictureType;
 
     fs.createReadStream('temp/'+filterString(req.file['filename'])).pipe(fs.createWriteStream(pictureName));
 
@@ -31,24 +31,16 @@ router.post('/', upload.single('headPicture'), function (req, res, next) {
     },3000);
 
     var data = {
-        userId : parseInt(userId),
-        userName : filterString(req.body.userName),
-        password : filterString(req.body.password),
-        email : req.body.email,
-        phone : filterString(req.body.phone),
-        headPicture : pictureName
+        groupId : parseInt(groupId),
+        groupName : filterString(req.body.groupName),
+        headPicture : pictureName,
+        members : req.body.members,
+        ownerId : req.body.ownerId
     };
 
 
-    User.addUser(data, function (json) {
-        if(json.result === 0){
-            res.cookie('userId', data.userId, { expires: new Date(Date.now() + 10000 * 60 * 60) });
-            res.cookie('userName', data.userName, { expires: new Date(Date.now() + 10000 * 60 * 60) });
-            res.cookie('headPicture', data.headPicture ,{ expires: new Date(Date.now() + 10000 * 60 * 60) });
-            res.render('index');
-        }else {
-            res.send(json);
-        }
+    Group.addGroup(data, function (json) {
+        res.send(json);
     });
 });
 
