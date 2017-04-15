@@ -38,7 +38,6 @@ router.post('/', upload.single('headPicture'), function (req, res, next) {
         ownerId : req.body.ownerId
     };
 
-    console.log(data);
     Group.addGroup(data, function (json) {
         res.send(json);
     });

@@ -44,13 +44,13 @@
             let formData = new FormData(group);
 
         networkPost('/createGroup', formData).then((response) => {
-          if(response.result == 0){
-              console.log('add ok');
+          if(response.ok){
+              let data = response.data;
+              if(data.result == 0){
+                  console.log('create Group ok');
+              }
           }
         })
-      },
-      uploadPicture (event){
-        this.headPicture = event.target.value;
       }
 
     }

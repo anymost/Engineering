@@ -17,7 +17,6 @@ var addGroup = function (groupInfo, callback){
         members : groupInfo.members,
         headPicture : groupInfo.headPicture
     }).then(function () {
-        console.log('ok');
         callback({
             result : 0,
             message : 'success'
@@ -61,6 +60,16 @@ var deleteGroup = function (groupInfo, callback){
 };
 
 exports.deleteGroup = deleteGroup;
+
+/**
+ * @description 获取用户对应的组信息
+ * @param info
+ * @param callback
+ */
+var getGroups = function(info, callback){
+
+};
+exports.getGroups = getGroups;
 
 /**
  * @description 更新分组名称

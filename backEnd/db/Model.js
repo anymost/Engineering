@@ -52,10 +52,6 @@ var User = Pool.define('users', {
     friends : {
         type : Sequelize.STRING(1000),
         allowNull:true
-    },
-    groups : {
-        type : Sequelize.STRING(1000),
-        allowNull : true
     }
 });
 
