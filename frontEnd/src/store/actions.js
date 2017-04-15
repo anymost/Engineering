@@ -30,5 +30,11 @@ export  default {
   },
   readMessage ({commit}, info){
     commit('readMessage', info);
+  },
+  createGroup ({commit}){
+    commit('createGroup');
+  },
+  addGroup ({commit}){
+    commit('addGroup');
   }
 }

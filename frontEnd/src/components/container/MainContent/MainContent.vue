@@ -6,6 +6,9 @@
     <div v-if="isSend">
       <SendMessage :sender="sender" :receiver="receiver" />
     </div>
+    <div v-if="createGroup">
+        <CreateGroup/>
+    </div>
   </div>
 </template>
 
@@ -13,16 +16,18 @@
     import store from '../../../store'
     import AddFriend from './AddFriend/AddFriend'
     import SendMessage from './SendMessage/SendMessage'
+    import CreateGroup from './createGroup/CreateGroup'
     import {getUserInfo} from '../../../tools'
     export default{
         data(){
             return{
-
+              userId : getUserInfo().userId
             }
         },
         components:{
           AddFriend,
-          SendMessage
+          SendMessage,
+          CreateGroup
         },
         computed : {
             addFriend (){
@@ -30,6 +35,9 @@
             },
             isSend () {
                 return store.state.sendMessage.isSend;
+            },
+            createGroup () {
+                return store.state.createGroup;
             },
             sender () {
                 return {

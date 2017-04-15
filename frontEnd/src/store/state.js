@@ -16,6 +16,7 @@ export default {
   myGroups : [],
   myDocuments : [],
   addFriend : false,
+  createGroup : false,
   sendMessage : {
     isSend : false,
     senderId : null,

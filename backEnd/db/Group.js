@@ -11,12 +11,13 @@ var addGroup = function (groupInfo, callback){
         return;
     }
     Group.create({
-        groupId : Tool.getRandom(),
-        groupName : groupInfo.userName,
+        groupId : groupInfo.groupId,
+        groupName : groupInfo.groupName,
         ownerId : groupInfo.ownerId,
         members : groupInfo.members,
         headPicture : groupInfo.headPicture
     }).then(function () {
+        console.log('ok');
         callback({
             result : 0,
             message : 'success'

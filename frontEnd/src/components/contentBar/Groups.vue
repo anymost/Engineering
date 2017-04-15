@@ -5,7 +5,8 @@
       <img width="60%" height="64px" :src="group.headPicture" alt="group">
       <span>{{group.groupName}}</span>
     </div>
-    <div class="item add">+</div>
+    <div class="item add" @click="createGroup">+</div>
+    <div class="item add" @click="addGroup">-</div>
   </div>
 </template>
 <style scoped>
@@ -36,6 +37,7 @@
   }
 </style>
 <script>
+  import store from '../../store'
   export default{
     data(){
       return{
@@ -47,5 +49,13 @@
     components:{
 
     },
+    methods : {
+        createGroup (){
+            store.dispatch('createGroup');
+        },
+        addGroup () {
+            store.dispatch('addGroup');
+        }
+    }
   }
 </script>

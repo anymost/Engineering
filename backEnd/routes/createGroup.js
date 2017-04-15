@@ -16,7 +16,7 @@ var getRandom = require('../tools/index').getRandom;
 
 router.post('/', upload.single('headPicture'), function (req, res, next) {
     var groupId = getRandom();
-    console.log(req.file);
+
     var pictureType = req.file['originalname'].split('.')[1];
     if(!fs.existsSync('headPictures/groups/'+groupId)){
         fs.mkdirSync('headPictures/groups/'+groupId);
@@ -38,7 +38,7 @@ router.post('/', upload.single('headPicture'), function (req, res, next) {
         ownerId : req.body.ownerId
     };
 
-
+    console.log(data);
     Group.addGroup(data, function (json) {
         res.send(json);
     });

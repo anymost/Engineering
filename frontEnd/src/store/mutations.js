@@ -51,10 +51,12 @@ export  default{
   },
   addFriend(state){
       state.sendMessage = {};
+      state.createGroup = false;
       state.addFriend = true;
   },
   sendMessage(state, info){
       state.addFriend = false;
+      state.createGroup = false;
       state.sendMessage = {
         isSend : true,
         senderId : info.senderId,
@@ -77,6 +79,14 @@ export  default{
     state.message.message = state.message.data;
     state.message.isRead = true;
     state.message.data = [];
+  },
+  createGroup (state) {
+    state.sendMessage = {};
+    state.addFriend = false;
+    state.createGroup = true;
+  },
+  addGroup (state){
+    console.log('add group');
   }
 
 }

@@ -106,12 +106,11 @@
       },
       getGroups (event) {
           const userId = getUserInfo().userId;
-          console.log('get groups');
+
           networkPost('/getGroups', {userId:userId}).then(function(response){
-              console.log('success');
+
               if(response.ok){
                 let data = response.data;
-                console.log(data.result);
                 if(data.result == 0){
                     store.dispatch('getGroups', data.data);
                 }else if(data.result == -3){
