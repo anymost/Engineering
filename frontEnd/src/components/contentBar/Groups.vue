@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div class="item"  v-for="group in groups" :data-groupId="group.groupId" :data-ownerId="group.ownerId" :data-ownerName="group.ownerName"
-         :data-ownerHeadPciture="group.ownerHeadPicture">
+    <div class="item"  v-for="group in groups" :data-groupid="group.groupId" :data-ownerid="group.ownerId"
+        @click="showGroup"  :data-groupname="group.name" :data-grouppic="group.headPicture">
       <img width="60%" height="64px" :src="group.headPicture" alt="group">
       <span>{{group.groupName}}</span>
     </div>
@@ -55,7 +55,18 @@
         },
         addGroup () {
             store.dispatch('addGroup');
+        },
+        showGroup (event) {
+            var groupId = event.target.dataset['groupid'];
+            netWork('/showGroup', {groupId:groupId})
+              .then(function (response){
+                if(response.ok && response.data.result == 0){
+                    store.dispatch('showGroup', response.data.data);
+                }
+
+              });
         }
+
     }
   }
 </script>

@@ -45,12 +45,12 @@ exports.addUser = addUser;
  * @param userInfo
  * @param callback
  */
-var getUserInfo = function (userInfo,callback){
+var getUserInfo = function (userInfo, callback){
   if(!userInfo && !callback){
       return;
   }
   User.findAll({
-      attributes : ['userName','headPicture'],
+      attributes : ['userName', 'headPicture'],
       where : {
           userId : userInfo.userId
       }
@@ -67,14 +67,14 @@ var getUserInfo = function (userInfo,callback){
               result : 0,
               userName : userName,
               headPicture : headPicture
-          })
+          });
       }
   }, function (error) {
       callback({
           result : -1,
           message : error.name || 'get user info error'
       });
-  })
+  });
 
 };
 
@@ -89,7 +89,7 @@ var searchFriend = function (userInfo, callback){
         return;
     }
     User.findAll({
-        attributes : ['userId','userName', 'headPicture'],
+        attributes : ['userId', 'userName', 'headPicture'],
         where : {
             userName : userInfo.userName
         }
@@ -108,14 +108,14 @@ var searchFriend = function (userInfo, callback){
                 userId : userId,
                 userName : userName,
                 headPicture : headPicture
-            })
+            });
         }
     }, function (error) {
         callback({
             result : -1,
             message : error.name || 'get user info error'
         });
-    })
+    });
 
 };
 exports.searchFriend = searchFriend;
@@ -145,7 +145,7 @@ var addFriend = function (userInfo, callback){
             var friends = result[0] && result[0].dataValues && result[0].dataValues['friends'];
 
             if(friends){
-                if(friends.indexOf(friendId)!==-1){
+                if(friends.indexOf(friendId) !== -1){
                     callback({
                         result : -3,
                         message : 'friend exist'
@@ -153,7 +153,7 @@ var addFriend = function (userInfo, callback){
 
                     return;
                 }else{
-                    friends = friends+'#'+friendId;
+                    friends = friends + '#' + friendId;
                 }
             }else{
                 friends = friendId;
@@ -175,7 +175,7 @@ var addFriend = function (userInfo, callback){
                         var friends = result[0] && result[0].dataValues && result[0].dataValues['friends'];
 
                         if(friends){
-                            friends = friends+'#'+userId;
+                            friends = friends + '#' + userId;
 
                         }else{
                             friends = userId;
@@ -187,25 +187,25 @@ var addFriend = function (userInfo, callback){
                                     {
                                         userId : friendId
                                     }
-                            }).then(function(){
+                            }).then(function () {
                                 callback({
                                     result : 0,
                                     message : 'success'
                                 });
-                        }, function(error){
+                        }, function (error) {
                                 callback({
                                     result : -5,
                                     message : error.name || 'add friend failed'
                                 });
-                        })
-                    })
+                        });
+                    });
                 },
                 function (error) {
                     callback({
                         result : -4,
                         message : error.name || 'addFriend error'
                     });
-                })
+                });
 
         }
     }, function (error) {
@@ -213,7 +213,7 @@ var addFriend = function (userInfo, callback){
             result : -1,
             message : error.name || 'get user info error'
         });
-    })
+    });
     
 };
 exports.addFriend = addFriend;
@@ -243,7 +243,7 @@ var deleteFriend = function (userInfo, callback) {
             var friends = result[0] && result[0].dataValues && result[0].dataValues['friends'];
 
             if(friends){
-                if(friends.indexOf(friendId)===-1){
+                if(friends.indexOf(friendId) === -1){
                     callback({
                         result : -3,
                         message : 'friend not exist'
@@ -252,13 +252,13 @@ var deleteFriend = function (userInfo, callback) {
                     return;
                 }else{
                     friends = friends.split('#');
-                    for(var i=0; i<friends.length; i++){
+                    for(var i = 0; i < friends.length; i++){
                         if(friends[i] == friendId){
                             break;
                         }
                     }
-                    friends.splice(i,1);
-                    if(friends.length>0){
+                    friends.splice(i, 1);
+                    if(friends.length > 0){
                         friends = friends.join('#');
                     }else{
                         friends = '';
@@ -285,13 +285,13 @@ var deleteFriend = function (userInfo, callback) {
 
                         if(friends){
                             friends = friends.split('#');
-                            for(var i=0; i<friends.length; i++){
+                            for(var i = 0; i < friends.length; i++){
                                 if(friends[i] == userId){
                                     break;
                                 }
                             }
-                            friends.splice(i,1);
-                            if(friends.length>0){
+                            friends.splice(i, 1);
+                            if(friends.length > 0){
                                 friends = friends.join('#');
                             }else{
                                 friends = '';
@@ -307,25 +307,25 @@ var deleteFriend = function (userInfo, callback) {
                                     {
                                         userId : friendId
                                     }
-                            }).then(function(){
+                            }).then(function () {
                             callback({
                                 result : 0,
                                 message : 'success'
                             });
-                        }, function(error){
+                        }, function (error) {
                             callback({
                                 result : -5,
                                 message : error.name || 'add friend failed'
                             });
-                        })
-                    })
+                        });
+                    });
                 },
                 function (error) {
                     callback({
                         result : -4,
                         message : error.name || 'addFriend error'
                     });
-                })
+                });
 
         }
     }, function (error) {
@@ -333,7 +333,7 @@ var deleteFriend = function (userInfo, callback) {
             result : -1,
             message : error.name || 'get user info error'
         });
-    })
+    });
 
 };
 exports.deleteFriend = deleteFriend;
@@ -360,7 +360,7 @@ var getFriends = function (userInfo, callback) {
         }else{
             var friends = result[0] && result[0].dataValues && result[0].dataValues['friends'];
             if(friends){
-                friends=friends.split('#');
+                friends = friends.split('#');
                 var friendsId = friends.map(function (item) {
                     return parseInt(item);
                 });
@@ -376,36 +376,152 @@ var getFriends = function (userInfo, callback) {
                             userId : item['userId'],
                             userName : item['userName'],
                             headPicture : item['headPicture']
-                        }
+                        };
                     });
                     callback({
                         result : 0,
                         data : friends
                     });
-                },function (error) {
+                }, function (error) {
                     callback({
                         result : -3,
-                        message : error||'get friends error'
-                    })
-                })
+                        message : error || 'get friends error'
+                    });
+                });
             }else{
                 callback({
                     result :-2,
                     message : 'no friends'
-                })
+                });
             }
         }
     }, function (error) {
         callback({
             result : -1,
             message : error.name || 'error'
-        })
-    })
+        });
+    });
 };
 
 exports.getFriends = getFriends;
 
+var addGroup = function (info, callback){
+    var userId = info.userId, groupId = info.groupId;
+    User.find({
+        attributes : ['groups'],
+        where : {
+            userId : userId
+        }
+    }).then(function (result) {
 
+        var groups = result.dataValues['groups'];
+        if(groups){
+            groups = groups + '#' + groupId;
+        }else{
+            groups = '' + groupId;
+        }
+        User.update({
+            groups : groups
+        }
+        , {
+                where: {
+                    userId: userId
+                }
+
+        }).then(function (result) {
+            callback({
+                result : 0,
+                message : 'success'
+            });
+        }, function (error){
+           callback({
+               result : -2,
+               message : error.name
+           }) ;
+        });
+
+    }, function (error) {
+        callback({
+            result : -1,
+            message : error.name
+        });
+    });
+};
+exports.addGroup = addGroup;
+
+/**
+ * 获取用于的组信息
+ * @param userInfo
+ * @param callback
+ */
+var getGroups = function (userInfo, callback) {
+    if(!userInfo && !callback){
+        return ;
+    }
+    User.findAll({
+        attributes:['groups'],
+        where : {
+            userId : userInfo.userId
+        }
+    }).then(function (result) {
+        if(result.length == 0){
+            callback({
+                result : -1,
+                message : 'groups not found'
+            });
+        }else{
+            var groups = result[0] && result[0].dataValues && result[0].dataValues['groups'];
+            if(groups) {
+                groups = groups.split('#');
+                var groupsId = groups.map(function (item) {
+                    return parseInt(item);
+                });
+                if (groupsId) {
+                    Group.findAll({
+                        attributes: ['groupName', 'groupId', 'ownerId', 'headPicture'],
+                        where: {
+                            groupId: groupsId
+                        }
+                    }).then(function (result) {
+                        console.log(result instanceof Array);
+                        var data = result.map(function (item){
+                            var dataValues = item.dataValues;
+                            return {
+                                groupId : dataValues['groupId'],
+                                groupName : dataValues['groupName'],
+                                headPicture : dataValues['headPicture'],
+                                ownerId : dataValues['ownerId']
+                            };
+                        });
+                        callback({
+                            result: 0,
+                            data: data
+                        });
+                    }, function (error) {
+                        console.log('find groups error');
+                        callback({
+                            result: -2,
+                            message: 'find groups error'
+                        });
+                    });
+                }
+
+            }else{
+                callback({
+                    result : -3,
+                    message : 'groups null'
+                });
+            }
+        }
+    }, function (error) {
+        callback({
+            result : -1,
+            message : error.name  || 'error'
+        });
+    });
+};
+
+exports.getGroups = getGroups;
 
 /**
  * @description 验证用户身份
@@ -417,7 +533,7 @@ var verifyUser = function (userInfo, callback){
         return;
     }
     User.findAll({
-        attributes : ['password','userId','headPicture'],
+        attributes : ['password', 'userId', 'headPicture'],
         where : {
             userName : userInfo.userName
         }

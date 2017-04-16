@@ -36,5 +36,8 @@ export  default {
   },
   addGroup ({commit}){
     commit('addGroup');
+  },
+  showGroup ({commit},data){
+    commit('showGroup', data);
   }
 }

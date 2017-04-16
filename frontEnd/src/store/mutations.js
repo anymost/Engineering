@@ -39,10 +39,8 @@ export  default{
         return {
           groupId: group.groupId,
           groupName: group.groupName,
-          headPicture: group.headPicture,
+          headPicture: handlePicPath(group.headPicture),
           ownerId: group.ownerId,
-          ownerName: group.ownerName,
-          ownerHeadPicture: group.ownerHeadPicture
         }
       })
     }else{
@@ -87,6 +85,16 @@ export  default{
   },
   addGroup (state){
     console.log('add group');
+  },
+  showGroup (state, data){
+      data = data.forEach(function (item, index, array){
+          array[index]['headPicture'] = handlePicPath(array[index]['headPicture']);
+      });
+      state.showGroup = {
+          isShow : true,
+          data : data
+      };
+
   }
 
 }

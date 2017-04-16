@@ -11,37 +11,37 @@ var Group = require('./Group');
  * @param documentInfo
  * @param callback
  */
-var addDocument = function (groupInfo, documentInfo, callback){
-    if(!documentInfo && !groupInfo && !callback){
-        return ;
+var addDocument = function (groupInfo, documentInfo, callback) {
+    if (!documentInfo && !groupInfo && !callback) {
+        return;
     }
     var documentId = Tool.getRandom();
     documentInfo.documentId = documentId;
     Group.addDocument(groupInfo, documentInfo, function (json) {
-       if(json.result === 0){
-           Document.create({
-               documentId : documentId,
-               documentName : documentInfo.documentName,
-               content : documentInfo.content,
-               ownerId : documentInfo.document,
-               groupId : groupInfo.groupId
-           }).then(function () {
-              callback({
-                  result : 0,
-                  message : 'success'
-              });
-           }, function (error) {
-               callback({
-                   result : -4,
-                   message : error.name || 'add document failed'
-               });
-           });
-       }else {
-           callback({
-               result : json.result,
-               message : json.message
-           });
-       }
+        if (json.result === 0) {
+            Document.create({
+                documentId: documentId,
+                documentName: documentInfo.documentName,
+                content: documentInfo.content,
+                ownerId: documentInfo.document,
+                groupId: groupInfo.groupId
+            }).then(function () {
+                callback({
+                    result: 0,
+                    message: 'success'
+                });
+            }, function (error) {
+                callback({
+                    result: -4,
+                    message: error.name || 'add document failed'
+                });
+            });
+        } else {
+            callback({
+                result: json.result,
+                message: json.message
+            });
+        }
 
     });
 };
@@ -54,33 +54,33 @@ exports.addDocument = addDocument;
  * @param documentInfo
  * @param callback
  */
-var deleteDocument = function (groupInfo, documentInfo, callback){
-    if(!groupInfo && !documentInfo && !callback){
+var deleteDocument = function (groupInfo, documentInfo, callback) {
+    if (!groupInfo && !documentInfo && !callback) {
         return;
     }
     Group.deleteDocument(groupInfo, documentInfo, function (json) {
-       if(json.result === 0){
-           Document.destroy({
-                where : {
-                    documentId : documentInfo.documentId
+        if (json.result === 0) {
+            Document.destroy({
+                where: {
+                    documentId: documentInfo.documentId
                 }
-           }).then(function () {
+            }).then(function () {
                 callback({
-                    result : 0,
-                    message : 'success'
+                    result: 0,
+                    message: 'success'
                 });
-           }, function () {
+            }, function () {
                 callback({
-                    result : -4,
-                    message : 'delete document failed'
+                    result: -4,
+                    message: 'delete document failed'
                 });
-           });
-       } else{
-           callback({
-               result : json.result,
-               message : json.message
-           });
-       }
+            });
+        } else {
+            callback({
+                result: json.result,
+                message: json.message
+            });
+        }
     });
 
 };
@@ -92,23 +92,23 @@ exports.deleteDocument = deleteDocument;
  * @param callback
  */
 var updateDocumentName = function (documentInfo, callback) {
-    if(!documentInfo && callback){
+    if (!documentInfo && callback) {
         return;
     }
-    Document.update({documentName : documentInfo.documentName},
+    Document.update({documentName: documentInfo.documentName},
         {
-            where : {
-                document : documentInfo.documentId
+            where: {
+                document: documentInfo.documentId
             }
         }).then(function () {
         callback({
-            result : 0,
-            message : 'success'
+            result: 0,
+            message: 'success'
         });
     }, function (error) {
         callback({
-            result : -1,
-            message : error.name || 'update failed'
+            result: -1,
+            message: error.name || 'update failed'
         });
     });
 };
@@ -122,23 +122,23 @@ exports.updateDocumentName = updateDocumentName;
  * @param callback
  */
 var updateContent = function (documentInfo, callback) {
-    if(!documentInfo && callback){
+    if (!documentInfo && callback) {
         return;
     }
-    Document.update({content : documentInfo.content},
+    Document.update({content: documentInfo.content},
         {
-            where : {
-                document : documentInfo.documentId
+            where: {
+                document: documentInfo.documentId
             }
         }).then(function () {
         callback({
-            result : 0,
-            message : 'success'
+            result: 0,
+            message: 'success'
         });
     }, function (error) {
         callback({
-            result : -1,
-            message : error.name || 'update failed'
+            result: -1,
+            message: error.name || 'update failed'
         });
     });
 };

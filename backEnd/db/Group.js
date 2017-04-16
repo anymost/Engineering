@@ -1,4 +1,5 @@
 var Group = require('./Model').Group;
+var User = require('./User');
 var Tool = require('../tools/index');
 
 /**
@@ -314,5 +315,57 @@ var deleteDocument = function (groupInfo, documentInfo, callback){
 };
 
 exports.deleteDocument = deleteDocument;
+
+var showGroup = function (info, callback){
+    var groupId = info.groupId;
+    Group.find({
+        attributes : ['members'],
+        where : {
+            groupId : groupId
+        }
+    }).then(function (result) {
+        var members = result.dataValues['members'];
+        if(members){
+            members = members.split('#');
+            User.findAll({
+                attributes : ['userId', 'userName', 'headPicture', 'phone', 'email'],
+                where : {
+                    userId : members
+                }
+            }).then(function (result){
+                var data = result.map(function (item) {
+                   var dataValues = item.dataValues;
+                   return {
+                       userId : dataValues['userId'],
+                       userName : dataValues['userName'],
+                       headPicture : dataValues['headPicture'],
+                       phone : dataValues['phone'],
+                       email : dataValues['email']
+                   };
+                });
+                callback({
+                    result : 0,
+                    message : 'success',
+                    data : data
+                });
+            }, function (error){
+               callback({
+                   result : -2,
+                   message : 'get user info error'
+               }) ;
+            });
+
+        }
+
+    }, function (error){
+        callback({
+            result : -1,
+            message : 'get members error'
+        });
+    });
+
+};
+
+exports.showGroup = showGroup;
 
 

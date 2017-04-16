@@ -29,7 +29,10 @@ export default {
     isRead : true,
     data　: [],
     message : [],
-
+  },
+  showGroup : {
+    isShow : false,
+    data : []
   }
 }
 
