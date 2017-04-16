@@ -173,10 +173,10 @@ var deleteMember = function (groupInfo, memberInfo, callback){
     }).then(function (result) {
         var members = result && result[0] && result[0].dataValues && result[0].dataValues.members;
         if(members){
-            members = members.split('&');
+            members = members.split('#');
             var index = members.indexOf(new String(memberInfo.userId));
             members.splice(index, 1);
-            members = members.join('&');
+            members = members.join('#');
             Group.update({members : members},
                 {
                     where : {

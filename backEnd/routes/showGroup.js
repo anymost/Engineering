@@ -11,7 +11,7 @@ var router = express.Router();
 
 
 router.post('/', function (req, res, next) {
-    console.log('showGroup');
+
     var groupId = req.body.groupId;
     if(groupId) {
         Group.showGroup({groupId : groupId}, function (data) {

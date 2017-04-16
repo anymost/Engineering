@@ -449,6 +449,54 @@ var addGroup = function (info, callback){
 };
 exports.addGroup = addGroup;
 
+
+var deleteGroup = function (info, callback){
+    var userId = info.userId,
+        groupId = info.groupId;
+    console.log(info+'  '+userId);
+    User.find({
+        attributes : ['groups'],
+        where : {
+            userId : userId
+        }
+    }).then(function (result) {
+            var groups  = result.dataValues['groups'];
+            var lastValue = null;
+            if(groups){
+                groups = groups.split('#');
+                if(groups.length != 0){
+                    var index = groups.indexOf(groupId);
+                    lastValue = groups.splice(index, 1);
+                }
+                Group.update({
+                    groups : lastValue
+                }, {
+                    where : {
+                        userId : userId
+                    }
+                })
+                    .then(function (result) {
+                        callback({
+                                result : 0,
+                                message : 'success'
+                            });
+                    }, function (error){
+                        callback({
+                            result : -2,
+                            message : 'update group error'
+                        });
+                    });
+            }
+    }, function (error){
+        callback({
+            result : -1,
+            message : 'find groups error'
+        });
+    });
+};
+
+exports.deleteGroup = deleteGroup;
+
 /**
  * 获取用于的组信息
  * @param userInfo

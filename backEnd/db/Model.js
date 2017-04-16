@@ -6,6 +6,7 @@ var Sequelize = require('sequelize');
 
 /**
  * @description 数据库连接池
+ * ZHANGYIzheng520$
  */
 var Pool = new Sequelize('web', 'root', 'zhangyizheng', {
     host: 'localhost',
