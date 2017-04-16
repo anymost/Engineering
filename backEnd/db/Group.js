@@ -1,5 +1,5 @@
 var Group = require('./Model').Group;
-var User = require('./User');
+var User = require('./Model').User;
 var Tool = require('../tools/index');
 
 /**

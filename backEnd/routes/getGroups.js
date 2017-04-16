@@ -13,7 +13,6 @@ router.post('/', function (req, res, next) {
     var userId = req.body.userId;
     if(userId) {
         User.getGroups({userId : userId}, function (data) {
-            console.log(data);
             res.send(data);
         })
     }

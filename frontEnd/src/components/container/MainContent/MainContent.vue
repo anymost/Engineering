@@ -9,6 +9,9 @@
     <div v-if="createGroup">
         <CreateGroup/>
     </div>
+    <div v-if="showGroup">
+        <ShowGroup/>
+    </div>
   </div>
 </template>
 
@@ -17,6 +20,7 @@
     import AddFriend from './AddFriend/AddFriend'
     import SendMessage from './SendMessage/SendMessage'
     import CreateGroup from './createGroup/CreateGroup'
+    import ShowGroup from './showGroup/ShowGroup'
     import {getUserInfo} from '../../../tools'
     export default{
         data(){
@@ -27,7 +31,8 @@
         components:{
           AddFriend,
           SendMessage,
-          CreateGroup
+          CreateGroup,
+          ShowGroup
         },
         computed : {
             addFriend (){
@@ -51,6 +56,9 @@
                     receiverName : store.state.sendMessage.receiverName,
                     receiverPic : store.state.sendMessage.receiverPic
                 };
+            },
+            showGroup () {
+                return store.state.showGroup.isShow;
             }
 
         }

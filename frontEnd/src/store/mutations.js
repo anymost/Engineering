@@ -50,11 +50,13 @@ export  default{
   addFriend(state){
       state.sendMessage = {};
       state.createGroup = false;
+      state.showGroup.isShow = false;
       state.addFriend = true;
   },
   sendMessage(state, info){
       state.addFriend = false;
       state.createGroup = false;
+      state.showGroup.isShow = false;
       state.sendMessage = {
         isSend : true,
         senderId : info.senderId,
@@ -81,18 +83,25 @@ export  default{
   createGroup (state) {
     state.sendMessage = {};
     state.addFriend = false;
+    state.showGroup.isShow = false;
     state.createGroup = true;
   },
   addGroup (state){
     console.log('add group');
   },
   showGroup (state, data){
-      data = data.forEach(function (item, index, array){
+      var members = data.data;
+      members.forEach(function (item, index, array){
           array[index]['headPicture'] = handlePicPath(array[index]['headPicture']);
       });
+      state.sendMessage = {};
+      state.addFriend = false;
+      state.createGroup = false;
       state.showGroup = {
           isShow : true,
-          data : data
+          data : members,
+          ownerId : data.ownerId,
+          groupId : data.groupId
       };
 
   }

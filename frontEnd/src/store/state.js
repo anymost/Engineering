@@ -32,7 +32,9 @@ export default {
   },
   showGroup : {
     isShow : false,
-    data : []
+    data : [],
+    ownerId　: 0,
+    groupId : 0
   }
 }
 

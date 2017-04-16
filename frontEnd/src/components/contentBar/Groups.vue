@@ -38,6 +38,7 @@
 </style>
 <script>
   import store from '../../store'
+  import {networkPost} from '../../tools'
   export default{
     data(){
       return{
@@ -57,11 +58,17 @@
             store.dispatch('addGroup');
         },
         showGroup (event) {
-            var groupId = event.target.dataset['groupid'];
-            netWork('/showGroup', {groupId:groupId})
+            var groupId = event.currentTarget.dataset['groupid'];
+            var ownerId = event.currentTarget.dataset['ownerid'];
+            networkPost('/showGroup', {groupId:groupId})
               .then(function (response){
                 if(response.ok && response.data.result == 0){
-                    store.dispatch('showGroup', response.data.data);
+                    console.log(response.data);
+                    store.dispatch('showGroup', {
+                        ownerId : ownerId,
+                        groupId : groupId,
+                        data : response.data.data
+                    });
                 }
 
               });

@@ -483,7 +483,7 @@ var getGroups = function (userInfo, callback) {
                             groupId: groupsId
                         }
                     }).then(function (result) {
-                        console.log(result instanceof Array);
+
                         var data = result.map(function (item){
                             var dataValues = item.dataValues;
                             return {
@@ -498,7 +498,6 @@ var getGroups = function (userInfo, callback) {
                             data: data
                         });
                     }, function (error) {
-                        console.log('find groups error');
                         callback({
                             result: -2,
                             message: 'find groups error'
