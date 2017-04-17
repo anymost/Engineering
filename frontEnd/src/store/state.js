@@ -35,6 +35,7 @@ export default {
     data : [],
     ownerId　: 0,
     groupId : 0
-  }
+  },
+  searchGroup : false
 }
 

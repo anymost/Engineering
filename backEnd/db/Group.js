@@ -154,6 +154,41 @@ var addMember = function (groupInfo, memberInfo, callback){
 exports.addMember = addMember;
 
 
+/**
+ * @description 根据分组名查找分组
+ * @param info
+ * @param callback
+ */
+var searchGroup = function (info, callback){
+    var groupName = info.groupName;
+    Group.findAll({
+        attributes : ['groupId', 'groupName', 'headPicture'],
+        where : {
+            groupName : groupName
+        }
+    }).then(function (result) {
+        if(result && result.length>0){
+            callback({
+                result : 0,
+                message : 'success',
+                data : result
+            });
+        }else{
+            callback({
+                result : -2,
+                message : 'group not found'
+            });
+        }
+    }, function (error) {
+       callback({
+           result : -1,
+           message : error.name
+       }) ;
+    });
+};
+exports.searchGroup = searchGroup;
+
+
 
 /**
  * @description 删除分组成员

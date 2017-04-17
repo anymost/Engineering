@@ -174,7 +174,7 @@ var Message = Pool.define('messages', {
 
 
 /*
-var user = User.sync({force : false});
+var user = Group.sync({force : false});
 var group = Group.sync({force : false});
 var document = Document.sync({force : false});
 var message = Message.sync({force: false});

@@ -51,12 +51,14 @@ export  default{
       state.sendMessage = {};
       state.createGroup = false;
       state.showGroup.isShow = false;
+      state.searchGroup = false;
       state.addFriend = true;
   },
   sendMessage(state, info){
       state.addFriend = false;
       state.createGroup = false;
       state.showGroup.isShow = false;
+      state.searchGroup = false;
       state.sendMessage = {
         isSend : true,
         senderId : info.senderId,
@@ -83,11 +85,16 @@ export  default{
   createGroup (state) {
     state.sendMessage = {};
     state.addFriend = false;
+    state.searchGroup = false;
     state.showGroup.isShow = false;
     state.createGroup = true;
   },
   searchGroup (state){
-    
+    state.sendMessage = {};
+    state.addFriend = false;
+    state.showGroup.isShow = false;
+    state.createGroup = false;
+    state.searchGroup = true;
   },
   showGroup (state, data){
       var members = data.data;
@@ -97,6 +104,7 @@ export  default{
       state.sendMessage = {};
       state.addFriend = false;
       state.createGroup = false;
+      state.searchGroup = false;
       state.showGroup = {
           isShow : true,
           data : members,
