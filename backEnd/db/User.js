@@ -453,22 +453,25 @@ exports.addGroup = addGroup;
 var deleteGroup = function (info, callback){
     var userId = info.userId,
         groupId = info.groupId;
-    console.log(info+'  '+userId);
+    console.log(JSON.stringify(info) + '  ' + userId);
     User.find({
         attributes : ['groups'],
         where : {
             userId : userId
         }
     }).then(function (result) {
+
             var groups  = result.dataValues['groups'];
             var lastValue = null;
             if(groups){
                 groups = groups.split('#');
-                if(groups.length != 0){
+                if(groups.length != 1){
                     var index = groups.indexOf(groupId);
-                    lastValue = groups.splice(index, 1);
+                    groups.splice(index, 1);
+                    lastValue = groups.join('#');
                 }
-                Group.update({
+
+                User.update({
                     groups : lastValue
                 }, {
                     where : {

@@ -6,7 +6,7 @@
       <span>{{group.groupName}}</span>
     </div>
     <div class="item add" @click="createGroup">+</div>
-    <div class="item add" @click="addGroup">-</div>
+    <div class="item add" @click="searchGroup">-</div>
   </div>
 </template>
 <style scoped>
@@ -54,8 +54,8 @@
         createGroup (){
             store.dispatch('createGroup');
         },
-        addGroup () {
-            store.dispatch('addGroup');
+        searchGroup () {
+            store.dispatch('searchGroup');
         },
         showGroup (event) {
             var groupId = event.currentTarget.dataset['groupid'];
@@ -63,7 +63,6 @@
             networkPost('/showGroup', {groupId:groupId})
               .then(function (response){
                 if(response.ok && response.data.result == 0){
-                    console.log(response.data);
                     store.dispatch('showGroup', {
                         ownerId : ownerId,
                         groupId : groupId,

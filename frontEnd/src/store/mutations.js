@@ -86,8 +86,8 @@ export  default{
     state.showGroup.isShow = false;
     state.createGroup = true;
   },
-  addGroup (state){
-    console.log('add group');
+  searchGroup (state){
+    
   },
   showGroup (state, data){
       var members = data.data;

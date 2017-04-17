@@ -34,8 +34,8 @@ export  default {
   createGroup ({commit}){
     commit('createGroup');
   },
-  addGroup ({commit}){
-    commit('addGroup');
+  searchGroup ({commit}){
+    commit('searchGroup');
   },
   showGroup ({commit},data){
     commit('showGroup', data);
