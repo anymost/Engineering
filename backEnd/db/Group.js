@@ -167,7 +167,7 @@ var searchGroup = function (info, callback){
             groupName : groupName
         }
     }).then(function (result) {
-        if(result && result.length>0){
+        if(result && result.length > 0){
             callback({
                 result : 0,
                 message : 'success',
@@ -244,6 +244,57 @@ var deleteMember = function (groupInfo, memberInfo, callback){
 };
 
 exports.deleteMember = deleteMember;
+
+
+var addMember = function (info, callback){
+    var groupId = info.groupId, userId = info.userId;
+    Group.find({
+        attributes : ['members'],
+        where : {
+            groupId : groupId
+        }
+    }).then(function (result) {
+
+        var members = result.dataValues['members'];
+        if(!members){
+            members =  userId;
+        }else {
+            members = members.split('#');
+            if (members.indexOf(userId) !== -1) {
+                callback({
+                    result: -2,
+                    message: 'member has existed'
+                });
+                return;
+            }
+            members.push(userId);
+            members = members.join('#');
+            }
+        Group.update({
+            members: members
+        }, {
+            where: {
+                groupId: groupId
+            }
+        }).then(function () {
+            callback({
+                result: 0,
+                message: 'success'
+            });
+        }, function (error) {
+            callback({
+                result: -3,
+                message: 'add member error'
+            });
+        });
+    }, function () {
+        callback({
+            result : -1,
+            message : 'get members error'
+        });
+    });
+};
+exports.addMember = addMember;
 
 /**
  * @description 添加分组中的文档信息

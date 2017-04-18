@@ -416,6 +416,15 @@ var addGroup = function (info, callback){
 
         var groups = result.dataValues['groups'];
         if(groups){
+            groups = groups.split('#');
+            if(groups.indexOf(groupId) != -1){
+                callback({
+                    result : -3,
+                    message : 'group had existed'
+                });
+                return;
+            }
+            groups = groups.join('#');
             groups = groups + '#' + groupId;
         }else{
             groups = '' + groupId;
