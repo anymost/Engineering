@@ -8,7 +8,11 @@
             <Groups :groups="myGroups"/>
       </div>
 
+      <div v-if="documentState">
+            <Documents>
 
+            </Documents>
+      </div>
     </div>
 </template>
 <style scoped>
@@ -40,6 +44,7 @@
     import store from '../../store'
     import Friends from './Friends'
     import Groups from './Groups'
+    import Documents from './Documents'
 
     export default{
         data(){
@@ -50,7 +55,8 @@
         },
         components:{
           Friends,
-          Groups
+          Groups,
+          Documents
         },
         computed : {
             contentState (){
@@ -67,8 +73,12 @@
                 return store.state.myFriends;
             },
             myGroups () {
-                return store.state.myGroups
+                return store.state.myGroups;
+            },
+            myDocuments () {
+                return store.state.myDocuments;
             }
+
 
         }
     }

@@ -12,7 +12,7 @@
 import TitleBar from './components/titleBar/TitleBar'
 import Container from './components/container/Container'
 import InfoBar from './components/InfoBar'
-import ContentBar from './components/contentBar/ContentBar'
+import ContentBar from './components/contentBar/ContentBars'
 
 
 
