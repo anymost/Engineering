@@ -127,7 +127,7 @@ var Document = Pool.define('documents', {
     },
     content: {
         type: Sequelize.BLOB,
-        allowNull: false
+        allowNull: true
     }
 });
 

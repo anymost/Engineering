@@ -1,12 +1,28 @@
 <template>
   <div class="container">
-    <div class="item"  v-for="group in groups" :data-groupid="group.groupId" :data-ownerid="group.ownerId"
-        @click="showGroup"  :data-groupname="group.name" :data-grouppic="group.headPicture">
-      <img width="60%" height="64px" :src="group.headPicture" alt="group">
-      <span>{{group.groupName}}</span>
+    <div class="item"  v-for="group in groups" :data-groupid="group.groupId" :data-ownerid="group.ownerId">
+      <div class="group" v-show="!isDocShowed" >
+        <img width="60%" height="64px" @click="showGroup"  :data-groupid="group.groupId" :data-ownerid="group.ownerId" :src="group.headPicture" alt="group">
+        <div class="groupDocument">
+          <p @click="showDoc" :data-groupid="group.groupId">doc</p>
+          <span  >{{group.groupName}}</span>
+        </div>
+      </div>
     </div>
-    <div class="item add" @click="createGroup">+</div>
-    <div class="item add" @click="searchGroup">-</div>
+      <div class="doc" v-show="isDocShowed">
+        <div class="docWord" @click="backToGroup">back</div>
+        <ul v-if="documents.length>0">
+          <li v-for="document in documents" :data-documentid="document.documentId">
+            {{document.documentName}}
+          </li>
+
+        </ul>
+        <div class="docWord">+</div>
+      </div>
+
+
+    <div class="item add" v-if="!isDocShowed" @click="createGroup">+</div>
+    <div class="item add" v-if="!isDocShowed" @click="searchGroup">-</div>
   </div>
 </template>
 <style scoped>
@@ -30,10 +46,12 @@
     border-radius : 50%;
 
   }
-  span{
+  .groupDocument{
     float:left;
-    margin-top:35px;
-    overflow:hidden;
+  }
+  .docWord{
+    font-size:20px;
+    text-align:center;
   }
 </style>
 <script>
@@ -42,8 +60,8 @@
   export default{
     data(){
       return{
-
-
+        isDocShowed : false,
+        documents : []
       }
     },
     props : ['groups'],
@@ -52,7 +70,9 @@
     },
     methods : {
         createGroup (){
+
             store.dispatch('createGroup');
+
         },
         searchGroup () {
             store.dispatch('searchGroup');
@@ -71,7 +91,24 @@
                 }
 
               });
+        },
+        backToGroup (){
+          this.isDocShowed = false;
+        },
+        showDoc (event){
+            this.isDocShowed = true;
+            let self = this;
+            let groupId = event.target.dataset['groupid'];
+            networkPost('/getDoc',{groupId:groupId} )
+              .then(function (response){
+                  console.log(response.data);
+                  if(response.ok && response.data.result == 0){
+                    self.documents = response.data.data;
+                  }
+              })
+
         }
+
 
     }
   }

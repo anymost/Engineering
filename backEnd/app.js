@@ -24,6 +24,7 @@ var showGroup = require('./routes/showGroup');
 var deleteMember = require('./routes/deleteMember');
 var searchGroup = require('./routes/searchGroup');
 var addMember = require('./routes/addMember');
+var getDoc = require('./routes/getDoc');
 
 var app = express();
 
@@ -66,6 +67,7 @@ app.use('/showGroup', showGroup);
 app.use('/deleteMember', deleteMember);
 app.use('/searchGroup', searchGroup);
 app.use('/addMember', addMember);
+app.use('/getDoc', getDoc);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

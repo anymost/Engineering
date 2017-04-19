@@ -144,3 +144,42 @@ var updateContent = function (documentInfo, callback) {
 };
 
 exports.updateContent = updateContent;
+
+
+var getDocOfGroup = function (info, callback){
+    var groupId = info.groupId;
+    Document.findAll({
+        attributes : ['documentId', 'documentName','ownerId'],
+        where : {
+            groupId : groupId
+        }
+    }).then(function (result){
+        if(result && result.length > 0){
+            var data = result.map(function (item){
+                return {
+                    documentId : item.dataValues['documentId'],
+                    documentName　: item.dataValues['documentName'],
+                    ownerId : item.dataValues['ownerId']
+                };
+            });
+            callback({
+                result : 0,
+                message : 'success',
+                data : data
+            });
+        }else{
+            callback({
+                result : -2,
+                message : 'document empty'
+            });
+        }
+
+    }, function (error){
+
+        callback({
+            result : -1,
+            message : 'get group error'
+        });
+    });
+};
+exports.getDocOfGroup = getDocOfGroup;

@@ -13,7 +13,7 @@
       {{groupDisplay ? 'all Groups' : 'Groups'}}
     </div>
 
-    <div class="item" data-index="document" @click="changeTitle">
+    <div class="item" data-index="document" @click="changeTitle($event), getGroups()">
       <img src='../../assets/back.png' data-index="document" @click='hideBack' class='back'
            :class="{showDocument:documentDisplay}">
       {{documentDisplay ? 'all Documents' : 'Documents'}}
