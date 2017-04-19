@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div class="item"  v-for="group in groups" :data-groupid="group.groupId" :data-ownerid="group.ownerId">
-      <div class="group" v-show="!isDocShowed" >
+    <div class="item" v-show="!isDocShowed"  v-for="group in groups" :data-groupid="group.groupId" :data-ownerid="group.ownerId">
+      <div class="group"  >
         <img width="60%" height="64px" @click="showGroup"  :data-groupid="group.groupId" :data-ownerid="group.ownerId" :src="group.headPicture" alt="group">
         <div class="groupDocument">
           <p @click="showDoc" :data-groupid="group.groupId">doc</p>
@@ -11,11 +11,10 @@
     </div>
       <div class="doc" v-show="isDocShowed">
         <div class="docWord" @click="backToGroup">back</div>
-        <ul v-if="documents.length>0">
-          <li v-for="document in documents" :data-documentid="document.documentId">
+        <ul class="documentContainer" v-if="documents.length>0">
+          <li class="document" v-for="document in documents" :data-documentid="document.documentId">
             {{document.documentName}}
           </li>
-
         </ul>
         <div class="docWord">+</div>
       </div>
@@ -49,9 +48,21 @@
   .groupDocument{
     float:left;
   }
+  .document{
+    float:left;
+    background-color:white;
+    border-left:1px solid darkgrey;
+    color:black;
+  }
+  .documentContainer{
+    float:left;
+  }
+
   .docWord{
     font-size:20px;
     text-align:center;
+    float:left;
+    padding-top:30px;
   }
 </style>
 <script>
@@ -70,9 +81,7 @@
     },
     methods : {
         createGroup (){
-
             store.dispatch('createGroup');
-
         },
         searchGroup () {
             store.dispatch('searchGroup');
@@ -106,10 +115,7 @@
                     self.documents = response.data.data;
                   }
               })
-
         }
-
-
     }
   }
 </script>

@@ -11,14 +11,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb81c049-e7c6-4d87-b83e-1026ee6d30d2" name="Default" comment="更新主干">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backEnd/routes/getDoc.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/frontEnd/src/components/contentBar/Document.vue" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backEnd/app.js" afterPath="$PROJECT_DIR$/backEnd/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backEnd/db/Document.js" afterPath="$PROJECT_DIR$/backEnd/db/Document.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backEnd/db/Model.js" afterPath="$PROJECT_DIR$/backEnd/db/Model.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontEnd/src/components/container/NaviBar.vue" afterPath="$PROJECT_DIR$/frontEnd/src/components/container/NaviBar.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontEnd/src/components/contentBar/ContentBars.vue" afterPath="$PROJECT_DIR$/frontEnd/src/components/contentBar/ContentBars.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontEnd/src/components/contentBar/Groups.vue" afterPath="$PROJECT_DIR$/frontEnd/src/components/contentBar/Groups.vue" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -41,8 +33,8 @@
       <file leaf-file-name="Groups.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontEnd/src/components/contentBar/Groups.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            <state relative-caret-position="418">
+              <caret line="64" column="17" lean-forward="false" selection-start-line="64" selection-start-column="17" selection-end-line="64" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -844,7 +836,7 @@
       <workItem from="1492496669515" duration="5573000" />
       <workItem from="1492514986671" duration="153000" />
       <workItem from="1492526728577" duration="1100000" />
-      <workItem from="1492583617502" duration="6296000" />
+      <workItem from="1492583617502" duration="7002000" />
     </task>
     <task id="LOCAL-00001" summary="创建前后端开发目录">
       <created>1481770944425</created>
@@ -913,7 +905,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="322104000" />
+    <option name="totallyTimeSpent" value="322810000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1381,8 +1373,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontEnd/src/components/contentBar/Groups.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="418">
+          <caret line="64" column="17" lean-forward="false" selection-start-line="64" selection-start-column="17" selection-end-line="64" selection-end-column="17" />
           <folding />
         </state>
       </provider>
