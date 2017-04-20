@@ -15,6 +15,9 @@
     <div v-if="searchGroup">
       <SearchGroup/>
     </div>
+    <div v-if="createDocument">
+        <CreateDocument />
+    </div>
   </div>
 </template>
 
@@ -25,6 +28,7 @@
     import CreateGroup from './createGroup/CreateGroup'
     import ShowGroup from './showGroup/ShowGroup'
     import SearchGroup from './searchGroup/SearchGroup'
+    import CreateDocument from './createDocument/CreateDocument'
     import {getUserInfo} from '../../../tools'
     export default{
         data(){
@@ -37,7 +41,8 @@
           SendMessage,
           CreateGroup,
           ShowGroup,
-          SearchGroup
+          SearchGroup,
+          CreateDocument
         },
         computed : {
             addFriend (){
@@ -67,6 +72,9 @@
             },
             searchGroup () {
                 return store.state.searchGroup;
+            },
+            createDocument () {
+                return store.state.createDocument.isCreated;
             }
 
         }

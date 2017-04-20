@@ -183,3 +183,33 @@ var getDocOfGroup = function (info, callback){
     });
 };
 exports.getDocOfGroup = getDocOfGroup;
+
+var getDocContent = function (info, callback){
+    var documentId = info.documentId;
+    Document.find({
+        attributes : ['content'],
+        where : {
+            documentId : documentId
+        }
+    }).then(function (result){
+       var content = result.dataValues['content'];
+       if(content){
+           callback({
+               result : 0,
+               message : 'success',
+               data : content
+           });
+       }else{
+           callback({
+               result : -2,
+               message : 'content empty'
+           });
+       }
+
+    }, function (error){
+        callback({
+            result : -1,
+            message : 'get document error'
+        });
+    });
+}

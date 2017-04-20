@@ -52,6 +52,7 @@ export  default{
       state.createGroup = false;
       state.showGroup.isShow = false;
       state.searchGroup = false;
+      state.createDocument.isCreated = false;
       state.addFriend = true;
   },
   sendMessage(state, info){
@@ -59,6 +60,7 @@ export  default{
       state.createGroup = false;
       state.showGroup.isShow = false;
       state.searchGroup = false;
+      state.createDocument.isCreated = false;
       state.sendMessage = {
         isSend : true,
         senderId : info.senderId,
@@ -87,6 +89,7 @@ export  default{
     state.addFriend = false;
     state.searchGroup = false;
     state.showGroup.isShow = false;
+    state.createDocument.isCreated = false;
     state.createGroup = true;
   },
   searchGroup (state){
@@ -94,6 +97,7 @@ export  default{
     state.addFriend = false;
     state.showGroup.isShow = false;
     state.createGroup = false;
+    state.createDocument.isCreated = false;
     state.searchGroup = true;
   },
   showGroup (state, data){
@@ -105,6 +109,7 @@ export  default{
       state.addFriend = false;
       state.createGroup = false;
       state.searchGroup = false;
+      state.createDocument.isCreated = false;
       state.showGroup = {
           isShow : true,
           data : members,
@@ -112,6 +117,18 @@ export  default{
           groupId : data.groupId
       };
 
+  },
+  createDocument (state, data){
+      state.sendMessage = {};
+      state.addFriend = false;
+      state.showGroup.isShow = false;
+      state.createGroup = false;
+      state.searchGroup = false;
+      state.createDocument = {
+        isCreated : true,
+        ownerId : data.ownerId,
+        groupId : data.groupId
+      };
   }
 
 }

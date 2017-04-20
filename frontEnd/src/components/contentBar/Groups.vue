@@ -12,11 +12,11 @@
       <div class="doc" v-show="isDocShowed">
         <div class="docWord" @click="backToGroup">back</div>
         <ul class="documentContainer" v-if="documents.length>0">
-          <li class="document" v-for="document in documents" :data-documentid="document.documentId">
+          <li class="document" @click="showContent" v-for="document in documents" :data-documentid="document.documentId">
             {{document.documentName}}
           </li>
         </ul>
-        <div class="docWord">+</div>
+        <div class="docWord" @click="createDocument">+</div>
       </div>
 
 
@@ -67,12 +67,14 @@
 </style>
 <script>
   import store from '../../store'
-  import {networkPost} from '../../tools'
+  import {networkPost, getUserInfo} from '../../tools'
   export default{
     data(){
       return{
         isDocShowed : false,
-        documents : []
+        documents : [],
+        selectGroup : 0,
+        userId : getUserInfo().userId
       }
     },
     props : ['groups'],
@@ -108,6 +110,7 @@
             this.isDocShowed = true;
             let self = this;
             let groupId = event.target.dataset['groupid'];
+            this.selectGroup = groupId;
             networkPost('/getDoc',{groupId:groupId} )
               .then(function (response){
                   console.log(response.data);
@@ -115,6 +118,17 @@
                     self.documents = response.data.data;
                   }
               })
+        },
+        showContent (event){
+            var documentId = event.target.dataset['documentid'];
+            networkPost('/getDocContent', {documentid})
+              .then(function (result){}, function (error){
+
+              })
+        },
+        createDocument (){
+            var ownerId = this.userId, groupId = this.selectGroup;
+            store.dispatch('createDocument', {ownerId : ownerId, groupId : groupId});
         }
     }
   }

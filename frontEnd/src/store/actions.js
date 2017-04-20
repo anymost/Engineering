@@ -39,5 +39,8 @@ export  default {
   },
   showGroup ({commit},data){
     commit('showGroup', data);
+  },
+  createDocument ({commit}, data){
+    commit('createDocument', data);
   }
 }

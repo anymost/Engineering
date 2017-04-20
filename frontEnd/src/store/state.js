@@ -36,6 +36,11 @@ export default {
     ownerId　: 0,
     groupId : 0
   },
-  searchGroup : false
+  searchGroup : false,
+  createDocument : {
+    isCreated : false,
+    ownerId : 0,
+    groupId : 0
+  }
 }
 

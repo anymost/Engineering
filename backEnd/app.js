@@ -25,6 +25,8 @@ var deleteMember = require('./routes/deleteMember');
 var searchGroup = require('./routes/searchGroup');
 var addMember = require('./routes/addMember');
 var getDoc = require('./routes/getDoc');
+var getDocContent = require('./routes/getDocContent');
+var createDoc = require('./routes/createDoc');
 
 var app = express();
 
@@ -68,6 +70,8 @@ app.use('/deleteMember', deleteMember);
 app.use('/searchGroup', searchGroup);
 app.use('/addMember', addMember);
 app.use('/getDoc', getDoc);
+app.use('/getDocContent', getDocContent);
+app.use('/createDoc', createDoc);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
