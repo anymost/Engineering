@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-      <input type="text" v-model="documentName">
-      <input type="button" @click="createDocument" value="create">
+      <input type="text"  placeholder="document name" class="documentName"v-model="documentName">
+      <input type="button" class="createDocument" @click="createDocument" value="create">
       <div id="editor"></div>
   </div>
 </template>
@@ -10,9 +10,21 @@
   .container{
 
   }
+  .documentName{
+    width:400px;
+    height:30px;
+    font-size:20px;
+    text-align:center;
+  }
+  .createDocument{
+    width:80px;
+    height:30px;
+  }
+
+
   #editor{
-    width:600px;
-    height:400px;
+    width:100%;
+    height:100%;
   }
 </style>
 

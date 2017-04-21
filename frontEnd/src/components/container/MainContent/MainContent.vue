@@ -87,7 +87,7 @@
     margin-left:8%;
     margin-top : 1%;
     width:70%;
-    height:800px;
+    height:600px;
     background-color:white;
     float:left;
   }
