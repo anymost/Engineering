@@ -113,7 +113,7 @@
             this.selectGroup = groupId;
             networkPost('/getDoc',{groupId:groupId} )
               .then(function (response){
-                  console.log(response.data);
+
                   if(response.ok && response.data.result == 0){
                     self.documents = response.data.data;
                   }

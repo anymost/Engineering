@@ -73,5 +73,8 @@ module.exports = {
         browsers: ['last 2 versions']
       })
     ]
+  },
+  externals : {
+    wangEditor : 'wangEditor'
   }
 }
