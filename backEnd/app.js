@@ -52,7 +52,7 @@ app.use(cookieParser());
 app.use(CORS(CORSConfig));   //放置的位置十分重要啊 放到后面 前端的静态文件就无法跨域了
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/headPictures', express.static(path.join(__dirname, 'headPictures')));
-app.use('/static', express.static(path.join(__dirname, 'static')));
+
 
 app.use('/', index);
 app.use('/login', login);

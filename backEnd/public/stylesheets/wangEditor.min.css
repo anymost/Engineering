@@ -497,8 +497,8 @@
 
 @font-face {
     font-family: icomoon;
-    src: url(//localhost:3000/staticfonts/icomoon.eot?-qdfu1s);
-    src: url(//localhost:3000/static/fonts/icomoon.eot?#iefix-qdfu1s) format('embedded-opentype'), url(//localhost:3000/static/fonts/icomoon.ttf?-qdfu1s) format('truetype'), url(//localhost:3000/static/fonts/icomoon.woff?-qdfu1s) format('woff'), url(//localhost:3000/static/fonts/icomoon.svg?-qdfu1s#icomoon) format('svg');
+    src: url(//localhost:3000/fonts/icomoon.eot?-qdfu1s);
+    src: url(//localhost:3000/fonts/icomoon.eot?#iefix-qdfu1s) format('embedded-opentype'), url(//localhost:3000/fonts/icomoon.ttf?-qdfu1s) format('truetype'), url(//localhost:3000/fonts/icomoon.woff?-qdfu1s) format('woff'), url(//localhost:3000/fonts/icomoon.svg?-qdfu1s#icomoon) format('svg');
     font-weight: 400;
     font-style: normal
 }
