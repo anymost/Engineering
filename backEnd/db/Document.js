@@ -7,43 +7,21 @@ var Group = require('./Group');
 
 /**
  * @description 添加新文档
- * @param groupInfo
- * @param documentInfo
+ * @param info
  * @param callback
  */
-var addDocument = function (groupInfo, documentInfo, callback) {
-    if (!documentInfo && !groupInfo && !callback) {
-        return;
-    }
-    var documentId = Tool.getRandom();
-    documentInfo.documentId = documentId;
-    Group.addDocument(groupInfo, documentInfo, function (json) {
-        if (json.result === 0) {
-            Document.create({
-                documentId: documentId,
-                documentName: documentInfo.documentName,
-                content: documentInfo.content,
-                ownerId: documentInfo.document,
-                groupId: groupInfo.groupId
-            }).then(function () {
-                callback({
-                    result: 0,
-                    message: 'success'
-                });
-            }, function (error) {
-                callback({
-                    result: -4,
-                    message: error.name || 'add document failed'
-                });
-            });
-        } else {
+var addDocument = function (info, callback) {
+        Document.create(info).then(function (result){
             callback({
-                result: json.result,
-                message: json.message
+                result : 0,
+                message : 'success'
             });
-        }
-
-    });
+        }, function (error){
+            callback({
+                result : -1,
+                message : 'create document error'
+            });
+        });
 };
 
 exports.addDocument = addDocument;
@@ -187,7 +165,7 @@ exports.getDocOfGroup = getDocOfGroup;
 var getDocContent = function (info, callback){
     var documentId = info.documentId;
     Document.find({
-        attributes : ['content'],
+        attributes : ['content', 'documentId', 'documentName'],
         where : {
             documentId : documentId
         }
@@ -197,12 +175,21 @@ var getDocContent = function (info, callback){
            callback({
                result : 0,
                message : 'success',
-               data : content
+               data : {
+                   content : content,
+                   documentId : documentId,
+                   documentName : result.dataValues['documentName']
+               }
            });
        }else{
            callback({
                result : -2,
-               message : 'content empty'
+               message : 'content empty',
+               data : {
+                   documentId : documentId,
+                   documentName : result.dataValues['documentName'],
+                   content : ''
+               }
            });
        }
 
@@ -212,4 +199,6 @@ var getDocContent = function (info, callback){
             message : 'get document error'
         });
     });
-}
+};
+
+exports.getDocContent = getDocContent;

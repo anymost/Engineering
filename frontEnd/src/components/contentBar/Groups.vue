@@ -120,9 +120,14 @@
               })
         },
         showContent (event){
-            var documentId = event.target.dataset['documentid'];
-            networkPost('/getDocContent', {documentid})
-              .then(function (result){}, function (error){
+            let documentId = event.target.dataset['documentid'];
+            networkPost('/getDocContent', {documentId : documentId})
+              .then(function (response){
+                  if(response.ok && (response.data.result == 0 || response.data.result == -2)){
+                      let data = response.data.data;
+                      store.dispatch('showDocContent', data);
+                  }
+              }, function (error){
 
               })
         },

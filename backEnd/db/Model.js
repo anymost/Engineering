@@ -126,7 +126,7 @@ var Document = Pool.define('documents', {
         allowNull: false
     },
     content: {
-        type: Sequelize.BLOB,
+        type: Sequelize.STRING(2000),
         allowNull: true
     }
 });
@@ -176,8 +176,8 @@ var Message = Pool.define('messages', {
 /*
 var user = Group.sync({force : false});
 var group = Group.sync({force : false});
-var document = Document.sync({force : false});
 var message = Message.sync({force: false});
+var document = Document.sync({force : false});
 */
 
 

@@ -41,6 +41,10 @@ export default {
     isCreated : false,
     ownerId : 0,
     groupId : 0
+  },
+  showDocContent : {
+    isShow : false,
+    data : {}
   }
 }
 

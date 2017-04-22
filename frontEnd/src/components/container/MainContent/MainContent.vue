@@ -18,6 +18,9 @@
     <div v-if="createDocument">
         <CreateDocument />
     </div>
+    <div v-if="showDocContent">
+        <ShowDocContent></ShowDocContent>
+    </div>
   </div>
 </template>
 
@@ -29,7 +32,9 @@
     import ShowGroup from './showGroup/ShowGroup'
     import SearchGroup from './searchGroup/SearchGroup'
     import CreateDocument from './createDocument/CreateDocument'
+    import ShowDocContent from './showDocContent/ShowDocContent'
     import {getUserInfo} from '../../../tools'
+
     export default{
         data(){
             return{
@@ -42,7 +47,8 @@
           CreateGroup,
           ShowGroup,
           SearchGroup,
-          CreateDocument
+          CreateDocument,
+          ShowDocContent
         },
         computed : {
             addFriend (){
@@ -75,8 +81,10 @@
             },
             createDocument () {
                 return store.state.createDocument.isCreated;
+            },
+            showDocContent () {
+                return store.state.showDocContent.isShow;
             }
-
         }
     }
 

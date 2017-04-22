@@ -42,5 +42,8 @@ export  default {
   },
   createDocument ({commit}, data){
     commit('createDocument', data);
+  },
+  showDocContent ({commit}, data){
+    commit('showDocContent', data);
   }
 }
