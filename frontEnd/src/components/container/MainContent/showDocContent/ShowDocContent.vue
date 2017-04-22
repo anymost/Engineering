@@ -1,36 +1,39 @@
 <template>
   <div class="container">
-    <h2>{{documentName}}</h2>
-    <div id="editor"></div>
+    <h2>{{documentName}} userCount:{{userCount}}</h2>
+    <DocContent/>
   </div>
 </template>
 
 <style scoped>
-  #editor{
-    height:500px;
-  }
+
 
 </style>
 
 <script>
   import store from '../../../../store'
-  const wangEditor = require('wangEditor');
+  import {createSocket, getUserInfo} from '../../../../tools'
+  import DocContent from './DocContent'
+
   export default {
     data () {
       return {
         documentId: store.state.showDocContent.data.documentId,
         documentName: store.state.showDocContent.data.documentName,
-        content: store.state.showDocContent.data.content,
-        editor: null
+        socket : createSocket(),
+        userId : getUserInfo().userId,
+        userCount : 1
       };
     },
     mounted () {
-      this.editor = new wangEditor('editor');
-      this.editor.create();
-      this.editor.$txt.html(this.content);
+      this.socket.emit('loadContent', {userId : this.userId, documentId : this.documentId });
+      this.socket.on('loadContent', (data)=>{this.userCount = data.userCount})
     },
     destroyed () {
-        this.editor.destroy();
+        this.socket = null;
+    },
+    components : {
+        DocContent
     }
 
   }

@@ -4,19 +4,34 @@
 var socketIO = {};
 var socket_io = require('socket.io');
 var redisCache = require('../db/redisCache');
-var sendMessage = require('./sendMessage').sendMessage;
-var serverPushMessaage = require('./serverPushMessage').serverPushMessage;
+
 
 //获取io
 socketIO.getSocketIO = function (server){
 
     var io = socket_io.listen(server);
+
+    /**
+     * 心跳系统计数
+     * @type {{}}
+     */
     var timerCount = {
+    };
+
+    /**
+     * 同一文档在线人数统计
+     * @type {{}}
+     */
+    var userCount = {
 
     };
 
     io.sockets.on('connection', function (socket){
-        /*socket.on('sendMessage', function (data) {
+
+        /**
+         * 处理发送消息
+         */
+        socket.on('sendMessage', function (data) {
             var message = {
                 senderId : data.senderId,
                 senderName : data.senderName,
@@ -33,13 +48,19 @@ socketIO.getSocketIO = function (server){
                 socket.emit('receiveMessage', response);
             });
 
-        });*/
+        });
 
-
-        /*socket.on('clearMessage', function (data){
+        /**
+         * 处理清除消息队列
+         */
+        socket.on('clearMessage', function (data){
             var userId = data.userId;
             delete timerCount[userId];
         });
+
+        /**
+         * 处理心跳系统和服务端消息推送
+         */
         socket.on('heartbeat', function (data){
             var userId = data.userId;
 
@@ -89,10 +110,23 @@ socketIO.getSocketIO = function (server){
                pushMessage();
             }
             timerCount[userId].count++;
-        });*/
+        });
 
-        sendMessage(socket);
-        serverPushMessaage(socket, timerCount);
+        /**
+         * 处理多人在线编辑文档时的人数
+         */
+        socket.on('loadContent', function (data){
+            var userId = String(data.userId), documentId = String(data.documentId);
+            if(!userCount.hasOwnProperty(documentId)){
+                userCount[documentId] = [userId];
+            }else{
+                var array = userCount[documentId];
+                if(array.indexOf(userId) == -1){
+                    userCount[documentId].push(userId);
+                }
+            }
+            socket.emit('loadContent', {userCount:userCount[documentId].length});
+        });
     });
 
 };
