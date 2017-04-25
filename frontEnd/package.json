@@ -9,6 +9,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "bel": "^4.6.0",
+    "diff-dom": "^2.1.0",
     "socket.io-client": "^1.7.3",
     "vue": "^2.1.0",
     "vue-resource": "^1.0.3",
