@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-  <div id="editor" @keyup="editContent" v-model="content"></div>
+  <div id="editor" @keyup="editContent"></div>
 </div>
 
 </template>
@@ -23,31 +23,47 @@
               socket : createSocket(),
               documentId : store.state.showDocContent.data.documentId,
               content : store.state.showDocContent.data.content,
-              lastContent : store.state.showContent.data.content,
-              timer : null,
+              lastContent : store.state.showDocContent.data.content,
               userId : getUserInfo().userId,
-              editor : null
+              editor : null,
+              timer : 0
           };
       },
       methods : {
         editContent (event){
-            console.log(event.target.innerHtml);
+            this.content = event.target.innerHTML;
+            if(this.lastContent !== this.content){
+                return;
+            }
+            this.timer++;
+            if(timer === 10){
+                this.socket.emit('editContent', {
+                    documentId : this.documentId,
+                    handlerId : this.userId,
+                    content : this.content
+                });
+                this.timer = 0;
+            }
         }  ,
       },
       mounted () {
         this.editor = new wangEditor('editor');
         this.editor.create();
         this.editor.$txt.html(this.content);
+        this.socket.on('editContent', (data)=>{
+           let {documentId, handlerId, content} = data;
+           if(documentId == this.documentId && handlerId != this.userId){
+               if(content !== this.content){
+                   content = content && this.content;
+                   this.editor.$txt.html(content);
+               }
+           }
+        });
 
-        this.timer = setInterval( ()=>{
-            if(this.content !== this.lastContent){
-                console.log('not equal');
-                this.lastContent = this.content;
-            }
-        },1000);
       },
       destroyed () {
         this.editor.destroy();
+        this.socket = null;
       }
   }
 

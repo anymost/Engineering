@@ -25,6 +25,15 @@ socketIO.getSocketIO = function (server){
     var userCount = {
 
     };
+    /**
+     * lastDocContent = {
+     *  docId : {handlerId:0,content:content}
+     * }
+     * @type {{}}
+     */
+    var lastDocContent = {
+
+    };
 
     io.sockets.on('connection', function (socket){
 
@@ -126,6 +135,32 @@ socketIO.getSocketIO = function (server){
                 }
             }
             socket.emit('loadContent', {userCount:userCount[documentId].length});
+        });
+
+        /**
+         * 处理多人同时编辑文档
+         */
+        socket.on('editContent', function (data){
+           var docId = data.documentId,
+               handlerId = data.handlerId,
+               content = data.content;
+           if(!lastDocContent[docId]){
+               lastDocContent[docId] = {
+                   handlerId : handlerId,
+                   content : content
+               };
+           }else {
+               content = content && lastDocContent[docId].content;
+               lastDocContent[docId] = {
+                   handlerId : handlerId,
+                   content : content
+               };
+           }
+           socket.emit('emitContent', {
+               documentId : docId,
+               handlerId : handlerId,
+               content : content
+           });
         });
     });
 
