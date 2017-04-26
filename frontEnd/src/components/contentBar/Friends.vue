@@ -1,15 +1,14 @@
 <template>
   <div class="container">
       <div class="item"   v-for="(friend, index) in friends" :rank="index" :data-userid="friend.userId">
-        <img width="60%" height="64px" :src="friend.headPicture" alt="friend">
+        <img width="50%" height="64px" :src="friend.headPicture" alt="friend">
        <div class="info">
-          <div class="delete" :data-index="index" @click="deleteFriend($event)" :data-userid="friend.userId">x</div>
           <div class="userName">{{friend.userName}}</div>
          <div class="sendMessage" :userName="friend.userName" :friendPic="friend.headPicture" :data-userid="friend.userId" @click="sendMessage"></div>
+          <div class="delete" :data-index="index" @click="deleteFriend($event)" :data-userid="friend.userId"></div>
        </div>
       </div>
      <div class="item add" @click="addFriend">
-       +
      </div>
   </div>
 </template>
@@ -75,7 +74,7 @@
     height:80px
   }
   .item{
-    width:10%;
+    width:15%;
     height:80px;
     float:left;
     border-right: 1px solid darkgray;
@@ -84,35 +83,48 @@
   img{
     float:left;
     margin:8px 0 8px 5px;
-    border-radius : 50%;
 
   }
   .info{
     float:left;
     height:64px;
+    width:45%;
   }
   .delete{
     width:100%;
     height:40%;
+    float:right;
+    padding-right:2px;
     text-align: right;
+    background-image: url(//localhost:3000/images/close.png);
+    background-repeat:no-repeat;
+    background-size:40% 40%;
+    background-position: center center;
   }
 
   .userName{
     width:100%;
     height:40%;
     overflow:hidden;
+    float:right;
+    padding-right:2px;
   }
   .sendMessage{
     width:100%;
     height:40%;
-    background-image: url('http://localhost:3000/headPictures/tools/icon.jpg');
-    background-position: 105px 214px;
-    background-size: 56px 38px;
+    background-image: url(//localhost:3000/images/data.png);
+    background-size: 40% 40%;
+    background-position: center center;
     background-repeat:no-repeat;
+    float:right;
   }
 
   .add{
     font-size:36px;
     line-height:80px;
+    background-image: url(//localhost:3000/images/add.png);
+    background-size:40% 50%;
+    background-position:center center;
+    background-repeat: no-repeat;
   }
 </style>

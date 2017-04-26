@@ -2,15 +2,15 @@
   <div class="container">
     <div class="item" v-show="!isDocShowed"  v-for="group in groups" :data-groupid="group.groupId" :data-ownerid="group.ownerId">
       <div class="group"  >
-        <img width="60%" height="64px" @click="showGroup"  :data-groupid="group.groupId" :data-ownerid="group.ownerId" :src="group.headPicture" alt="group">
+        <img width="50%" height="64px" @click="showGroup"  :data-groupid="group.groupId" :data-ownerid="group.ownerId" :src="group.headPicture" alt="group">
         <div class="groupDocument">
-          <p @click="showDoc" :data-groupid="group.groupId">doc</p>
-          <span  >{{group.groupName}}</span>
+          <p  >{{group.groupName}}</p>
+          <div  @click="showDoc" :data-groupid="group.groupId"></div>
         </div>
       </div>
     </div>
       <div class="doc" v-show="isDocShowed">
-        <div class="docWord" @click="backToGroup">back</div>
+        <div class="item docWord" @click="backToGroup">back</div>
         <ul class="documentContainer" v-if="documents.length>0">
           <li class="document" @click="showContent" v-for="document in documents" :data-documentid="document.documentId">
             {{document.documentName}}
@@ -20,8 +20,8 @@
       </div>
 
 
-    <div class="item add" v-if="!isDocShowed" @click="createGroup">+</div>
-    <div class="item add" v-if="!isDocShowed" @click="searchGroup">-</div>
+    <div class="item addGroup" v-if="!isDocShowed" @click="createGroup"></div>
+    <div class="item searchGroup" v-if="!isDocShowed" @click="searchGroup"></div>
   </div>
 </template>
 <style scoped>
@@ -35,18 +35,41 @@
     float:left;
     border-right: 1px solid darkgray;
   }
-  .add{
-    font-size:36px;
-    line-height: 80px;
+  .addGroup{
+    background-image:url(//localhost:3000/images/add.png);
+    background-position: center center;
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+  }
+  .searchGroup{
+    background-image:url(//localhost:3000/images/search.png);
+    background-position: center center;
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
   }
   img{
     float:left;
     margin:8px 0 8px 5px;
-    border-radius : 50%;
 
   }
   .groupDocument{
+    width:45%;
+    height:100%;
     float:left;
+  }
+  .groupDocument>p{
+    width:90%;
+    height:45%;
+    padding-left: 2px;padding-top: 5px
+  }
+  .groupDocument>div{
+    width:100%;
+    height:50px;
+    margin-top:-20px;
+    background-image: url(//localhost:3000/images/folder.png);
+    background-position: center center;
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
   }
   .document{
     float:left;
@@ -63,7 +86,13 @@
     text-align:center;
     float:left;
     padding-top:30px;
+    background-image:url(//localhost:3000/images/skip.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50% ;
   }
+
+
 </style>
 <script>
   import store from '../../store'

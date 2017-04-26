@@ -141,26 +141,27 @@ socketIO.getSocketIO = function (server){
          * 处理多人同时编辑文档
          */
         socket.on('editContent', function (data){
-           var docId = data.documentId,
-               handlerId = data.handlerId,
-               content = data.content;
-           if(!lastDocContent[docId]){
-               lastDocContent[docId] = {
-                   handlerId : handlerId,
-                   content : content
-               };
-           }else {
-               content = content && lastDocContent[docId].content;
-               lastDocContent[docId] = {
-                   handlerId : handlerId,
-                   content : content
-               };
-           }
-           socket.emit('emitContent', {
+           var docId = data.documentId;
+           var content = lastDocContent[docId] ? lastDocContent[docId].content : '';
+
+           socket.emit('editContent', {
                documentId : docId,
-               handlerId : handlerId,
                content : content
            });
+        });
+
+        /**
+         * 保存修改后经过diff的内容
+         */
+        socket.on('saveContent', function (data){
+            var docId = data.documentId,
+                handlerId = data.handlerId,
+                content = data.content;
+            console.log(content);
+            lastDocContent[docId] = {
+                handlerId : handlerId,
+                content : content
+            };
         });
     });
 

@@ -1,9 +1,10 @@
 <template>
     <div class='person'>
       <img  :src='src' class='head' width="50%" height="100%">
-      <div class='info' >{{name}} </div>
-      <div>
-        <span @click="infoDisplay(),readMessage()">{{messageLength}}</span>
+      <div class="message">
+       <div class='info' >{{name}} </div>
+
+        <div class="messageLength" @click="infoDisplay(),readMessage()"></div>
       </div>
     </div>
 </template>
@@ -17,15 +18,29 @@
       float:left;
       border-radius : 50%;
     }
-    .info{
+    .message{
       float:left;
       width:50%;
+      height:100%;
+    }
+    .info{
+      width:100%;
       height:40%;
       margin-top:10%;
+
     }
-    span {
-      color:cadetblue;
+    .messageLength{
+      margin-left:10%;
+      width:100%;
+      height:50%;
+      background-image:url(//localhost:3000/images/email.png) ;
+      background-repeat:no-repeat;
+      background-size:50% 60%;
+      background-position: center center;
+      color:red;
+      font-size:20px;
     }
+
 
 </style>
 <script>

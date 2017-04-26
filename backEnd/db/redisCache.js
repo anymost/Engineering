@@ -64,20 +64,20 @@ var saveMessage = function (data, callback) {
         message = data.message,
         date = data.date;
     var listKey = receiverId;
-    var data = senderId + '#' + date + '#' + message+'#'+senderName;
+    var data = senderId + '#' + date + '#' + message + '#' + senderName;
     client.rpush(listKey, data, function (error, result) {
         if (!error) {
             callback({
                 result: 0,
                 message: result
-            })
+            });
         } else {
             callback({
                 result: -1,
                 message: error
-            })
+            });
         }
-    })
+    });
 };
 exports.saveMessage = saveMessage;
 
@@ -109,7 +109,7 @@ var getMessage = function (info, callback) {
                         message: error
                     });
                 }
-            })
+            });
         }
 
     });
@@ -130,14 +130,14 @@ var removeMessage = function (info, callback) {
             callback({
                 result: 0,
                 message: 'success'
-            })
+            });
         } else {
             callback({
                 result: -1,
                 message: error
-            })
+            });
         }
-    })
+    });
 };
 exports.removeMessage = removeMessage;
 
@@ -166,20 +166,20 @@ var syncMessage = function (info, callback) {
                                 date: parseInt(item[1]),
                                 message: item[2],
                                 senderName : item[3]
-                            })
+                            });
                         }
                     });
                     callback({
                         result: 0,
                         message: 'success'
-                    })
+                    });
                 } else {
                     callback({
                         result: -2,
                         message: error
                     });
                 }
-            })
+            });
         }
 
     });
@@ -188,4 +188,9 @@ var syncMessage = function (info, callback) {
 exports.syncMessage = syncMessage;
 
 
-
+var saveContent = function (data, callback){
+    var documentId = data.documentId,
+        content = data.content,
+        handlerId = data.handlerId;
+    client.save
+}
