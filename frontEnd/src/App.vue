@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <TitleBar></TitleBar>
-    <ContentBar></ContentBar>
-    <InfoBar></InfoBar>
-    <Container></Container>
+    <TitleBar/>
+    <ContentBar/>
+    <InfoBar/>
+    <Container/>
+    <ShowMessage/>
+    <ConfirmMessage/>
   </div>
 </template>
 
@@ -13,6 +15,8 @@ import TitleBar from './components/titleBar/TitleBar'
 import Container from './components/container/Container'
 import InfoBar from './components/InfoBar'
 import ContentBar from './components/contentBar/ContentBars'
+import ShowMessage from './components/toolBar/ShowMessage'
+import ConfirmMessage from './components/toolBar/ConfirmMessage'
 
 
 
@@ -28,6 +32,8 @@ export default {
     ContentBar,
     Container,
     InfoBar,
+    ShowMessage,
+    ConfirmMessage
   }
 }
 </script>

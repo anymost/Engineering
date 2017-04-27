@@ -160,6 +160,20 @@ export  default{
       isShow : false,
       message : null
     };
+  },
+  confirmMessage (state, message) {
+    state.confirmMessage = {
+      isShow : true,
+      isConfirm : false,
+      message : message
+    };
+  },
+  closeConfirm (state, isConfirm) {
+    state.confirmMessage = {
+      isShow : false,
+      isConfirm : isConfirm,
+      message : null
+    }
   }
 
 }

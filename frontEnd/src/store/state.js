@@ -49,6 +49,11 @@ export default {
   showMessage : {
     isShow : false,
     message : null
+  },
+  confirmMessage : {
+    isShow : false,
+    isConfirm : false,
+    message : null
   }
 }
 

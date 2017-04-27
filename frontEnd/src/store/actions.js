@@ -51,5 +51,11 @@ export  default {
   },
   closeMessage ({commit}){
     commit('closeMessage');
+  },
+  confirmMessage ({commit}, message){
+    commit('confirmMessage', message);
+  },
+  closeConfirm ({commit}, isConfirm){
+    commit('closeConfirm', isConfirm);
   }
 }
