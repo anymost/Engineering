@@ -2,10 +2,14 @@ var express = require('express');
 var router = express.Router();
 var User = require('../db/User');
 var filterString = require('../tools/index').filterString;
+var crypto = require('crypto');
+var cyphier = crypto.createHash('sha256');
 
 router.post('/', function (req, res, next) {
    var requestBody = {};
-    requestBody.userName = filterString(req.body.userName);
+   cyphier.update(req.body.password);
+
+   requestBody.userName = cyphier.digest('hex');
     requestBody.password = filterString(req.body.password);
 
     User.verifyUser(requestBody, function (json) {
