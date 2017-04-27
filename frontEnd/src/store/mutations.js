@@ -148,6 +148,18 @@ export  default{
           isShow : true,
           data : data
       };
+  },
+  showMessage (state, message){
+    state.showMessage = {
+      isShow : true,
+      message : message
+    };
+  },
+  closeMessage (state) {
+    state.showMessage = {
+      isShow : false,
+      message : null
+    };
   }
 
 }

@@ -45,6 +45,10 @@ export default {
   showDocContent : {
     isShow : false,
     data : {}
+  },
+  showMessage : {
+    isShow : false,
+    message : null
   }
 }
 

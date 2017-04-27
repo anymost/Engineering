@@ -45,5 +45,11 @@ export  default {
   },
   showDocContent ({commit}, data){
     commit('showDocContent', data);
+  },
+  showMessage ({commit}, message){
+    commit('showMessage', message);
+  },
+  closeMessage ({commit}){
+    commit('closeMessage');
   }
 }
