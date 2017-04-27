@@ -606,7 +606,8 @@ var verifyUser = function (userInfo, callback){
             var password = result[0] && result[0].dataValues && result[0].dataValues['password'];
             var userId = result[0] && result[0].dataValues && result[0].dataValues['userId'];
             var headPicture = result[0] && result[0].dataValues && result[0].dataValues['headPicture'];
-
+            console.log(password);
+            console.log(userInfo.password);
             if(password === userInfo.password){
                 callback({
                     result :0,

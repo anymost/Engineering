@@ -11,7 +11,7 @@
           </div>
         </div>
       </div>
-      <div class="exit" >
+      <div class="exit" @click="exit" >
         退出
       </div>
     </div>
@@ -62,6 +62,16 @@
 
               })
           }
+        },
+        methods : {
+            exit (){
+                let date = (new Date().getTime()-1).toUTCString();
+                let cookie = `userId=null;expires=${date};
+                userName=null;expires=${date};headPicture=null;
+                expires=${date}`;
+                document.cookie = cookie;
+                location.replace('/login');
+            }
         }
     }
 </script>
