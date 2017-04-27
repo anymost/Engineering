@@ -190,7 +190,20 @@ exports.syncMessage = syncMessage;
 
 var saveContent = function (data, callback){
     var documentId = data.documentId,
-        content = data.content,
-        handlerId = data.handlerId;
-    client.save
-}
+        content = data.content;
+    client.set(documentId, content, function (err, result){
+        if(!err){
+            callback({
+                result : 0,
+                message : 'success'
+            });
+        }else{
+            callback({
+                result : -1,
+                message : err
+            });
+        }
+
+    });
+};
+exports.saveContent = saveContent;

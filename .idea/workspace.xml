@@ -12,11 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb81c049-e7c6-4d87-b83e-1026ee6d30d2" name="Default" comment="更新主干">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontEnd/src/components/toolBar/ShowMessage.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backEnd/db/User.js" afterPath="$PROJECT_DIR$/backEnd/db/User.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backEnd/routes/login.js" afterPath="$PROJECT_DIR$/backEnd/routes/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontEnd/src/components/InfoBar.vue" afterPath="$PROJECT_DIR$/frontEnd/src/components/InfoBar.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backEnd/db/Document.js" afterPath="$PROJECT_DIR$/backEnd/db/Document.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backEnd/db/redisCache.js" afterPath="$PROJECT_DIR$/backEnd/db/redisCache.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backEnd/socket/index.js" afterPath="$PROJECT_DIR$/backEnd/socket/index.js" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,11 +33,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="ShowMessage.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShowMessage.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontEnd/src/components/toolBar/ShowMessage.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+            <state relative-caret-position="286">
+              <caret line="13" column="8" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backEnd/socket/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="836">
+              <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Document.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backEnd/db/Document.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="223" column="12" lean-forward="true" selection-start-line="223" selection-start-column="12" selection-end-line="223" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="redisCache.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backEnd/db/redisCache.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="356">
+              <caret line="206" column="7" lean-forward="true" selection-start-line="206" selection-start-column="7" selection-end-line="206" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -68,7 +96,6 @@
       <find>file</find>
       <find>getGroups</find>
       <find>group</find>
-      <find>update</find>
       <find>addG</find>
       <find>getG</find>
       <find>console</find>
@@ -87,6 +114,7 @@
       <find>heartbeat</find>
       <find>add</find>
       <find>ver</find>
+      <find>update</find>
     </findStrings>
     <replaceStrings>
       <replace>let</replace>
@@ -142,7 +170,6 @@
         <option value="$PROJECT_DIR$/frontEnd/src/components/container/MainContent/createDocument/CreateDocument.vue" />
         <option value="$PROJECT_DIR$/backEnd/db/Group.js" />
         <option value="$PROJECT_DIR$/backEnd/routes/createDoc.js" />
-        <option value="$PROJECT_DIR$/backEnd/db/Document.js" />
         <option value="$PROJECT_DIR$/frontEnd/src/store/actions.js" />
         <option value="$PROJECT_DIR$/frontEnd/src/store/mutations.js" />
         <option value="$PROJECT_DIR$/frontEnd/src/store/state.js" />
@@ -154,9 +181,7 @@
         <option value="$PROJECT_DIR$/backEnd/socket/serverPushMessage.js" />
         <option value="$PROJECT_DIR$/frontEnd/src/components/container/MainContent/showDocContent/Content.vue" />
         <option value="$PROJECT_DIR$/frontEnd/src/components/container/MainContent/showDocContent/ShowDocContent.vue" />
-        <option value="$PROJECT_DIR$/backEnd/socket/index.js" />
         <option value="$PROJECT_DIR$/frontEnd/src/components/container/MainContent/showDocContent/DocContent.vue" />
-        <option value="$PROJECT_DIR$/backEnd/db/redisCache.js" />
         <option value="$PROJECT_DIR$/frontEnd/src/components/titleBar/Person.vue" />
         <option value="$PROJECT_DIR$/frontEnd/src/components/contentBar/Friends.vue" />
         <option value="$PROJECT_DIR$/frontEnd/src/components/contentBar/Groups.vue" />
@@ -165,6 +190,9 @@
         <option value="$PROJECT_DIR$/backEnd/routes/login.js" />
         <option value="$PROJECT_DIR$/frontEnd/src/components/toolBar/ShowMessage.vue" />
         <option value="$PROJECT_DIR$/frontEnd/src/components/InfoBar.vue" />
+        <option value="$PROJECT_DIR$/backEnd/db/redisCache.js" />
+        <option value="$PROJECT_DIR$/backEnd/db/Document.js" />
+        <option value="$PROJECT_DIR$/backEnd/socket/index.js" />
       </list>
     </option>
   </component>
@@ -332,32 +360,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="toolBar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Engineering" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Engineering" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="frontEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -391,6 +393,42 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="backEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Engineering" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Engineering" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="socket" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Engineering" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Engineering" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -801,7 +839,7 @@
       <workItem from="1493128216324" duration="174000" />
       <workItem from="1493166028684" duration="6999000" />
       <workItem from="1493184681955" duration="24000" />
-      <workItem from="1493284423050" duration="4748000" />
+      <workItem from="1493284423050" duration="5561000" />
     </task>
     <task id="LOCAL-00001" summary="创建前后端开发目录">
       <created>1481770944425</created>
@@ -870,7 +908,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="374198000" />
+    <option name="totallyTimeSpent" value="375011000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1063,14 +1101,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backEnd/db/Document.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="176" column="35" lean-forward="true" selection-start-line="176" selection-start-column="35" selection-end-line="176" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontEnd/src/components/container/MainContent/MainContent.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -1137,20 +1167,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="25" column="7" lean-forward="false" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backEnd/socket/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1364">
-          <caret line="148" column="32" lean-forward="false" selection-start-line="148" selection-start-column="32" selection-end-line="148" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backEnd/db/redisCache.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="65" column="29" lean-forward="false" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1260,8 +1276,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontEnd/src/components/toolBar/ShowMessage.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+        <state relative-caret-position="286">
+          <caret line="13" column="8" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backEnd/db/redisCache.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="206" column="7" lean-forward="true" selection-start-line="206" selection-start-column="7" selection-end-line="206" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backEnd/db/Document.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="223" column="12" lean-forward="true" selection-start-line="223" selection-start-column="12" selection-end-line="223" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backEnd/socket/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="836">
+          <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
           <folding />
         </state>
       </provider>

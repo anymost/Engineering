@@ -202,3 +202,28 @@ var getDocContent = function (info, callback){
 };
 
 exports.getDocContent = getDocContent;
+
+
+var saveContent = function (info, callback){
+    var documentId = info.documentId,
+        content = info.content;
+    Document.update({
+        content : content
+    }, {
+        where : {
+            documentId : documentId
+        }
+    }).then(function (){
+        callback({
+            result : 0,
+            message : 'success'
+        });
+    }, function (error){
+        callback({
+            result : -1,
+            message : error
+        });
+    });
+};
+
+exports.saveContent = saveContent;

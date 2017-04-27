@@ -4,6 +4,7 @@
 var socketIO = {};
 var socket_io = require('socket.io');
 var redisCache = require('../db/redisCache');
+var Document = require('../db/Document');
 
 
 //获取io
@@ -25,6 +26,15 @@ socketIO.getSocketIO = function (server){
     var userCount = {
 
     };
+    /**
+     *同一文档的操作次数
+     *
+     */
+    var contentHandleTime = {
+
+    };
+
+
     /**
      * lastDocContent = {
      *  docId : {handlerId:0,content:content}
@@ -157,11 +167,29 @@ socketIO.getSocketIO = function (server){
             var docId = data.documentId,
                 handlerId = data.handlerId,
                 content = data.content;
-            console.log(content);
+
             lastDocContent[docId] = {
                 handlerId : handlerId,
                 content : content
             };
+            if(!contentHandleTime[docId]){
+                contentHandleTime[docId] = 1;
+            }else{
+                contentHandleTime[docId] = contentHandleTime[docId]++;
+            }
+
+            redisCache.saveContent({
+                documentId : docId,
+                content : content
+            }, function () {
+                if(contentHandleTime[docId] == 10){
+                    contentHandleTime[docId] = 0;
+                    Document.saveContent({
+                        documentId : docId,
+                        content : content
+                    });
+                }
+            });
         });
     });
 
