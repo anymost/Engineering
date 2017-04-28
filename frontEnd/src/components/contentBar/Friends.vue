@@ -32,8 +32,8 @@
             store.dispatch('addFriend');
         },
         deleteFriend (event) {
-            var isDelete = window && window.confirm('delete this friend?') ;
-
+            store.dispatch('confirmMessage', 'confirm delete friend');
+            let isDelete = store.state.confirmMessage.isConfirm;
             if(isDelete){
                 let index = event.target.dataset['index'];
                 let friendId = event.target ? event.target.dataset['userid']:false;

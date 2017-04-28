@@ -100,7 +100,12 @@
                }else if(data.result == -2){
                    store.dispatch('getFriends', null);
                }
+            }else{
+                store.dispatch('showMessage', 'get friends failed');
             }
+
+          }, function (){
+            store.dispatch('showMessage', 'network error');
           }
         )
       },
@@ -116,9 +121,11 @@
                 }else if(data.result == -3){
                     store.dispatch('getGroups', null);
                 }
-            }
+            }else{
+                  store.dispatch('showMessage', 'get group failed');
+              }
           }, function(error){
-              console.log('error');
+              store.dispatch('showMessage', 'network error');
           })
       }
     }

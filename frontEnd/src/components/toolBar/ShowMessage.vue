@@ -1,23 +1,37 @@
 <template>
-  <div id="container" v-show="isShow">
-    {{message}}
+  <div id="showMessage" v-show="isShow">
+    <div>
+    {{message}}<br>
+      window close in {{time}}s
+    </div>
   </div>
 
 </template>
 
 <style scoped>
-  #container {
+  #showMessage {
     position: fixed;
     z-index:999;
-    top:350px;
-    left:600px;
-    height:100px;
-    width:100px;
-    background-color: whitesmoke;
+    top:0;
+    left:0;
+    height:1340px;
+    width:650px;
+    background-color: transparent;
+    color:black;
+  }
+  #showMessage > div {
+    position:absolute;
+    z-index:999;
+    top:250px;
+    left:500px;
+    height:200px;
+    width:400px;
+    background-color: black;
     color:black;
     text-align: center;
-    font-size:24px;
+    font-size:20px;
     line-height:100px;
+    box-shadow: 6px 1px 1px grey;
   }
 
 </style>
