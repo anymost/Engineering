@@ -5,7 +5,9 @@
   "description": "back end main framework",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "pm2 start ./bin/www",
+	"restart" : "pm2 restart ./bin/www",
+	"stop" : "pm2 stop ./bin/www"	
   },
   "dependencies": {
     "body-parser": "~1.15.2",
