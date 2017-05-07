@@ -19,7 +19,7 @@ router.post('/', function (req, res, next) {
             res.cookie('headPicture', json.headPicture, {expires: new Date(Date.now() + 10000 * 60 * 60)});
             res.render('index');
         } else {
-            res.render(json);
+            res.send(json);
         }
     });
 });
