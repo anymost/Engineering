@@ -36,13 +36,13 @@
     border-right: 1px solid darkgray;
   }
   .addGroup{
-    background-image:url(//localhost:3000/images/add.png);
+    background-image:url(//139.199.164.28:3000/images/add.png);
     background-position: center center;
     background-size: 50% 50%;
     background-repeat: no-repeat;
   }
   .searchGroup{
-    background-image:url(//localhost:3000/images/search.png);
+    background-image:url(//139.199.164.28:3000/images/search.png);
     background-position: center center;
     background-size: 50% 50%;
     background-repeat: no-repeat;
@@ -66,7 +66,7 @@
     width:100%;
     height:50px;
     margin-top:-20px;
-    background-image: url(//localhost:3000/images/folder.png);
+    background-image: url(//139.199.164.28:3000/images/folder.png);
     background-position: center center;
     background-size: 50% 50%;
     background-repeat: no-repeat;
@@ -86,7 +86,7 @@
     text-align:center;
     float:left;
     padding-top:30px;
-    background-image:url(//localhost:3000/images/skip.png);
+    background-image:url(//139.199.164.28:3000/images/skip.png);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 50% 50% ;

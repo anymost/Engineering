@@ -33,7 +33,7 @@
       margin-left:10%;
       width:100%;
       height:50%;
-      background-image:url(//localhost:3000/images/email.png) ;
+      background-image:url(//139.199.164.28:3000/images/email.png) ;
       background-repeat:no-repeat;
       background-size:50% 60%;
       background-position: center center;

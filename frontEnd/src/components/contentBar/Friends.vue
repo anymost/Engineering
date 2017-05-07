@@ -96,7 +96,7 @@
     float:right;
     padding-right:2px;
     text-align: right;
-    background-image: url(//localhost:3000/images/close.png);
+    background-image: url(//139.199.164.28:3000/images/close.png);
     background-repeat:no-repeat;
     background-size:40% 40%;
     background-position: center center;
@@ -112,7 +112,7 @@
   .sendMessage{
     width:100%;
     height:40%;
-    background-image: url(//localhost:3000/images/data.png);
+    background-image: url(//139.199.164.28:3000/images/data.png);
     background-size: 40% 40%;
     background-position: center center;
     background-repeat:no-repeat;
@@ -122,7 +122,7 @@
   .add{
     font-size:36px;
     line-height:80px;
-    background-image: url(//localhost:3000/images/add.png);
+    background-image: url(//139.199.164.28:3000/images/add.png);
     background-size:40% 50%;
     background-position:center center;
     background-repeat: no-repeat;

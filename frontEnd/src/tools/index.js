@@ -16,18 +16,18 @@ export let getUserInfo = function () {
 };
 
 export let handlePicPath = function (path) {
-  return '//localhost:3000/'+path.split('%2F').join('/');
+  return '//139.199.164.28:3000/'+path.split('%2F').join('/');
 };
 
 export let networkGET = function (path){
-  return Vue.http.get('//localhost:3000'+path)
+  return Vue.http.get('//139.199.164.28:3000'+path)
 };
 
 export let networkPost = function (path, data) {
-  return Vue.http.post('//localhost:3000'+path,data)
+  return Vue.http.post('//139.199.164.28:3000'+path,data)
 };
 export const createSocket =  function () {
-  return io('//localhost:3000');
+  return io('//139.199.164.28:3000');
 
 };
 
