@@ -258,16 +258,18 @@ var deleteFriend = function (userInfo, callback) {
                         }
                     }
                     friends.splice(i, 1);
-                    if(friends.length > 0){
+                    if(friends.length > 1){
                         friends = friends.join('#');
+                    }else if(friends.length <= 0){
+                        friends = null;
                     }else{
-                        friends = '';
+                        friends = friends[0];
                     }
                 }
             }else{
-                friends = '';
+                friends = null;
             }
-
+            console.log(`first ${friends}`);
             User.update({friends : friends},
                 {
                     where :
@@ -291,16 +293,18 @@ var deleteFriend = function (userInfo, callback) {
                                 }
                             }
                             friends.splice(i, 1);
-                            if(friends.length > 0){
+                            if(friends.length > 1){
                                 friends = friends.join('#');
+                            }else if(friends.length <= 0){
+                                friends = null;
                             }else{
-                                friends = '';
+                                friends = friends[0];
                             }
 
                         }else{
-                            friends = '';
+                            friends = null;
                         }
-
+                        console.log(`second ${friends}`);
                         User.update({friends : friends},
                             {
                                 where :
@@ -416,7 +420,6 @@ var addGroup = function (info, callback){
 
         var groups = result.dataValues['groups'];
         if(groups){
-            groups = groups.split('#');
             if(groups.indexOf(groupId) != -1){
                 callback({
                     result : -3,
@@ -424,7 +427,6 @@ var addGroup = function (info, callback){
                 });
                 return;
             }
-            groups = groups.join('#');
             groups = groups + '#' + groupId;
         }else{
             groups = '' + groupId;
@@ -437,7 +439,7 @@ var addGroup = function (info, callback){
                     userId: userId
                 }
 
-        }).then(function (result) {
+        }).then(function () {
             callback({
                 result : 0,
                 message : 'success'

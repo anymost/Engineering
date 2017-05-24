@@ -59,7 +59,7 @@
     data(){
       return {
           userId : getUserInfo().userId,
-          friendState : '+'
+          friendState : '添加好友'
       }
     },
     props: ['searchList'],
@@ -75,9 +75,11 @@
             networkPost('/addFriend', data).then((response)=>{
               if(response.ok){
                   if(response.data.result == 0){
-                    this.friendState = 'added';
+                    this.friendState = '添加成功';
+                    store.dipatch('showMessage', '好友添加成功');
                   }else if(response.data.result == -3){
-                      this.friendState ='existed';
+                      this.friendState ='已存在';
+                      store.dispatch('showMessage', '该好友已存在')
                   }
               }
             });

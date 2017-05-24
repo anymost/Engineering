@@ -4,7 +4,7 @@
       <div class="group"  >
         <img width="50%" height="64px" @click="showGroup"  :data-groupid="group.groupId" :data-ownerid="group.ownerId" :src="group.headPicture" alt="group">
         <div class="groupDocument">
-          <p  >{{group.groupName}}</p>
+          <p  class="group-name">{{group.groupName}}</p>
           <div  @click="showDoc" :data-groupid="group.groupId">查看文档</div>
         </div>
       </div>
@@ -26,10 +26,11 @@
 <style scoped>
   .container{
     width:100%;
-    height:80px
+    height:80px;
+    overflow:auto;
   }
   .item{
-    width:10%;
+    width:15%;
     height:80px;
     float:left;
     border-right: 1px solid darkgray;
@@ -66,7 +67,9 @@
     font-size: 14px;
     color:rgb(75,156,178);
   }
-
+.group-name{
+  overflow:hidden;
+}
 
 
 

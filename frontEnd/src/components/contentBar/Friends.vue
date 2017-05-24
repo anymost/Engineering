@@ -33,24 +33,11 @@
             store.dispatch('addFriend');
         },
         deleteFriend (event) {
-            store.dispatch('confirmMessage', '确定删除该好友?');
-            let isDelete = store.state.confirmMessage.isConfirm;
-            if(isDelete){
-                let index = event.target.dataset['index'];
-                let friendId = event.target ? event.target.dataset['userid']:false;
-                if(friendId) {
-
-                  networkPost('/deleteFriend', {
-                      friendId: friendId,
-                      userId : this.userId
-                  }).then(function (response) {
-
-                     if(response.ok && response.data.result == 0){
-                        document.querySelector('[rank="'+index+'"]').style.display='none';
-                     }
-                  });
-                }
-            }
+            let data = {
+                userId : this.userId,
+                friendId : event.target.dataset['index']
+            };
+            store.dispatch('confirmMessage', {message : '确定删除该好友?', data : data});
         },
         sendMessage (event) {
             let friendId = event.target ? event.target.dataset['userid']:false;
@@ -72,7 +59,8 @@
 <style scoped>
   .container{
     width:100%;
-    height:80px
+    height:80px;
+    overflow:auto;
   }
   .item{
     width:15%;

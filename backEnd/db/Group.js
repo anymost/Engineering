@@ -107,36 +107,46 @@ exports.updateGroupName = updateGroupName;
  * @param memberInfo
  * @param callback
  */
-var addMember = function (groupInfo, memberInfo, callback) {
-    if (!groupInfo && !memberInfo && !callback) {
+var addMember = function (info, callback) {
+    if (!info && !callback) {
         return;
     }
+    var groupId = info.groupId, userId = info.userId;
     Group.findAll({
         attributes: ['members'],
         where: {
-            groupId: groupInfo.groupId
+            groupId: groupId
         }
     }).then(function (result) {
         var members = result && result[0] && result[0].dataValues && result[0].dataValues.members;
         if (members) {
-            members = members + '&' + memberInfo.userId;
-            Group.update({members: members},
-                {
-                    where: {
-                        groupId: groupInfo.groupId
+            if (members.indexOf(userId) != -1) {
+
+                members = members + '#' + userId;
+                Group.update({members: members},
+                    {
+                        where: {
+                            groupId: groupId
+                        }
                     }
-                }
-            ).then(function () {
-                callback({
-                    return: 0,
-                    message: 'success'
+                ).then(function () {
+                    callback({
+                        return: 0,
+                        message: 'success'
+                    });
                 }, function (error) {
                     callback({
                         result: -3,
                         message: error.name || 'update failed'
                     });
                 });
-            });
+
+            } else {
+                callback({
+                    result: -5,
+                    message: 'member existed'
+                });
+            }
         } else {
             callback({
                 result: -2,

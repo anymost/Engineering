@@ -55,10 +55,12 @@
         };
         networkPost('/createDoc', data).then(function (result) {
           if (result.ok && result.data.result == 0) {
-            console.log('createDocument ok');
+            store.dispatch('showMessage', '文档创建成功');
+          }else{
+              store.dispatch('showMessage', '文档创建失败');
           }
-        }, function (error) {
-          console.log(error);
+        }, function () {
+          store.dispatch('showMessage', '文档创建失败');
         })
       }
     },

@@ -2,7 +2,7 @@
   <div id="showMessage" v-show="isShow">
     <div>
     {{message}}<br>
-      window close in {{time}}s
+      窗口将在{{time}}s后关闭
     </div>
   </div>
 
@@ -26,7 +26,7 @@
     left:500px;
     height:200px;
     width:400px;
-    background-color: black;
+    background-color: white;
     color:black;
     text-align: center;
     font-size:20px;
@@ -43,19 +43,31 @@
       data (){
           return {
               time : 5,
-              timer : null,
-              isShow : store.state.showMessage.isShow,
-              message : store.state.showMessage.message
+              timer : null
           };
       },
+      computed : {
+        isShow (){
+            return store.state.showMessage.isShow;
+
+        }  ,
+        message (){
+            return store.state.showMessage.message;
+        }
+      },
       mounted(){
-          this.timer = setInterval(()=>{
-              this.time--;
-              if(this.time == 0){
-                  clearInterval(this.timer);
+          let self = this;
+          console.log()
+          this.timer = setInterval(function (){
+              if(self.time == 0){
+                  clearInterval(self.timer);
                   store.dispatch('closeMessage');
+                  location.reload();
               }
-          },1000);
+              if(self.isShow == true) {
+                self.time--;
+              }
+          }, 1000);
       }
 
   }

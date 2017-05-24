@@ -2,10 +2,10 @@
   <div class="container">
     <input @keydown="search" type="text" autocomplete="off" placeholder="请输入分组名">
     <div v-if="groups.length>0" class="content">
-      <div class="item" v-for="group in groups">
+      <div class="group-item" v-for="group in groups">
         <img width="100px" height="100px" :src="group.headPicture" alt="headPicture">
-        <p>groupName:{{group.groupName}}</p>
-        <button @click="addMember" :data-groupid="group.groupId">add</button>
+        <p>{{group.groupName}}</p>
+        <button @click="addMember" :data-groupid="group.groupId">加入分组</button>
       </div>
     </div>
   </div>
@@ -22,8 +22,8 @@
     font-size:20px;
     text-align: center;
   }
-  .item{
-    width:400px;
+  .group-item{
+    width:600px;
     height:100px;
     margin:10px 200px;
     box-shadow: 4px 1px 1px grey;
@@ -31,21 +31,21 @@
   }
 
 
-  .item>p{
+  .group-item>p{
     float:left;
     margin-top:40px;
     height:60px;
-    width:100px;
+    width:180px;
   }
-  .item>img{
+  .group-item>img{
     float:left;
-    margin-left:50px;
-    padding:0;
+    padding:10px;
+    width:180px;
+    height:90%;
   }
-  .item>button{
+  .group-item>button{
     margin-top:40px;
     height:30px;
-    width:80px;
     font-size:20px;
     text-align:center;
   }
@@ -54,6 +54,7 @@
 
 <script>
   import {networkPost, getUserInfo, handlePicPath} from '../../../../tools'
+  import store from '../../../../store'
   export default {
       data () {
           return {
@@ -82,16 +83,23 @@
             })
         },
         addMember (event){
-          let groupId = event.target.dataset['groupid'];
           let userId = this.userId;
-          networkPost('/addMember', {groupId : groupId, userId : userId})
+          let data = {
+              groupId : event.target.dataset['groupid'],
+              userId : userId
+          };
+          console.log(data);
+          networkPost('/addMember', data)
             .then(function (response){
                 if(response.ok && response.data.result == 0){
-                    console.log('add member Ok');
-                    event.target.value = 'done';
+                    event.target.value = '加入成功';
+                    store.dispatch('showMessage','加入分组成功');
+                }else{
+                    event.target.value = '已在分组';
+                    store.dispatch('showMessage','加入分组失败');
                 }
-          }, function (error){
-
+          }, function (){
+              store.dispatch('showMessage','加入分组失败');
           });
         }
       },

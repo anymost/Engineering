@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div id="editor" @keyup="editContent"></div>
+    <div  id="editor"></div>
   </div>
 
 </template>
@@ -22,59 +22,55 @@
   export  default {
     data () {
       return {
-        socket: createSocket(),
         documentId: store.state.showDocContent.data.documentId,
         content: store.state.showDocContent.data.content,
-        lastContent: store.state.showDocContent.data.content,
         userId: getUserInfo().userId,
         editor: null,
-        timer: 0
+        timer: null
       };
     },
-    methods: {
-      editContent (event){
-        this.content = event.target.innerHTML;
-
-        if (this.lastContent === this.content) {
-          return;
-        }
-        this.lastContent = this.content;
-        this.timer++;
-        if (this.timer === 10) {
-
-          this.socket.emit('editContent', {
-            documentId: this.documentId,
-          });
-          this.timer = 0;
-        }
-      },
-    },
+    props : ['socket'],
     mounted () {
       this.editor = new wangEditor('editor');
       this.editor.create();
       this.editor.$txt.html(this.content);
+      /**
+       * 接收服务器端发送的内容 与本地内容同步后展现
+       */
       this.socket.on('editContent', (data) => {
         let {documentId, content} = data;
-        console.log('receive');
+        let oldContent = document.getElementById('editor').innerHTML;
         let diff = new diffDOM();
         if (documentId == this.documentId) {
-          if (content !== this.content) {
-            let difference = diff.diff(html`${content}`, html`${this.content}`)
-            diff.apply(this.content, difference);
-            this.editor.$txt.html(this.content);
+            let difference = diff.diff(html`${content}`, html`${oldContent}`);
+            diff.apply(oldContent, difference);
+            console.log(`${content}-----${oldContent}`);
+            this.editor.$txt.html(oldContent);
             this.socket.emit('saveContent', {
               documentId: documentId,
               handleId: this.userId,
-              content: this.content
+              content: oldContent
             });
-          }
+
         }
       });
+
+
+      /**
+       * 每隔五分钟通知服务器端将文档内容发回到客户端
+       */
+      this.timer = setInterval(()=>{
+
+        this.socket.emit('editContent', {
+          documentId: this.documentId,
+        });
+      },1000*60*5);
 
     },
     destroyed () {
       this.editor.destroy();
       this.socket = null;
+      clearInterval(this.timer);
     }
   }
 

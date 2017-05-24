@@ -161,11 +161,12 @@ export  default{
       message : null
     };
   },
-  confirmMessage (state, message) {
+  confirmMessage (state,  data) {
     state.confirmMessage = {
       isShow : true,
       isConfirm : false,
-      message : message
+      message : data.message,
+      data : data.data
     };
   },
   closeConfirm (state, isConfirm) {

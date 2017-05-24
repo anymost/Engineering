@@ -53,7 +53,8 @@ export default {
   confirmMessage : {
     isShow : false,
     isConfirm : false,
-    message : null
+    message : null,
+    data : {}
   }
 }
 

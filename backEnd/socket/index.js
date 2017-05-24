@@ -153,7 +153,6 @@ socketIO.getSocketIO = function (server){
         socket.on('editContent', function (data){
            var docId = data.documentId;
            var content = lastDocContent[docId] ? lastDocContent[docId].content : '';
-
            socket.emit('editContent', {
                documentId : docId,
                content : content
@@ -167,7 +166,7 @@ socketIO.getSocketIO = function (server){
             var docId = data.documentId,
                 handlerId = data.handlerId,
                 content = data.content;
-
+            console.log('saveContent');
             lastDocContent[docId] = {
                 handlerId : handlerId,
                 content : content

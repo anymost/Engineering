@@ -19,6 +19,8 @@ router.post('/', function (req, res, next) {
                 User.addGroup({groupId : groupId, userId : userId}, function (result){
                    res.send(result);
                 });
+            }else{
+                res.send(result);
             }
 
         });

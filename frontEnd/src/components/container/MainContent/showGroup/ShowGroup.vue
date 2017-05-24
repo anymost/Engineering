@@ -1,16 +1,16 @@
 <template>
 <div class="container">
-  <div class="item" v-for="member in groupMembers">
+  <div class="group-member" v-for="member in groupMembers">
     <div class="left" :data-id="member.userId">
-      <img width="60%" height="70%" :src="member.headPicture" alt="headPicture">
-      <br> <span>{{member.userName}}</span>
+      <img width="55%" height="90%" :src="member.headPicture" alt="headPicture">
+       <div>{{member.userName}}</div>
     </div>
     <div class="right">
-      <p>tel:{{member.phone}}</p>
-      <p>email:{{member.email}}</p>
+      <p>{{member.phone}}</p>
+      <p>{{member.email}}</p>
     </div>
-    <div class="delete" @click="deleteMember" :groupId="groupId" :memberId="member.userId"  v-if="hasRightToDelete">
-      X
+    <div class="delete" @click="deleteMember" :groupId="groupId" :memberId="member.userId"  v-if="hasRightToDelete(member.userId)">
+      删除成员
     </div>
   </div>
 
@@ -24,18 +24,27 @@
     width:100%;
     padding:10px;
   }
-  .item{
-    width:60%;
+  .group-member{
+    width:70%;
     height:100px;
     margin:20px 20%;
     border-bottom: 1px solid darkgrey;
     box-shadow: 4px 1px 1px grey;
   }
-  .item>div{
+  .group-member>div{
     float:left;
   }
   .left{
     width:45%;
+  }
+
+  .left > img{
+    float:left;
+  }
+  .lef>div{
+    float:left;
+    height:100%;
+    line-height: 100px;
   }
   .right{
     width:35%;
@@ -72,9 +81,6 @@
           },
           groupId () {
               return store.state.showGroup.groupId;
-          },
-          hasRightToDelete () {
-              return store.state.showGroup.ownerId == this.userId;
           }
 
       },
@@ -89,15 +95,22 @@
                 networkPost('/deleteMember', data)
                   .then((response)=>{
                     if(response.ok && response.data.result == 0){
-                        target.style.display ='none';
-                        console.log('delete is Ok');
-                    }
+                       store.dispatch('showMessage', '成员删除成功');
+                       event.target.value='删除成功';
+                    }else{
+                        store.dispatch('showMessage', '成员删除失败');
+                        event.target.value = '删除失败';
+                }
                   }, (error) => {
-                    console.log(error);
+                    store.dipatch('showMessage', '成员删除失败');
+                    event.target.value = '删除失败';
                   });
 
               }
 
+          },
+          hasRightToDelete (memberId){
+            return store.state.showGroup.ownerId == this.userId && this.userId != memberId;
           }
       }
   }

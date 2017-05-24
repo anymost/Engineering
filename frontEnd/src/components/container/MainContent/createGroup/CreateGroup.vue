@@ -31,6 +31,7 @@
 
 <script>
   import {getUserInfo, networkPost, handlePicPath} from '../../../../tools'
+  import store from '../../../../store'
   export default {
     data () {
       return {
@@ -47,7 +48,9 @@
           if(response.ok){
               let data = response.data;
               if(data.result == 0){
-                  console.log('create Group ok');
+                  store.dispatch('showMessage', '分组创建成功');
+              }else{
+                  store.dispatch('showMessage', '分组创建失败');
               }
           }
         })
