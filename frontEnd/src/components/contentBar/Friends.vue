@@ -4,11 +4,12 @@
         <img width="50%" height="64px" :src="friend.headPicture" alt="friend">
        <div class="info">
           <div class="userName">{{friend.userName}}</div>
-         <div class="sendMessage" :userName="friend.userName" :friendPic="friend.headPicture" :data-userid="friend.userId" @click="sendMessage"></div>
-          <div class="delete" :data-index="index" @click="deleteFriend($event)" :data-userid="friend.userId"></div>
+         <div class="handle-message" :userName="friend.userName" :friendPic="friend.headPicture" :data-userid="friend.userId" @click="sendMessage">发送消息</div>
+          <div class="handle-message" :data-index="index" @click="deleteFriend($event)" :data-userid="friend.userId">删除好友</div>
        </div>
       </div>
      <div class="item add" @click="addFriend">
+       添加好友
      </div>
   </div>
 </template>
@@ -32,7 +33,7 @@
             store.dispatch('addFriend');
         },
         deleteFriend (event) {
-            store.dispatch('confirmMessage', 'confirm delete friend');
+            store.dispatch('confirmMessage', '确定删除该好友?');
             let isDelete = store.state.confirmMessage.isConfirm;
             if(isDelete){
                 let index = event.target.dataset['index'];
@@ -90,16 +91,9 @@
     height:64px;
     width:45%;
   }
-  .delete{
-    width:100%;
-    height:40%;
-    float:right;
-    padding-right:2px;
-    text-align: right;
-    background-image: url(//139.199.164.28:3000/images/close.png);
-    background-repeat:no-repeat;
-    background-size:40% 40%;
-    background-position: center center;
+  .handle-message{
+    font-size:14px;
+    color:rgb(75,156,178);
   }
 
   .userName{
@@ -109,22 +103,11 @@
     float:right;
     padding-right:2px;
   }
-  .sendMessage{
-    width:100%;
-    height:40%;
-    background-image: url(//139.199.164.28:3000/images/data.png);
-    background-size: 40% 40%;
-    background-position: center center;
-    background-repeat:no-repeat;
-    float:right;
-  }
+
 
   .add{
-    font-size:36px;
+    font-size:22px;
     line-height:80px;
-    background-image: url(//139.199.164.28:3000/images/add.png);
-    background-size:40% 50%;
-    background-position:center center;
-    background-repeat: no-repeat;
+    color:rgb(75,156,178);
   }
 </style>

@@ -2,13 +2,13 @@
   <div class="container">
     <form id="group" @submit.prevent="createGroup" enctype="multipart/form-data">
       <br>
-      <input type="text"  name="groupName" autocomplete="off" placeholder="group name">
+      <input type="text"  name="groupName" autocomplete="off" placeholder="请输入分组名">
       <br>
       <input type="file"  name="headPicture">
       <br>
       <input type="hidden" name="ownerId" :value="userId" >
       <input type="hidden" name="members" :value="userId">
-      <input type="submit" value="create">
+      <input type="submit" value="创建分组">
     </form>
 
 

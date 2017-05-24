@@ -5,23 +5,22 @@
         <img width="50%" height="64px" @click="showGroup"  :data-groupid="group.groupId" :data-ownerid="group.ownerId" :src="group.headPicture" alt="group">
         <div class="groupDocument">
           <p  >{{group.groupName}}</p>
-          <div  @click="showDoc" :data-groupid="group.groupId"></div>
+          <div  @click="showDoc" :data-groupid="group.groupId">查看文档</div>
         </div>
       </div>
     </div>
       <div class="doc" v-show="isDocShowed">
-        <div class="item docWord" @click="backToGroup">back</div>
-        <ul class="documentContainer" v-if="documents.length>0">
-          <li class="document" @click="showContent" v-for="document in documents" :data-documentid="document.documentId">
+        <div class="group-list" @click="backToGroup">返回</div>
+          <div class="group-list" @click="showContent" v-for="document in documents" :data-documentid="document.documentId">
             {{document.documentName}}
-          </li>
-        </ul>
-        <div class="docWord" @click="createDocument">+</div>
+          </div>
+
+        <div class="group-list" @click="createDocument">创建文档</div>
       </div>
 
 
-    <div class="item addGroup" v-if="!isDocShowed" @click="createGroup"></div>
-    <div class="item searchGroup" v-if="!isDocShowed" @click="searchGroup"></div>
+    <div class="group-list" v-if="!isDocShowed" @click="createGroup">创建分组</div>
+    <div class="group-list" v-if="!isDocShowed" @click="searchGroup">搜索分组</div>
   </div>
 </template>
 <style scoped>
@@ -34,18 +33,17 @@
     height:80px;
     float:left;
     border-right: 1px solid darkgray;
+    overflow: hidden;
   }
-  .addGroup{
-    background-image:url(//139.199.164.28:3000/images/add.png);
-    background-position: center center;
-    background-size: 50% 50%;
-    background-repeat: no-repeat;
-  }
-  .searchGroup{
-    background-image:url(//139.199.164.28:3000/images/search.png);
-    background-position: center center;
-    background-size: 50% 50%;
-    background-repeat: no-repeat;
+  .group-list{
+    font-size:22px;
+    line-height:80px;
+    color:rgb(75,156,178);
+    width:10%;
+    height:80px;
+    float:left;
+    border-right: 1px solid darkgray;
+    overflow: hidden;
   }
   img{
     float:left;
@@ -65,32 +63,11 @@
   .groupDocument>div{
     width:100%;
     height:50px;
-    margin-top:-20px;
-    background-image: url(//139.199.164.28:3000/images/folder.png);
-    background-position: center center;
-    background-size: 50% 50%;
-    background-repeat: no-repeat;
-  }
-  .document{
-    float:left;
-    background-color:white;
-    border-left:1px solid darkgrey;
-    color:black;
-  }
-  .documentContainer{
-    float:left;
+    font-size: 14px;
+    color:rgb(75,156,178);
   }
 
-  .docWord{
-    font-size:20px;
-    text-align:center;
-    float:left;
-    padding-top:30px;
-    background-image:url(//139.199.164.28:3000/images/skip.png);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 50% 50% ;
-  }
+
 
 
 </style>

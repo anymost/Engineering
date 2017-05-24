@@ -1,12 +1,12 @@
 <template>
     <div class='infoBar' :class='[infoBarDisplay]'>
       <div class="message">
-        <div v-for="item in message" class="content" :sender-id="item.senderId">
+        <div v-for="item in message" class="message-content" :sender-id="item.senderId">
           <div class="top">
-            <span>{{item.senderName}}</span>
-            <span>{{item.date}}</span>
+            <span>sender:<span class="message-item">{{item.senderName}}</span></span>
+            <span>date:<span class="message-item">{{item.date}}</span></span>
           </div>
-          <div class="bottom">
+          <div class="bottom message-item" >
               {{item.message}}
           </div>
         </div>
@@ -38,6 +38,18 @@
   .message{
     width:100%;
   }
+  .message-item{
+    font-size:14px;
+    color:rgb(75,156,178);
+  }
+  .message-content{
+    border:1px solid grey;
+  }
+  .exit{
+    padding:40px auto;
+    font-size:18px;
+    color:rgb(75,156,178);
+  }
 
 </style>
 <script>
@@ -65,12 +77,14 @@
         },
         methods : {
             exit (){
-                let date = (new Date().getTime()-1).toUTCString();
-                let cookie = `userId=null;expires=${date};
-                userName=null;expires=${date};headPicture=null;
-                expires=${date}`;
+                let date = new Date();
+                date.setTime(date.getTime()-1);
+                let expireDate = date.toGMTString();
+                let cookie = `userId=null;expires=${expireDate};
+                userName=null;expires=${expireDate};headPicture=null;
+                expires=${expireDate}`;
                 document.cookie = cookie;
-                location.replace('/login');
+                location.replace('//localhost:3000');
             }
         }
     }

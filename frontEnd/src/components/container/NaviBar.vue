@@ -3,21 +3,16 @@
     <div class="item" data-index="friend" @click="changeTitle($event),getFriends()">
       <img src='../../assets/back.png' data-index="friend" @click='hideBack' class='back'
            :class="{showFriend:friendDisplay}">
-      {{friendDisplay ? 'all Friends' : 'Friends'}}
+      {{friendDisplay ? '返回' : '好友列表'}}
 
     </div>
 
     <div class="item" data-index="group" @click="changeTitle($event),getGroups()">
       <img src='../../assets/back.png' data-index="group" @click='hideBack' class='back'
            :class="{showGroup:groupDisplay}">
-      {{groupDisplay ? 'all Groups' : 'Groups'}}
+      {{groupDisplay ? '返回' : '分组列表'}}
     </div>
 
-    <div class="item" data-index="document" @click="changeTitle($event), getGroups()">
-      <img src='../../assets/back.png' data-index="document" @click='hideBack' class='back'
-           :class="{showDocument:documentDisplay}">
-      {{documentDisplay ? 'all Documents' : 'Documents'}}
-    </div>
   </div>
 </template>
 
@@ -147,7 +142,10 @@
     position: relative;
     width: 100%;
     height: 80px;
+    line-height: 80px;
     background-color: white;
+    color:rgb(75,156,178);
+    size:22px;
     margin-top: 10px;
     box-shadow: 4px 1px 1px grey;
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <input @keydown="search" type="text" autocomplete="off" placeholder="search group">
+    <input @keydown="search" type="text" autocomplete="off" placeholder="请输入分组名">
     <div v-if="groups.length>0" class="content">
       <div class="item" v-for="group in groups">
         <img width="100px" height="100px" :src="group.headPicture" alt="headPicture">

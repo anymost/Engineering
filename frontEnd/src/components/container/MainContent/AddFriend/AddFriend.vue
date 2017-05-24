@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="search">
-      <input type="text" @keyup="searchFriend" v-model="inputValue" placeholder="search friend">
+      <input type="text" @keyup="searchFriend" v-model="inputValue" placeholder="搜索好友">
     </div>
     <div class="searchList" v-if="haveFriend">
         <FriendList :searchList="searchList"></FriendList>
@@ -18,6 +18,7 @@
     height:30px;
     line-height:30px;
     font-size:22px;
+    text-align:center;
   }
   button{
     width:60px;

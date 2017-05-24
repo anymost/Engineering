@@ -1,20 +1,23 @@
 <template>
-  <div>
-    <ul>
-      <li v-for="message in messageList">
+  <div >
+      <p class="message-item" v-for="message in messageList">
         {{message}}
-      </li>
+      </p>
     </ul>
   </div>
 </template>
 <style>
-  li{
-    list-style: none;
-    background-color: cadetblue;
-    color:white;
+  .message-item{
+    float:right;
+    color: cadetblue;
     margin-top:10px;
-    text-align: center;
-    padding:1px 5px
+    text-align:justify;
+    padding:1px 5px;
+    line-height: 30px;
+    width:60%;
+    box-shadow: 4px 1px 1px grey;
+    border-radius: 1px 1px 1px 1px;
+    border:1px solid grey;
   }
 
 </style>

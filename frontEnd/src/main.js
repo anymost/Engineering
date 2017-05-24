@@ -5,7 +5,7 @@ import App from './App'
 import {getUserInfo, createSocket} from './tools'
 import store from './store'
 
-let heartbeat = null;
+var  heartbeat = null;
 
 
 new Vue({
@@ -15,9 +15,9 @@ new Vue({
   components: {App},
   router,
   mounted () {
-
     const userId = getUserInfo().userId;
     const socket = createSocket();
+
     window.addEventListener('load', function(){
 
       socket.emit('clearMessage', {userId:userId});
@@ -27,8 +27,9 @@ new Vue({
     });
 
     heartbeat = setInterval(function () {
+
       socket.emit('heartbeat', {userId: userId});
-    }, 1000*60*2);
+    }, 1000*30);
 
 
     socket.on('pushMessage', function (message) {
@@ -38,6 +39,7 @@ new Vue({
         userId: userId
       });
       if (message) {
+
         store.commit('receiveMessage', message);
       }
     });

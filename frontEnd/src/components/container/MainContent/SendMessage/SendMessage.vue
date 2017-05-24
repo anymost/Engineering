@@ -2,7 +2,7 @@
   <div class="container">
     <div class="mainContent">
       <div class="leftContent">
-        <h2>message</h2>
+        <h2>消息列表</h2>
         <div class="messageWindow">
             <Message :messageList="messageList"></Message>
         </div>
@@ -15,7 +15,7 @@
         <textarea  name="" id=""  v-model="message"></textarea>
         <br>
         <input type="button" :receiverId="receiver.receiverId"
-               :senderId="sender.senderId"  value="send" @click="sendMessage">
+               :senderId="sender.senderId"  value="发送" @click="sendMessage">
       </div>
     </div>
   </div>
@@ -40,10 +40,12 @@
     height:400px;
     border: 1px solid rgb(169, 169, 169);
     margin-left:100px;
+    overflow: auto;
   }
   textarea{
     width:80%;
     height:100px;
+    font-size:16px;
   }
   input{
     width:200px;
@@ -74,6 +76,9 @@
     methods: {
       sendMessage (event){
           let message = this.message;
+          if(!message){
+              return;
+          }
           let target = event.target;
           let senderId = target.getAttribute('senderId');
           let receiverId = target.getAttribute('receiverId');

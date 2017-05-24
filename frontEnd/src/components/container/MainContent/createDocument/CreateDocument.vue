@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <input type="text" placeholder="document name" class="documentName" v-model="documentName">
-    <input type="button" class="createDocument" @click="createDocument" value="create">
+    <input type="text" placeholder="请输入文档名" class="documentName"  v-model="documentName">
+    <input type="button" class="createDocument" @click="createDocument" value="创建文档">
     <div id="editor"></div>
   </div>
 </template>

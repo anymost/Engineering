@@ -4,8 +4,8 @@
     <div>
     {{message}}
       <br>
-    <input type="button" value="yes" @click="confirmYes">
-    <input type="button" value="no" @click="confirmNo">
+    <input type="button" value="是" @click="confirmYes">
+    <input type="button" value="否" @click="confirmNo">
     </div>
   </div>
 

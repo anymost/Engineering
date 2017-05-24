@@ -4,7 +4,7 @@
       <div class="message">
        <div class='info' >{{name}} </div>
 
-        <div class="messageLength" @click="infoDisplay(),readMessage()"></div>
+        <div class="messageLength" @click="infoDisplay(),readMessage()">{{message}}</div>
       </div>
     </div>
 </template>
@@ -16,7 +16,6 @@
     }
     .head{
       float:left;
-      border-radius : 50%;
     }
     .message{
       float:left;
@@ -33,12 +32,8 @@
       margin-left:10%;
       width:100%;
       height:50%;
-      background-image:url(//139.199.164.28:3000/images/email.png) ;
-      background-repeat:no-repeat;
-      background-size:50% 60%;
-      background-position: center center;
-      color:red;
-      font-size:20px;
+      color:rgb(75,156,178);
+      font-size:14px;
     }
 
 
@@ -62,13 +57,18 @@
            },
           readMessage(){
                this.messageList = [];
+               this.message = '消息';
                store.dispatch('readMessage');
           }
         },
         computed: {
           messageLength　(){
               return store.state.message.data.length;
+          },
+          message () {
+              return store.state.message.data.length>0 ? '未读消息' : '消息';
           }
+
         },
         components:{
 
