@@ -11,7 +11,7 @@
     </div>
       <div class="doc" v-show="isDocShowed">
         <div class="group-list" @click="backToGroup">返回</div>
-          <div class="group-list" @click="showContent" v-for="document in documents" :data-documentid="document.documentId">
+          <div class="group-list" @click="showContent" v-for="document in documents" :data-documentid="document.documentId" :data-documentname="document.documentName">
             {{document.documentName}}
           </div>
 
@@ -76,14 +76,15 @@
 </style>
 <script>
   import store from '../../store'
-  import {networkPost, getUserInfo} from '../../tools'
+  import {networkPost, getUserInfo, createSocket} from '../../tools'
   export default{
     data(){
       return{
         isDocShowed : false,
         documents : [],
         selectGroup : 0,
-        userId : getUserInfo().userId
+        userId : getUserInfo().userId,
+        socket : createSocket()
       }
     },
     props : ['groups'],
@@ -129,16 +130,29 @@
               })
         },
         showContent (event){
-            let documentId = event.target.dataset['documentid'];
-            networkPost('/getDocContent', {documentId : documentId})
-              .then(function (response){
-                  if(response.ok && (response.data.result == 0 || response.data.result == -2)){
-                      let data = response.data.data;
-                      store.dispatch('showDocContent', data);
-                  }
-              }, function (error){
+            let documentId = event.target.dataset['documentid'],
+              documentName = event.target.dataset['documentname'];
+            this.socket.emit('loadDoc', {documentId:documentId});
+            this.socket.on('loadDoc', function (data){
+                if(data.content != null){
+                    store.dispatch('showDocContent',{
+                        documentId : data.documentId,
+                        documentName : documentName,
+                        content : data.content
+                    });
+                }else{
 
-              })
+                  networkPost('/getDocContent', {documentId: documentId})
+                    .then(function (response) {
+                      if (response.ok && (response.data.result == 0 || response.data.result == -2)) {
+                        let data = response.data.data;
+                        store.dispatch('showDocContent', data);
+                      }
+                    }, function (error) {
+
+                    });
+                }
+            });
         },
         createDocument (){
             var ownerId = this.userId, groupId = this.selectGroup;

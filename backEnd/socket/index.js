@@ -152,13 +152,21 @@ socketIO.getSocketIO = function (server){
          */
         socket.on('editContent', function (data){
            var docId = data.documentId;
-           var content = lastDocContent[docId] ? lastDocContent[docId].content : '';
+           var content = lastDocContent[docId] ? lastDocContent[docId].content : null;
            socket.emit('editContent', {
                documentId : docId,
                content : content
            });
         });
 
+        socket.on('loadDoc', function (data){
+            var docId = data.documentId;
+            var content = lastDocContent[docId] ? lastDocContent[docId].content : null;
+            socket.emit('loadDoc', {
+                documentId : docId,
+                content : content
+            });
+        });
         /**
          * 保存修改后经过diff的内容
          */
