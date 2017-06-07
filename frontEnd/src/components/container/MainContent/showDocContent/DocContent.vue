@@ -51,7 +51,7 @@
               handleId: this.userId,
               content: oldContent
             });
-
+          store.dispatch('showMessage', '文档同步完成');
         }
       });
 
